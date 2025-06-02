@@ -960,7 +960,7 @@
 
             const message = `Новий заказ!\n\nИмя: ${name}\nТелефон: ${phone}\nТовар: Зволожувач повітря RGB (499 ₴)`;
 
-            const telegramApiUrl = `https://api.telegram.org/bot7622464545:AAGDZUJVWtyRenp9DC5avjLJjiBr5Mx7Teg/getUpdates${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            const telegramApiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
             try {
                 const response = await fetch(telegramApiUrl, {
