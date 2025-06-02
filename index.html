@@ -688,18 +688,6 @@
                 padding: 15px;
                 width: 95%; /* Забезпечуємо ширину 95% для дуже маленьких екранів */
             }
-
-            .hero-container {
-                display: flex;
-                flex-direction: row;
-                justify-content: center; /* Центрує по горизонталі */
-                align-items: center;     /* Центрує по вертикалі */
-                gap: 40px;
-                flex-wrap: wrap;         /* Для адаптації на мобільних */
-                width: 100%;
-                max-width: 1200px;
-                margin: 0 auto;          /* Центрує сам блок у секції */
-            }
             
             .form-header {
                 font-size: 18px;
@@ -855,13 +843,11 @@
     </header>
 
     <section class="hero">
-        <div class="hero-container">
         <div class="left-content">
             <div class="promo-sticker">АКЦІЯ</div>
             <img src="https://i.ibb.co/wR24QfJ/ezgif-com-webp-to-jpg.jpg" alt="Зволожувач повітря">
             <div class="timer-promo">
                 Акція діє ще: <span id="countdown"></span>
-            </div>
             </div>
         </div>
         <div class="right-form">
