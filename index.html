@@ -864,8 +864,8 @@
             <div class="price-display">499 <span class="price-currency">₴</span></div>
 
             <form class="order-form">
-                <input type="text" placeholder="ВАШЕ ІМ'Я" required>
-                <input type="tel" placeholder="+38 (___) ___-__-__" required>
+                <input type="text" name="name" placeholder="ВАШЕ ІМ'Я" required>
+                <input type="tel" name="phone" placeholder="+38 (___) ___-__-__" required>
                 <button type="submit">ОФОРМИТИ ЗАМОВЛЕННЯ</button>
                 <div class="consent">
                     Натискаючи кнопку, Ви погоджуєтесь з <a href="https://raw.githubusercontent.com/Bodikbbb/Shop1/main/policy.pdf" target="_blank">політикою конфіденційності</a> та <a href="https://raw.githubusercontent.com/Bodikbbb/Shop1/main/policy.docx" target="_blank">умовами повернення коштів</a>
@@ -937,6 +937,57 @@
             const duration = (2 * 24 * 3600) + (1 * 3600) + (39 * 60); // 2 дні, 1 година, 39 хвилин
             startTimer(duration, countdownDisplay);
         };
+
+        // Telegram Bot Integration
+        const TELEGRAM_BOT_TOKEN = '7622464545:AAGDZUJVWtyRenp9DC5avjLJjiBr5Mx7Teg';
+        const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'; // Замените на ваш ID чата Telegram. Чтобы узнать свой ID, можно написать боту @userinfobot
+
+        const orderForm = document.querySelector('.order-form');
+
+        orderForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Предотвращаем стандартную отправку формы
+
+            const nameInput = this.querySelector('input[name="name"]');
+            const phoneInput = this.querySelector('input[name="phone"]');
+
+            const name = nameInput.value;
+            const phone = phoneInput.value;
+
+            if (!name || !phone) {
+                alert('Будь ласка, запівніть всі поля.');
+                return;
+            }
+
+            const message = `Новий заказ!\n\nИмя: ${name}\nТелефон: ${phone}\nТовар: Зволожувач повітря RGB (499 ₴)`;
+
+            const telegramApiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+            try {
+                const response = await fetch(telegramApiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.ok) {
+                    alert('Ваше замовлення в обробці, чекайте на дзвінок від менеджера.');
+                    orderForm.reset(); // Очищаем форму после успешной отправки
+                } else {
+                    alert('Йой, помилка при замовленні, повторіть спробу, будь ласка.');
+                    console.error('Ошибка Telegram API:', data);
+                }
+            } catch (error) {
+                alert('Схоже помилка підключення. Перевірте ваше інтернет-відключення.');
+                console.error('Помилка при відправленні запросу:', error);
+            }
+        });
     </script>
 </body>
 </html>
