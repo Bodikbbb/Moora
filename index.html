@@ -810,16 +810,40 @@
             .hero .right-form {
                 max-width: 400px; /* Зменшуємо ширину блоку замовлення */
             }
+             #specs-box {
+                  max-height: 0;
+                  overflow: hidden;
+                  transition: max-height 0.4s ease, padding 0.3s ease;
+                  padding: 0 15px;
+                  background: #2b2b2b;
+                  color: #fff;
+                  margin-top: 10px;
+                }
+                
+                #specs-box.open {
+                  max-height: 500px;
+                  padding: 15px;
+                }    
         }
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <a href="#">Характеристики</a>
+            <a href="#" id="toggle-specs">Характеристики</a>
             <a href="#">Доставка і оплата</a>
             <a href="#">Контакти</a>
         </nav>
+        <div id="specs-box">
+          <h3>Характеристики</h3>
+          <ul>
+            <li>Обʼєм резервуара: 300 мл</li>
+            <li>Площа зволоження: до 25 м²</li>
+            <li>Підсвітка: RGB, плавна</li>
+            <li>Автовимкнення при відсутності води</li>
+            <li>Живлення: USB</li>
+          </ul>
+        </div>
         <div>
             <a href="tel:+380506995040" class="header-phone">(068) 806-91-14</a>
         </div>
@@ -983,6 +1007,16 @@
                 alert('Помилка мережі.');
               }
             });
+
+            document.addEventListener('DOMContentLoaded', function () {
+            const toggleSpecsLink = document.getElementById('toggle-specs');
+            const specsBox = document.getElementById('specs-box');
+        
+            toggleSpecsLink.addEventListener('click', function (e) {
+              e.preventDefault();
+              specsBox.classList.toggle('open');
+            });
+          });
     </script>
 </body>
 </html>
