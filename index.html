@@ -944,50 +944,45 @@
 
         const orderForm = document.querySelector('.order-form');
 
-        orderForm.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Предотвращаем стандартную отправку формы
-
-            const nameInput = this.querySelector('input[name="name"]');
-            const phoneInput = this.querySelector('input[name="phone"]');
-
-            const name = nameInput.value;
-            const phone = phoneInput.value;
-
-            if (!name || !phone) {
-                alert('Будь ласка, запівніть всі поля.');
+            orderForm.addEventListener('submit', async function(event) {
+              event.preventDefault();
+            
+              const name = this.querySelector('input[name="name"]').value.trim();
+              const phone = this.querySelector('input[name="phone"]').value.trim();
+            
+              if (!name || !phone) {
+                alert('Заповніть всі поля.');
                 return;
-            }
-
-            const message = `Новий заказ!\n\nИмя: ${name}\nТелефон: ${phone}\nТовар: Зволожувач повітря RGB (499 ₴)`;
-
-            const telegramApiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-
-            try {
-                const response = await fetch(telegramApiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        text: message
-                    })
+              }
+            
+              const message = `Новий заказ!\n\nІм’я: ${name}\nТелефон: ${phone}`;
+            
+              try {
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message
+                  })
                 });
-
-                const data = await response.json();
-
-                if (data.ok) {
-                    alert('Ваше замовлення в обробці, чекайте на дзвінок від менеджера.');
-                    orderForm.reset(); // Очищаем форму после успешной отправки
+            
+                const result = await response.json();
+            
+                if (result.ok) {
+                  alert('Замовлення надіслано!');
+                  orderForm.reset();
                 } else {
-                    alert('Йой, помилка при замовленні, повторіть спробу, будь ласка.');
-                    console.error('Ошибка Telegram API:', data);
+                  console.error(result);
+                  alert('Помилка при надсиланні. Спробуйте ще.');
                 }
-            } catch (error) {
-                alert('Схоже помилка підключення. Перевірте ваше інтернет-відключення.');
-                console.error('Помилка при відправленні запросу:', error);
-            }
-        });
+              } catch (error) {
+                console.error(error);
+                alert('Помилка мережі.');
+              }
+            });
     </script>
 </body>
 </html>
