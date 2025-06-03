@@ -175,6 +175,8 @@
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            /* Ensure slider is displayed on all screen sizes by default */
+            display: block; 
         }
 
         .slides-container {
@@ -183,7 +185,7 @@
         }
 
         .slide {
-            flex-shrink: 0; /* Prevent slides from shrinking */
+            flex-shrink: 0;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -211,7 +213,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
             opacity: 0.8;
             border-radius: 5px;
-            line-height: 1; /* For better icon alignment */
+            line-height: 1;
         }
 
         .slider-button:hover {
@@ -639,9 +641,8 @@
                 padding: 6px 15px;
             }
 
-            .hero .left-content img { /* Removed for slider, slider uses .image-slider */
-                display: none; /* Hide original image if slider is present */
-            }
+            /* REMOVE this rule as it hides the slider on mobile */
+            /* .hero .left-content img { display: none; } */ 
 
             .hero .right-form {
                 max-width: 100%;
@@ -767,9 +768,8 @@
                 padding: 5px 12px;
             }
 
-            .hero .left-content img { /* Removed for slider */
-                display: none;
-            }
+            /* REMOVE this rule as it hides the slider on mobile */
+            /* .hero .left-content img { display: none; } */
 
             .hero .right-form {
                 padding: 15px;
@@ -1095,6 +1095,9 @@
             const nextBtn = document.getElementById('nextBtn');
             const dotsContainer = document.getElementById('dotsContainer');
 
+            // Clear existing dots to prevent duplicates if initSlider is called multiple times
+            dotsContainer.innerHTML = ''; 
+
             // Create dots
             for (let i = 0; i < totalSlides; i++) {
                 const dot = document.createElement('span');
@@ -1105,7 +1108,6 @@
             }
 
             const dots = document.querySelectorAll('.dot');
-
             function showSlide(index) {
                 if (index >= totalSlides) {
                     currentSlide = 0;
@@ -1116,10 +1118,11 @@
                 }
 
                 slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-
                 // Update active dot
                 dots.forEach(dot => dot.classList.remove('active'));
-                dots[currentSlide].classList.add('active');
+                if (dots[currentSlide]) { // Ensure the dot exists before adding class
+                    dots[currentSlide].classList.add('active');
+                }
             }
 
             prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
@@ -1127,6 +1130,7 @@
 
             // Auto-slide functionality
             function startAutoSlide() {
+                stopAutoSlide(); // Clear any existing interval before starting a new one
                 slideInterval = setInterval(() => {
                     showSlide(currentSlide + 1);
                 }, 4000); // Change slide every 4 seconds
@@ -1139,8 +1143,7 @@
             const imageSlider = document.querySelector('.image-slider');
             imageSlider.addEventListener('mouseenter', stopAutoSlide);
             imageSlider.addEventListener('mouseleave', startAutoSlide);
-
-
+            
             showSlide(currentSlide); // Initialize first slide
             startAutoSlide(); // Start auto-sliding
         }
@@ -1148,10 +1151,17 @@
 
         window.onload = function () {
             const countdownDisplay = document.getElementById('countdown');
-            // Calculate 2 days, 1 hour, 39 minutes from current time (June 3, 2025 at 3:32:10 PM EEST)
-            const targetTime = new Date('June 5, 2025 16:11:10 EEST').getTime();
-            const now = new Date().getTime();
-            const initialDuration = Math.max(0, Math.floor((targetTime - now) / 1000));
+            // Update the target time to be in the future relative to when the user loads the page
+            // For example, set it to 2 days from now.
+            const now = new Date();
+            // Example: Set target to 2 days, 1 hour, 39 minutes, 10 seconds from *now*
+            now.setDate(now.getDate() + 2); 
+            now.setHours(now.getHours() + 1);
+            now.setMinutes(now.getMinutes() + 39);
+            now.setSeconds(now.getSeconds() + 10);
+            const targetTime = now.getTime();
+
+            const initialDuration = Math.max(0, Math.floor((targetTime - new Date().getTime()) / 1000));
 
             startTimer(initialDuration, countdownDisplay);
             initSlider(); // Initialize the slider
