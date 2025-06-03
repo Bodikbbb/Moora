@@ -26,12 +26,11 @@
             color: var(--light-text);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Prevent horizontal scroll on mobile */
         }
 
         header {
             background-color: var(--header-bg);
-            padding: 15px 20px; /* Збільшимо верхній та нижній падінги */
+            padding: 15px 20px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -67,10 +66,10 @@
 
         .menu-toggle {
             display: none;
-            font-size: 30px; /* Збільшимо розмір іконки меню */
+            font-size: 30px;
             color: var(--light-text);
             cursor: pointer;
-            padding: 8px; /* Increase touch area */
+            padding: 8px;
         }
 
         .mobile-menu {
@@ -84,33 +83,26 @@
             width: 100%;
             box-sizing: border-box;
             border-top: 1px solid #444;
-            transform: translateY(-100%); /* Start off-screen for animation */
+            transform: translateY(-100%);
             transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            /* Smooth slide-in */
             opacity: 0;
-            /* Start invisible for fade */
             pointer-events: none;
-            /* Prevent interaction when hidden */
         }
 
         .mobile-menu.active {
             display: flex;
-            transform: translateY(0); /* Slide into view */
+            transform: translateY(0);
             opacity: 1;
-            /* Fade in */
             pointer-events: all;
-            /* Allow interaction */
         }
 
         .mobile-menu a {
             padding: 12px;
-            /* Larger padding for easier tapping */
             color: var(--light-text);
             text-decoration: none;
             border-bottom: 1px solid #444;
             text-align: center;
             font-size: 16px;
-            /* Larger font size */
             transition: background-color 0.2s ease;
         }
 
@@ -120,16 +112,14 @@
 
         .mobile-menu a:hover {
             background-color: rgba(0, 255, 255, 0.1);
-            /* Subtle hover effect */
         }
 
         .mobile-menu .phone {
             margin-top: 15px;
-            /* More space */
             color: #ff8080;
             text-align: center;
             font-weight: bold;
-            font-size: 18px; /* Larger phone number */
+            font-size: 18px;
             padding-bottom: 10px;
         }
 
@@ -138,15 +128,15 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
-            align-items: center; /* Center items vertically */
+            align-items: center;
             padding: 60px 40px;
             gap: 40px;
-            background-image: url('https://via.placeholder.com/1920x800/222222/FFFFFF?text=Background+Image'); /* Placeholder */
+            background-image: url('https://via.placeholder.com/1920x800/222222/FFFFFF?text=Background+Image');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed;
             min-height: 600px;
-            position: relative; /* Додаємо для позиціонування таймера */
+            position: relative;
         }
 
         .hero .left-content {
@@ -158,7 +148,6 @@
             max-width: 500px;
             position: relative;
             padding-top: 60px;
-            /* Space for the sticker */
         }
 
         .promo-sticker {
@@ -175,43 +164,118 @@
             clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
             white-space: nowrap;
             box-shadow: 0 0 15px rgba(255, 77, 210, 0.5);
-            /* Pink shadow */
         }
 
-        .hero .left-content img {
+        /* Image Slider Styles */
+        .image-slider {
+            position: relative;
             width: 100%;
-            /* Зменшимо ширину зображення на мобільних */
-            max-width: 450px;
-            /* Встановимо максимальну ширину для мобільних */
+            max-width: 450px; /* Adjust as needed */
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+
+        .slides-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Smooth slide transition */
+        }
+
+        .slide {
+            flex-shrink: 0; /* Prevent slides from shrinking */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide img {
+            width: 100%;
             height: auto;
             display: block;
-            border-radius: 8px; /* Slight rounded corners for the image */
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-            /* Cyan glow */
-            margin: 0 auto;
-            /* Центруємо зображення */
+            object-fit: contain; /* Ensure image fits without cropping */
         }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--light-text);
+            border: none;
+            padding: 15px 10px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 10;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            opacity: 0.8;
+            border-radius: 5px;
+            line-height: 1; /* For better icon alignment */
+        }
+
+        .slider-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: var(--accent-cyan);
+            opacity: 1;
+        }
+
+        .prev-btn {
+            left: 10px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .next-btn {
+            right: 10px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .dots-container {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .dot.active {
+            background-color: var(--accent-cyan);
+            transform: scale(1.2);
+            box-shadow: 0 0 8px var(--accent-cyan);
+        }
+
+        /* End Image Slider Styles */
 
         .hero .right-form {
             flex: 1;
             max-width: 450px;
-            background-color: rgba(0, 0, 0, 0.85); /* More opaque */
+            background-color: rgba(0, 0, 0, 0.85);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
-            /* Stronger cyan shadow */
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            backdrop-filter: blur(5px); /* Subtle blur effect */
+            backdrop-filter: blur(5px);
             width: 100%;
-            /* Займає 90% ширини контейнера на мобільних */
         }
 
         .form-header {
             font-size: 28px;
-            /* Slightly larger */
             font-weight: bold;
             color: var(--light-text);
             margin-bottom: 15px;
@@ -220,12 +284,11 @@
 
         .form-subheader {
             font-size: 22px;
-            /* Slightly larger */
             font-weight: bold;
             background: var(--sale-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 25px; /* More space */
+            margin-bottom: 25px;
             text-shadow: 0 0 8px rgba(255, 77, 210, 0.5);
         }
 
@@ -233,12 +296,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px; /* More space */
+            gap: 15px;
             margin-bottom: 25px;
-            /* More space */
             font-size: 16px;
             flex-wrap: wrap;
-            /* Allow wrapping on small screens */
         }
 
         .size-info .label {
@@ -248,15 +309,10 @@
 
         .size-box {
             background-color: #3e3e3e;
-            /* Slightly lighter dark */
             border: 2px solid var(--accent-cyan);
-            /* Cyan border */
             padding: 10px 20px;
-            /* More padding */
             border-radius: 8px;
-            /* More rounded */
             font-size: 20px;
-            /* Larger text */
             font-weight: bold;
             color: var(--accent-cyan);
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
@@ -278,10 +334,8 @@
 
         .size-info .question-icon {
             width: 25px;
-            /* Larger icon */
             height: 25px;
             color: inherit;
-            /* Inherit color from parent link */
             vertical-align: middle;
             cursor: pointer;
             margin-bottom: 5px;
@@ -289,13 +343,11 @@
 
         .size-info .question-text {
             font-size: 13px;
-            /* Slightly smaller text */
             text-transform: uppercase;
         }
 
         .size-info .arrow-icon {
             width: 28px;
-            /* Larger arrow */
             height: 28px;
             color: var(--light-text);
             margin-left: 10px;
@@ -304,13 +356,10 @@
 
         .size-info .question-link:hover + .arrow-icon {
             transform: translateX(5px);
-            /* Subtle arrow movement on hover */
         }
-
 
         .price-display {
             font-size: 52px;
-            /* Even larger */
             font-weight: bold;
             color: var(--accent-cyan);
             margin-bottom: 10px;
@@ -319,44 +368,35 @@
 
         .price-currency {
             font-size: 36px;
-            /* Proportional to main price */
             color: var(--light-text);
             vertical-align: super;
         }
 
         .timer-promo {
             font-size: 18px;
-            /* Larger timer text */
             color: #ddd;
             margin-bottom: 25px;
-            /* More space */
         }
 
         .timer-promo strong, .timer-promo span {
             color: var(--accent-green);
-            font-size: 20px; /* Larger timer digits */
+            font-size: 20px;
             font-weight: bold;
             text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
         }
 
         .order-form {
             width: 100%;
-            /* Ensure form takes full width of its container */
         }
 
         .order-form input {
             width: calc(100% - 24px);
-            /* Account for padding */
             margin: 12px 0;
-            /* More vertical space */
             padding: 14px 12px;
-            /* More padding */
             font-size: 17px;
-            border: 1px solid #666; /* Slightly lighter border */
+            border: 1px solid #666;
             border-radius: 6px;
-            /* More rounded */
             background-color: #3a3a3a;
-            /* Darker input background */
             color: var(--light-text);
             outline: none;
             box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
@@ -374,33 +414,28 @@
 
         .order-form button {
             width: 100%;
-            padding: 18px; /* More padding */
+            padding: 18px;
             font-size: 22px;
-            /* Larger font */
             background: var(--sale-gradient);
             color: #000;
             border: none;
             cursor: pointer;
-            border-radius: 8px; /* More rounded */
+            border-radius: 8px;
             font-weight: bold;
             text-transform: uppercase;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             margin-top: 20px;
-            /* More space */
             letter-spacing: 1px;
-            /* Slightly spaced letters */
         }
 
         .order-form button:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); /* Stronger hover shadow */
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
         }
 
         .consent {
             font-size: 13px;
-            /* Slightly larger */
             margin-top: 18px;
-            /* More space */
             color: #bbb;
             text-align: center;
         }
@@ -419,15 +454,13 @@
         .how {
             background-color: #fff;
             color: #000;
-            padding: 60px 20px; /* More padding */
+            padding: 60px 20px;
             text-align: center;
         }
 
         .how h2 {
             font-size: 36px;
-            /* Larger heading */
             margin-bottom: 40px;
-            /* More space */
             background: var(--text-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -445,15 +478,13 @@
 
         .step {
             width: 23%;
-            min-width: 250px; /* Increased min-width for steps */
+            min-width: 250px;
             text-align: left;
-            padding: 20px; /* More padding */
+            padding: 20px;
             box-sizing: border-box;
-            border-radius: 12px; /* More rounded */
+            border-radius: 12px;
             background-color: #f8f8f8;
-            /* Light background for steps */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            /* Subtle shadow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -464,7 +495,6 @@
 
         .step span {
             font-size: 56px;
-            /* Even larger number */
             background: var(--sale-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -476,7 +506,6 @@
 
         .step p {
             font-size: 16px;
-            /* Slightly larger text */
             color: #444;
         }
 
@@ -490,7 +519,6 @@
 
         .benefits h2 {
             font-size: 36px;
-            /* Larger heading */
             margin-bottom: 40px;
             background: var(--text-gradient);
             -webkit-background-clip: text;
@@ -514,14 +542,12 @@
             align-items: center;
             text-align: center;
             padding: 15px;
-            /* Added padding */
             border-radius: 8px;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .benefit:hover {
             background-color: #2a2a2a;
-            /* Slightly lighter on hover */
             transform: translateY(-5px);
         }
 
@@ -531,12 +557,10 @@
             color: var(--accent-cyan);
             margin-bottom: 15px;
             filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.4));
-            /* Glow for icons */
         }
 
         .benefit div {
             font-size: 19px;
-            /* Slightly larger text */
             font-weight: bold;
             color: #eee;
         }
@@ -547,13 +571,13 @@
                 flex-direction: column;
                 padding: 40px 20px;
                 align-items: center;
-                min-height: auto; /* Allow height to adjust */
+                min-height: auto;
             }
 
             .hero .left-content,
             .hero .right-form {
                 max-width: 100%;
-                width: 100%; /* Ensure full width on smaller screens */
+                width: 100%;
             }
 
             .hero .right-form {
@@ -580,7 +604,7 @@
                 transform: none;
                 margin-top: 20px;
                 text-align: center;
-                background-color: transparent; /* Remove background on mobile */
+                background-color: transparent;
                 padding: 0;
                 box-shadow: none;
             }
@@ -598,7 +622,7 @@
             .menu-toggle {
                 display: block;
                 margin-left: auto;
-                font-size: 30px; /* Збільшимо розмір іконки меню */
+                font-size: 30px;
                 padding: 8px;
             }
 
@@ -615,19 +639,19 @@
                 padding: 6px 15px;
             }
 
-            .hero .left-content img {
-                width: 90%;
-                max-width: 300px;
+            .hero .left-content img { /* Removed for slider, slider uses .image-slider */
+                display: none; /* Hide original image if slider is present */
             }
 
             .hero .right-form {
                 max-width: 100%;
-                /* На мобільних займає всю ширину */
                 width: 90%;
-                /* Зменшено до 90% для відцентрування */
                 padding: 20px;
                 margin-top: 20px;
-                margin: 20px auto; /* Центруємо форму */
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 20px;
+                align-self: center;
             }
 
             .form-header {
@@ -664,7 +688,6 @@
                 transform: rotate(90deg);
             }
 
-
             .price-display {
                 font-size: 38px;
             }
@@ -693,7 +716,7 @@
             .step {
                 width: 90%;
                 padding: 15px;
-                margin-bottom: 25px; /* Забезпечення відстані між кроками */
+                margin-bottom: 25px;
             }
 
             .step span {
@@ -744,14 +767,18 @@
                 padding: 5px 12px;
             }
 
-            .hero .left-content img {
-                max-width: 95%;
+            .hero .left-content img { /* Removed for slider */
+                display: none;
             }
 
             .hero .right-form {
-                padding: 35px;
-                width: 90%; /* Забезпечуємо ширину 95% для дуже маленьких екранів */
-                margin-left: 15px auto; /* Центруємо форму */
+                padding: 15px;
+                width: 95%;
+                margin-top: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 20px;
+                align-self: center;
             }
 
             .form-header {
@@ -854,7 +881,6 @@
         @media (min-width: 993px) {
             .hero {
                 background-color: #333;
-                /* Змінюємо колір фону hero */
             }
             .hero .left-content {
                 display: flex;
@@ -871,43 +897,40 @@
                 padding: 10px 20px;
                 border-radius: 8px;
                 font-size: 16px;
-                z-index: 1; /* Щоб таймер був над фоном */
+                z-index: 1;
             }
             .hero .right-form {
                 max-width: 400px;
-                /* Зменшуємо ширину блоку замовлення */
             }
 
-            /* PC specific styles for characteristics block */
             .steps {
-                justify-content: space-around; /* Distribute items with space around them */
-                padding: 0 40px; /* Add some horizontal padding */
-                gap: 20px; /* Reduce gap slightly for better distribution */
+                justify-content: space-around;
+                padding: 0 40px;
+                gap: 20px;
             }
             .step {
-                width: 20%; /* Adjust width for more columns */
-                min-width: 200px; /* Ensure a reasonable minimum width */
+                width: 20%;
+                min-width: 200px;
             }
-            /* Specific style for the characteristics block on PC */
-            .step:last-child { /* Targets the last .step which is the characteristics block */
-                width: calc(100% - 80px); /* Take full width minus padding for PC */
-                max-width: 1000px; /* Optional: limit max width if needed */
-                text-align: left; /* Align text to the left */
-                margin-top: 30px; /* Add some space above it */
+            .step:last-child {
+                width: calc(100% - 80px);
+                max-width: 1000px;
+                text-align: left;
+                margin-top: 30px;
             }
             .step:last-child h3 {
-                text-align: left; /* Ensure the heading is left-aligned */
-                font-size: 24px; /* Adjust font size if desired */
+                text-align: left;
+                font-size: 24px;
                 margin-bottom: 15px;
-                color: #333; /* Darker color for the heading */
+                color: #333;
             }
             .step:last-child ul {
-                list-style: none; /* Remove default list style */
+                list-style: none;
                 padding: 0;
                 margin: 0;
             }
             .step:last-child ul li {
-                margin-bottom: 8px; /* Space between list items */
+                margin-bottom: 8px;
                 font-size: 16px;
                 color: #555;
             }
@@ -936,7 +959,20 @@
     <section class="hero">
         <div class="left-content">
             <div class="promo-sticker">АКЦІЯ</div>
-            <img src="https://images.prom.ua/5935407780_w640_h640_5935407780.jpg" alt="Зволожувач повітря">
+            
+            <div class="image-slider">
+                <div class="slides-container" id="slidesContainer">
+                    <div class="slide" data-index="0"><img src="https://images.prom.ua/5935407780_w640_h640_5935407780.jpg" alt="Зволожувач повітря 1"></div>
+                    <div class="slide" data-index="1"><img src="https://via.placeholder.com/640x640/555555/FFFFFF?text=Image+2" alt="Зволожувач повітря 2"></div>
+                    <div class="slide" data-index="2"><img src="https://via.placeholder.com/640x640/777777/FFFFFF?text=Image+3" alt="Зволожувач повітря 3"></div>
+                    <div class="slide" data-index="3"><img src="https://via.placeholder.com/640x640/999999/FFFFFF?text=Image+4" alt="Зволожувач повітря 4"></div>
+                    <div class="slide" data-index="4"><img src="https://via.placeholder.com/640x640/bbbbbb/FFFFFF?text=Image+5" alt="Зволожувач повітря 5"></div>
+                </div>
+                <button class="slider-button prev-btn" id="prevBtn">&#10094;</button>
+                <button class="slider-button next-btn" id="nextBtn">&#10095;</button>
+                <div class="dots-container" id="dotsContainer"></div>
+            </div>
+
             <div class="timer-promo">
                 Акція діє ще: <span id="countdown"></span>
             </div>
@@ -1047,10 +1083,78 @@
             }, 1000);
         }
 
+        // Slider functionality
+        let currentSlide = 0;
+        let slideInterval;
+
+        function initSlider() {
+            const slidesContainer = document.getElementById('slidesContainer');
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('dotsContainer');
+
+            // Create dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                dot.dataset.index = i;
+                dotsContainer.appendChild(dot);
+                dot.addEventListener('click', () => showSlide(i));
+            }
+
+            const dots = document.querySelectorAll('.dot');
+
+            function showSlide(index) {
+                if (index >= totalSlides) {
+                    currentSlide = 0;
+                } else if (index < 0) {
+                    currentSlide = totalSlides - 1;
+                } else {
+                    currentSlide = index;
+                }
+
+                slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                // Update active dot
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[currentSlide].classList.add('active');
+            }
+
+            prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+            nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+
+            // Auto-slide functionality
+            function startAutoSlide() {
+                slideInterval = setInterval(() => {
+                    showSlide(currentSlide + 1);
+                }, 4000); // Change slide every 4 seconds
+            }
+
+            function stopAutoSlide() {
+                clearInterval(slideInterval);
+            }
+
+            const imageSlider = document.querySelector('.image-slider');
+            imageSlider.addEventListener('mouseenter', stopAutoSlide);
+            imageSlider.addEventListener('mouseleave', startAutoSlide);
+
+
+            showSlide(currentSlide); // Initialize first slide
+            startAutoSlide(); // Start auto-sliding
+        }
+
+
         window.onload = function () {
             const countdownDisplay = document.getElementById('countdown');
-            const duration = (2 * 24 * 3600) + (1 * 3600) + (39 * 60);
-            startTimer(duration, countdownDisplay);
+            // Calculate 2 days, 1 hour, 39 minutes from current time (June 3, 2025 at 3:32:10 PM EEST)
+            const targetTime = new Date('June 5, 2025 16:11:10 EEST').getTime();
+            const now = new Date().getTime();
+            const initialDuration = Math.max(0, Math.floor((targetTime - now) / 1000));
+
+            startTimer(initialDuration, countdownDisplay);
+            initSlider(); // Initialize the slider
 
             document.querySelectorAll('a.smooth-scroll').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
