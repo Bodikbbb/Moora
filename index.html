@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ваш Бренд Одягу</title>
+    <title>Moora - Бренд Одягу</title>
     <style>
         /* Базові стилі */
         :root {
@@ -279,9 +279,8 @@
             height: 100%; /* Повна висота */
             overflow: auto; /* Дозволяє прокручувати, якщо контент занадто великий */
             background-color: rgba(0,0,0,0.6); /* Темний напівпрозорий фон */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Центруємо по горизонталі */
+            align-items: center; /* Центруємо по вертикалі */
         }
 
         .modal-content {
@@ -472,7 +471,7 @@
 <body>
     <header>
         <div class="container">
-            <h1 class="logo">Ваш Бренд</h1>
+            <h1 class="logo">Moora</h1>
             <nav class="desktop-menu">
                 <ul>
                     <li><a href="#products">Товари</a></li>
@@ -499,7 +498,7 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h2>Стиль, що говорить за вас</h2>
+                <h2>Moora: Стиль, що говорить за вас</h2>
                 <p>Відкрийте для себе нашу колекцію футболок, оверсайз футболок та худі.</p>
             </div>
         </section>
@@ -509,21 +508,21 @@
                 <h3>Наші товари</h3>
                 <div class="product-grid">
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/300x300/000/FFD700?text=Футболка" alt="Футболка">
+                        <img src="https://via.placeholder.com/300x300/000/FFD700?text=Футболка" alt="Футболка Moora">
                         <h4>Футболка "Міський Стиль"</h4>
                         <p class="sizes">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 499 грн</p>
                         <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499">Додати в кошик</button>
                     </div>
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/300x300/000/FFD700?text=Оверсайз+футболка" alt="Оверсайз футболка">
+                        <img src="https://via.placeholder.com/300x300/000/FFD700?text=Оверсайз+футболка" alt="Оверсайз футболка Moora">
                         <h4>Оверсайз футболка "Комфорт"</h4>
                         <p class="sizes">Розміри: M, L, XL</p>
                         <p class="price">Ціна: 649 грн</p>
                         <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649">Додати в кошик</button>
                     </div>
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/300x300/000/FFD700?text=Худі" alt="Худі">
+                        <img src="https://via.placeholder.com/300x300/000/FFD700?text=Худі" alt="Худі Moora">
                         <h4>Худі "Затишок"</h4>
                         <p class="sizes">Розміри: S, M, L</p>
                         <p class="price">Ціна: 899 грн</p>
@@ -536,7 +535,7 @@
         <section id="contact" class="contact-section">
             <div class="container">
                 <h3>Контакти</h3>
-                <p>Напишіть нам: <a href="mailto:info@yourbrand.com">info@yourbrand.com</a></p>
+                <p>Напишіть нам: <a href="mailto:info@moora.com">info@moora.com</a></p>
                 <p>Тел: +380 XX XXX XX XX</p>
                 </div>
         </section>
@@ -556,7 +555,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Ваш Бренд. Всі права захищені.</p>
+            <p>&copy; 2025 Moora. Всі права захищені.</p>
         </div>
     </footer>
 
@@ -718,6 +717,7 @@
                 });
             });
 
+            // Закриття модальних вікон при кліку поза їх вмістом
             window.addEventListener('click', (e) => {
                 if (e.target == cartModal) {
                     cartModal.style.display = 'none';
