@@ -35,7 +35,7 @@
         header {
             background: var(--primary-color); /* Чорний хедер */
             color: var(--light-text-color);
-            padding: 10px 0;
+            padding: 8px 0; /* Менше відступу */
             border-bottom: 1px solid var(--accent-color); /* Жовта лінія під хедером */
             position: sticky;
             top: 0;
@@ -50,7 +50,7 @@
 
         .logo {
             margin: 0;
-            font-size: 1.8em;
+            font-size: 1.6em; /* Менший розмір логотипу */
             color: var(--accent-color); /* Жовтий логотип */
         }
 
@@ -62,13 +62,14 @@
         }
 
         .desktop-menu ul li {
-            margin-left: 20px;
+            margin-left: 15px; /* Менші відступи між пунктами */
         }
 
         .desktop-menu ul li a {
             color: var(--light-text-color);
             text-decoration: none;
             font-weight: bold;
+            font-size: 0.95em; /* Менший розмір шрифту меню */
             transition: color 0.3s ease;
         }
 
@@ -78,7 +79,7 @@
 
         .mobile-menu-icon {
             display: none; /* Приховуємо на великих екранах */
-            font-size: 2em;
+            font-size: 1.8em; /* Менший розмір бургер-іконки */
             color: var(--accent-color); /* Жовта бургер-іконка */
             cursor: pointer;
         }
@@ -104,7 +105,7 @@
         }
 
         .mobile-dropdown-menu ul li {
-            padding: 10px 20px;
+            padding: 8px 20px; /* Менші відступи */
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -116,6 +117,7 @@
             color: var(--light-text-color);
             text-decoration: none;
             display: block;
+            font-size: 0.95em;
         }
 
         .mobile-dropdown-menu ul li a:hover {
@@ -191,7 +193,7 @@
             color: var(--primary-color); /* Чорний заголовок товару */
         }
 
-        .product-item .sizes {
+        .product-item .sizes-available {
             font-size: 0.9em;
             color: #666;
             margin-bottom: 5px;
@@ -315,10 +317,12 @@
 
         #cart-items .cart-item {
             display: flex;
+            flex-wrap: wrap; /* Дозволяє елементам переноситися на новий рядок */
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
             border-bottom: 1px dashed var(--border-color);
+            margin-bottom: 10px; /* Відступ між елементами кошика */
         }
 
         #cart-items .cart-item:last-child {
@@ -327,9 +331,39 @@
 
         #cart-items .cart-item .item-details {
             flex-grow: 1;
+            margin-right: 10px;
+            min-width: 150px; /* Мінімальна ширина для деталей товару */
         }
 
         #cart-items .cart-item .item-details span {
+            font-weight: bold;
+        }
+
+        #cart-items .cart-item .size-selection {
+            margin-top: 5px;
+            flex-basis: 100%; /* Займає всю ширину під товаром */
+            display: flex;
+            gap: 5px;
+            justify-content: flex-start; /* Вирівнювання кнопок розмірів */
+        }
+
+        #cart-items .cart-item .size-selection button {
+            background: #f0f0f0;
+            color: #555;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            min-width: 30px; /* Фіксована ширина для кнопок розмірів */
+            text-align: center;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        #cart-items .cart-item .size-selection button.selected {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
             font-weight: bold;
         }
 
@@ -342,6 +376,7 @@
             cursor: pointer;
             font-size: 0.8em;
             transition: background 0.3s ease, color 0.3s ease;
+            margin-left: auto; /* Вирівнювання кнопки видалення праворуч */
         }
 
         #cart-items .cart-item .remove-item:hover {
@@ -364,14 +399,38 @@
             gap: 10px;
         }
 
+        #checkout-form label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
         #checkout-form input[type="text"],
-        #checkout-form input[type="tel"] {
+        #checkout-form input[type="tel"],
+        #checkout-form input[type="number"],
+        #checkout-form select {
             padding: 10px;
             border: 1px solid var(--border-color);
             border-radius: 5px;
             font-size: 1em;
             background-color: var(--secondary-color); /* Білий фон для полів */
             color: var(--dark-text-color);
+            width: calc(100% - 22px); /* Забезпечуємо повну ширину з урахуванням padding і border */
+        }
+
+        #checkout-form .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        #checkout-form .payment-options div {
+            display: flex;
+            align-items: center;
+        }
+
+        #checkout-form .payment-options input[type="radio"] {
+            margin-right: 10px;
         }
 
         #checkout-form button[type="submit"] {
@@ -383,6 +442,7 @@
             cursor: pointer;
             font-size: 1.1em;
             transition: background 0.3s ease, color 0.3s ease;
+            width: 100%;
         }
 
         #checkout-form button[type="submit"]:hover {
@@ -465,6 +525,14 @@
                 width: 95%; /* Більша ширина модального вікна на мобільних */
                 padding: 20px;
             }
+
+            #checkout-form input[type="text"],
+            #checkout-form input[type="tel"],
+            #checkout-form input[type="number"],
+            #checkout-form select,
+            #checkout-form button[type="submit"] {
+                width: 100%; /* Повна ширина на мобільних */
+            }
         }
     </style>
 </head>
@@ -507,26 +575,26 @@
             <div class="container">
                 <h3>Наші товари</h3>
                 <div class="product-grid">
-                    <div class="product-item">
-                        <img src="img/Oversize.jpg" alt="Футболка Moora">
-                        <h4>Футболка "Воля"</h4>
-                        <p class="sizes">Розміри: S, M, L, XL</p>
+                    <div class="product-item" id="product-1">
+                        <img src="images/t-shirt-urban-style.jpg" alt="Футболка Moora 'Міський Стиль'">
+                        <h4>Футболка "Міський Стиль"</h4>
+                        <p class="sizes-available">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 499 грн</p>
-                        <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499">Додати в кошик</button>
+                        <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
-                    <div class="product-item">
-                        <img src="img/tshirt.jpg" alt="Оверсайз футболка Moora">
+                    <div class="product-item" id="product-2">
+                        <img src="images/oversize-comfort.jpg" alt="Оверсайз футболка Moora 'Комфорт'">
                         <h4>Оверсайз футболка "Комфорт"</h4>
-                        <p class="sizes">Розміри: M, L, XL</p>
+                        <p class="sizes-available">Розміри: M, L, XL, XXL</p>
                         <p class="price">Ціна: 649 грн</p>
-                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649">Додати в кошик</button>
+                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
                     </div>
-                    <div class="product-item">
-                        <img src="img/Hudi.jpg" alt="Худі Moora">
-                        <h4>Худі "Пиздуйте"</h4>
-                        <p class="sizes">Розміри: S, M, L</p>
+                    <div class="product-item" id="product-3">
+                        <img src="images/hoodie-cozy.jpg" alt="Худі Moora 'Затишок'">
+                        <h4>Худі "Затишок"</h4>
+                        <p class="sizes-available">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 899 грн</p>
-                        <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899">Додати в кошик</button>
+                        <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
                     </div>
             </div>
@@ -570,8 +638,62 @@
                 <p>Всього: <span id="cart-total-price">0</span> грн</p>
             </div>
             <form id="checkout-form">
+                <label for="customer-name">Ім'я:</label>
                 <input type="text" id="customer-name" placeholder="Ваше ім'я" required>
+
+                <label for="customer-phone">Номер телефону:</label>
                 <input type="tel" id="customer-phone" placeholder="Номер телефону" required>
+
+                <label for="nova-poshta-city">Місто (Нова Пошта):</label>
+                <input type="text" id="nova-poshta-city" list="cities" placeholder="Наприклад, Київ" required>
+                <datalist id="cities">
+                    <option value="Київ">
+                    <option value="Харків">
+                    <option value="Одеса">
+                    <option value="Дніпро">
+                    <option value="Львів">
+                    <option value="Запоріжжя">
+                    <option value="Кривий Ріг">
+                    <option value="Миколаїв">
+                    <option value="Маріуполь">
+                    <option value="Вінниця">
+                    <option value="Херсон">
+                    <option value="Полтава">
+                    <option value="Чернігів">
+                    <option value="Черкаси">
+                    <option value="Житомир">
+                    <option value="Суми">
+                    <option value="Хмельницький">
+                    <option value="Чернівці">
+                    <option value="Рівне">
+                    <option value="Івано-Франківськ">
+                    <option value="Тернопіль">
+                    <option value="Луцьк">
+                    <option value="Ужгород">
+                    <option value="Біла Церква">
+                    <option value="Кременчук">
+                    <option value="Мелітополь">
+                    <option value="Бердянськ">
+                    <option value="Нікополь">
+                    <option value="Слов'янськ">
+                    <option value="Умань">
+                </datalist>
+
+                <label for="nova-poshta-branch">Номер відділення Нової Пошти:</label>
+                <input type="number" id="nova-poshta-branch" placeholder="Наприклад, 1, 25" min="1" required>
+
+                <label>Спосіб оплати:</label>
+                <div class="payment-options">
+                    <div>
+                        <input type="radio" id="payment-cash" name="payment-method" value="Оплата при отриманні" required>
+                        <label for="payment-cash">Оплата при отриманні (на пошті)</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="payment-card" name="payment-method" value="Оплата карткою (Visa/Mastercard)" required>
+                        <label for="payment-card">Оплата карткою (Visa/Mastercard)</label>
+                    </div>
+                </div>
+
                 <button type="submit">Оформити замовлення</button>
             </form>
         </div>
@@ -629,9 +751,20 @@
                 cart.forEach(item => {
                     const itemElement = document.createElement('div');
                     itemElement.classList.add('cart-item');
+
+                    const availableSizes = item.availableSizes.split(',');
+                    let sizeButtonsHtml = '';
+                    availableSizes.forEach(size => {
+                        const isSelected = item.selectedSize === size.trim() ? 'selected' : '';
+                        sizeButtonsHtml += `<button type="button" class="size-button ${isSelected}" data-product-id="${item.id}" data-size="${size.trim()}">${size.trim()}</button>`;
+                    });
+
                     itemElement.innerHTML = `
                         <div class="item-details">
                             <span>${item.name}</span> x ${item.quantity} - ${item.price * item.quantity} грн
+                            <div class="size-selection" data-item-id="${item.id}">
+                                ${sizeButtonsHtml}
+                            </div>
                         </div>
                         <button class="remove-item" data-product-id="${item.id}">Видалити</button>
                     `;
@@ -640,6 +773,29 @@
                 });
 
                 cartTotalPriceSpan.textContent = totalPrice;
+
+                // Додаємо обробники для кнопок розмірів після їх рендерингу
+                document.querySelectorAll('.size-button').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const productId = e.target.dataset.productId;
+                        const selectedSize = e.target.dataset.size;
+                        
+                        // Знімаємо виділення з інших кнопок того ж товару
+                        const parentSizeSelection = e.target.closest('.size-selection');
+                        parentSizeSelection.querySelectorAll('.size-button').forEach(btn => {
+                            btn.classList.remove('selected');
+                        });
+
+                        // Виділяємо обрану кнопку
+                        e.target.classList.add('selected');
+
+                        // Оновлюємо кошик
+                        const cartItem = cart.find(item => item.id === productId);
+                        if (cartItem) {
+                            cartItem.selectedSize = selectedSize;
+                        }
+                    });
+                });
             }
 
             // Додавання товару в кошик
@@ -648,6 +804,7 @@
                     const productId = e.target.dataset.productId;
                     const productName = e.target.dataset.productName;
                     const productPrice = parseFloat(e.target.dataset.productPrice);
+                    const availableSizes = e.target.dataset.availableSizes; // Отримуємо доступні розміри
 
                     const existingItem = cart.find(item => item.id === productId);
 
@@ -658,11 +815,13 @@
                             id: productId,
                             name: productName,
                             price: productPrice,
-                            quantity: 1
+                            quantity: 1,
+                            availableSizes: availableSizes,
+                            selectedSize: '' // Початково розмір не обраний
                         });
                     }
                     updateCartCount();
-                    renderCart(); // Оновлюємо кошик відразу після додавання
+                    renderCart();
                 });
             });
 
@@ -733,18 +892,41 @@
 
                 const customerName = document.getElementById('customer-name').value;
                 const customerPhone = document.getElementById('customer-phone').value;
+                const novaPoshtaCity = document.getElementById('nova-poshta-city').value;
+                const novaPoshtaBranch = document.getElementById('nova-poshta-branch').value;
+                const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
 
                 if (cart.length === 0) {
                     alert('Ваш кошик порожній. Будь ласка, додайте товари.');
                     return;
                 }
 
+                // Перевірка, чи всі товари мають обраний розмір
+                const allSizesSelected = cart.every(item => item.selectedSize && item.selectedSize !== '');
+                if (!allSizesSelected) {
+                    alert('Будь ласка, оберіть розмір для кожного товару в кошику.');
+                    return;
+                }
+
+                if (!paymentMethod) {
+                    alert('Будь ласка, оберіть спосіб оплати.');
+                    return;
+                }
+
                 // Формуємо повідомлення для Telegram бота
-                let message = `Нове замовлення!\n\nІм'я: ${customerName}\nНомер телефону: ${customerPhone}\n\nТовари:\n`;
+                let message = `*НОВЕ ЗАМОВЛЕННЯ (Moora)*\n\n`;
+                message += `*Контактні дані:*\n`;
+                message += `Ім'я: ${customerName}\n`;
+                message += `Номер телефону: ${customerPhone}\n\n`;
+                message += `*Доставка:*\n`;
+                message += `Нова Пошта: ${novaPoshtaCity}, відділення №${novaPoshtaBranch}\n\n`;
+                message += `*Спосіб оплати:*\n${paymentMethod.value}\n\n`;
+                message += `*Товари:*\n`;
                 cart.forEach(item => {
-                    message += `- ${item.name} (x${item.quantity}) - ${item.price * item.quantity} грн\n`;
+                    message += `- ${item.name} (x${item.quantity}) - ${item.price * item.quantity} грн`;
+                    message += ` (Розмір: ${item.selectedSize || 'не обрано'})\n`; // Додаємо розмір
                 });
-                message += `\nВсього: ${cartTotalPriceSpan.textContent} грн`;
+                message += `\n*Всього до сплати: ${cartTotalPriceSpan.textContent} грн*`;
 
                 // Вам потрібно замінити 'YOUR_BOT_TOKEN' та 'YOUR_CHAT_ID' на ваші реальні дані.
                 // Будьте обережні: токен бота буде видно у вихідному коді сторінки.
@@ -762,7 +944,7 @@
                         body: JSON.stringify({
                             chat_id: chatId,
                             text: message,
-                            parse_mode: 'HTML' // Можете використовувати Markdown або HTML для форматування
+                            parse_mode: 'Markdown' // Використовуємо Markdown для жирного тексту
                         })
                     });
 
@@ -776,6 +958,12 @@
                         cartModal.style.display = 'none'; // Закриваємо кошик
                         document.getElementById('customer-name').value = ''; // Очищаємо поля форми
                         document.getElementById('customer-phone').value = '';
+                        document.getElementById('nova-poshta-city').value = '';
+                        document.getElementById('nova-poshta-branch').value = '';
+                        // Знімаємо вибір з радіо-кнопок
+                        document.getElementById('payment-cash').checked = false;
+                        document.getElementById('payment-card').checked = false;
+
                     } else {
                         alert('Сталася помилка при оформленні замовлення. Будь ласка, спробуйте ще раз.');
                         console.error('Telegram API error:', data);
@@ -792,6 +980,7 @@
                 { id: '2', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна футболка для максимального комфорту.' },
                 { id: '3', name: 'Худі "Затишок"', description: 'Тепле худі для прохолодних вечорів.' },
                 // ***ДОДАЙТЕ ТУТ УСІ ВАШІ ТОВАРИ ДЛЯ ПОШУКУ***
+                // id має відповідати id HTML-елемента товару
                 // Наприклад: { id: '4', name: 'Футболка "Літо"', description: 'Легка футболка для спекотної погоди.' },
                 //          { id: '5', name: 'Худі "Спорт"', description: 'Спортивне худі для активного відпочинку.' },
             ];
@@ -818,9 +1007,22 @@
                 filteredProducts.forEach(product => {
                     const resultItem = document.createElement('div');
                     resultItem.classList.add('search-result-item');
-                    // Важливо: посилання #product-ID буде працювати, якщо у вас є відповідні id на товарах на сторінці
+                    // Додаємо обробник кліку для переходу
                     resultItem.innerHTML = `<a href="#product-${product.id}">${product.name}</a>`;
                     searchResultsContainer.appendChild(resultItem);
+                });
+
+                // Додаємо обробники кліків для результатів пошуку
+                searchResultsContainer.querySelectorAll('.search-result-item a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault(); // Запобігаємо стандартній дії посилання
+                        const targetId = e.target.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            searchModal.style.display = 'none'; // Закриваємо модалку пошуку
+                        }
+                    });
                 });
             });
 
