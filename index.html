@@ -7,12 +7,13 @@
     <style>
         /* Базові стилі */
         :root {
-            --primary-color: #333;
-            --secondary-color: #f4f4f4;
-            --accent-color: #007bff;
-            --text-color: #333;
-            --light-text-color: #fff;
-            --border-color: #ddd;
+            --primary-color: #000;       /* Чорний для основного фону/тексту */
+            --secondary-color: #fff;     /* Білий для секцій, що виділяються */
+            --accent-color: #FFD700;     /* Золотисто-жовтий як акцент */
+            --text-color: #333;          /* Темно-сірий для основного тексту */
+            --light-text-color: #fff;    /* Білий для тексту на темному фоні */
+            --dark-text-color: #000;     /* Чорний для тексту на світлому фоні */
+            --border-color: #eee;        /* Світлий для рамок */
         }
 
         body {
@@ -20,6 +21,7 @@
             margin: 0;
             line-height: 1.6;
             color: var(--text-color);
+            background-color: var(--secondary-color); /* Білий фон для тіла */
         }
 
         .container {
@@ -31,10 +33,10 @@
 
         /* Хедер */
         header {
-            background: var(--primary-color);
+            background: var(--primary-color); /* Чорний хедер */
             color: var(--light-text-color);
             padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--accent-color); /* Жовта лінія під хедером */
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -49,6 +51,7 @@
         .logo {
             margin: 0;
             font-size: 1.8em;
+            color: var(--accent-color); /* Жовтий логотип */
         }
 
         .desktop-menu ul {
@@ -70,23 +73,24 @@
         }
 
         .desktop-menu ul li a:hover {
-            color: var(--accent-color);
+            color: var(--accent-color); /* Жовтий при наведенні */
         }
 
         .mobile-menu-icon {
             display: none; /* Приховуємо на великих екранах */
             font-size: 2em;
+            color: var(--accent-color); /* Жовта бургер-іконка */
             cursor: pointer;
         }
 
         /* Мобільне випадаюче меню */
         .mobile-dropdown-menu {
             display: none;
-            background: var(--primary-color);
+            background: var(--primary-color); /* Чорне мобільне меню */
             position: absolute;
             width: 100%;
             z-index: 999;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
         }
 
         .mobile-dropdown-menu.active {
@@ -114,18 +118,23 @@
             display: block;
         }
 
+        .mobile-dropdown-menu ul li a:hover {
+            color: var(--accent-color);
+        }
+
         /* Секція "Тема" (Hero) */
         .hero {
-            background: var(--secondary-color);
+            background: var(--accent-color); /* Жовтий фон для Hero секції */
             text-align: center;
             padding: 60px 0;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--primary-color);
+            color: var(--dark-text-color); /* Чорний текст на жовтому фоні */
         }
 
         .hero h2 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            color: var(--primary-color);
+            color: var(--dark-text-color);
         }
 
         .hero p {
@@ -138,11 +147,13 @@
         .products {
             padding: 40px 0;
             text-align: center;
+            background-color: var(--secondary-color); /* Білий фон для товарів */
         }
 
         .products h3 {
             font-size: 2em;
             margin-bottom: 30px;
+            color: var(--primary-color);
         }
 
         .product-grid {
@@ -153,7 +164,7 @@
         }
 
         .product-item {
-            background: #fff;
+            background: #fff; /* Білий фон картки товару */
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 20px;
@@ -164,6 +175,7 @@
 
         .product-item:hover {
             transform: translateY(-5px);
+            border-color: var(--accent-color); /* Жовта рамка при наведенні */
         }
 
         .product-item img {
@@ -176,7 +188,7 @@
         .product-item h4 {
             font-size: 1.4em;
             margin-bottom: 10px;
-            color: var(--primary-color);
+            color: var(--primary-color); /* Чорний заголовок товару */
         }
 
         .product-item .sizes {
@@ -188,41 +200,53 @@
         .product-item .price {
             font-size: 1.1em;
             font-weight: bold;
-            color: var(--accent-color);
+            color: var(--accent-color); /* Жовта ціна */
             margin-bottom: 15px;
         }
 
         .product-item button {
-            background: var(--accent-color);
-            color: var(--light-text-color);
+            background: var(--primary-color); /* Чорна кнопка "Додати в кошик" */
+            color: var(--accent-color);       /* Жовтий текст на кнопці */
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .product-item button:hover {
-            background: #0056b3;
+            background: var(--accent-color); /* Жовта кнопка при наведенні */
+            color: var(--primary-color);     /* Чорний текст при наведенні */
         }
 
         /* Контакти та Довідка */
         .contact-section, .help-section {
             padding: 40px 0;
-            background: var(--secondary-color);
-            border-top: 1px solid var(--border-color);
+            background: var(--primary-color); /* Чорний фон секцій */
+            border-top: 1px solid var(--accent-color);
+            color: var(--light-text-color); /* Білий текст */
         }
 
         .contact-section h3, .help-section h3 {
             text-align: center;
             font-size: 2em;
             margin-bottom: 20px;
+            color: var(--accent-color); /* Жовті заголовки */
         }
 
         .contact-section p, .help-section p, .help-section ul {
             text-align: center;
             margin-bottom: 10px;
+        }
+
+        .contact-section a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
         }
 
         .help-section ul {
@@ -236,11 +260,12 @@
 
         /* Футер */
         footer {
-            background: var(--primary-color);
+            background: var(--primary-color); /* Чорний футер */
             color: var(--light-text-color);
             text-align: center;
             padding: 20px 0;
             margin-top: 40px;
+            border-top: 1px solid var(--accent-color);
         }
 
         /* Модальні вікна (Кошик, Пошук) */
@@ -253,22 +278,23 @@
             width: 100%; /* Повна ширина */
             height: 100%; /* Повна висота */
             overflow: auto; /* Дозволяє прокручувати, якщо контент занадто великий */
-            background-color: rgba(0,0,0,0.4); /* Напівпрозорий фон */
+            background-color: rgba(0,0,0,0.6); /* Темний напівпрозорий фон */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .modal-content {
-            background-color: #fefefe;
+            background-color: #fefefe; /* Білий фон модального вікна */
             margin: auto;
             padding: 30px;
-            border: 1px solid #888;
+            border: 1px solid var(--accent-color); /* Жовта рамка */
             width: 80%; /* Можна регулювати ширину */
             max-width: 600px;
             border-radius: 8px;
             position: relative;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            color: var(--dark-text-color);
         }
 
         .close-button {
@@ -283,7 +309,7 @@
 
         .close-button:hover,
         .close-button:focus {
-            color: black;
+            color: var(--primary-color);
             text-decoration: none;
             cursor: pointer;
         }
@@ -309,13 +335,19 @@
         }
 
         #cart-items .cart-item .remove-item {
-            background: red;
-            color: white;
+            background: var(--primary-color); /* Чорна кнопка видалення */
+            color: var(--accent-color);       /* Жовтий текст */
             border: none;
             padding: 5px 10px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.8em;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        #cart-items .cart-item .remove-item:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
         }
 
         .cart-total {
@@ -323,6 +355,7 @@
             margin-top: 20px;
             font-size: 1.2em;
             font-weight: bold;
+            color: var(--primary-color); /* Чорний текст */
         }
 
         #checkout-form {
@@ -338,21 +371,24 @@
             border: 1px solid var(--border-color);
             border-radius: 5px;
             font-size: 1em;
+            background-color: var(--secondary-color); /* Білий фон для полів */
+            color: var(--dark-text-color);
         }
 
         #checkout-form button[type="submit"] {
-            background: var(--accent-color);
-            color: var(--light-text-color);
+            background: var(--primary-color); /* Чорна кнопка "Оформити замовлення" */
+            color: var(--accent-color);       /* Жовтий текст */
             border: none;
             padding: 12px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1.1em;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         #checkout-form button[type="submit"]:hover {
-            background: #0056b3;
+            background: var(--accent-color); /* Жовта кнопка при наведенні */
+            color: var(--primary-color);     /* Чорний текст */
         }
 
         #search-input {
@@ -362,6 +398,8 @@
             border: 1px solid var(--border-color);
             border-radius: 5px;
             font-size: 1em;
+            background-color: var(--secondary-color); /* Білий фон для поля пошуку */
+            color: var(--dark-text-color);
         }
 
         #search-results {
@@ -371,6 +409,7 @@
             border: 1px solid var(--border-color);
             padding: 10px;
             border-radius: 5px;
+            background-color: var(--secondary-color);
         }
 
         #search-results .search-result-item {
@@ -383,13 +422,13 @@
         }
 
         #search-results .search-result-item a {
-            color: var(--text-color);
+            color: var(--primary-color); /* Чорний текст результату пошуку */
             text-decoration: none;
             font-weight: bold;
         }
 
         #search-results .search-result-item a:hover {
-            color: var(--accent-color);
+            color: var(--accent-color); /* Жовтий при наведенні */
         }
 
         /* Адаптивність для мобільних пристроїв */
@@ -470,21 +509,21 @@
                 <h3>Наші товари</h3>
                 <div class="product-grid">
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/300x300?text=Футболка" alt="Футболка">
+                        <img src="https://via.placeholder.com/300x300/000/FFD700?text=Футболка" alt="Футболка">
                         <h4>Футболка "Міський Стиль"</h4>
                         <p class="sizes">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 499 грн</p>
                         <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499">Додати в кошик</button>
                     </div>
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/300x300?text=Оверсайз+футболка" alt="Оверсайз футболка">
+                        <img src="https://via.placeholder.com/300x300/000/FFD700?text=Оверсайз+футболка" alt="Оверсайз футболка">
                         <h4>Оверсайз футболка "Комфорт"</h4>
                         <p class="sizes">Розміри: M, L, XL</p>
                         <p class="price">Ціна: 649 грн</p>
                         <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649">Додати в кошик</button>
                     </div>
                     <div class="product-item">
-                        <img src="https://via.placeholder.com/300x300?text=Худі" alt="Худі">
+                        <img src="https://via.placeholder.com/300x300/000/FFD700?text=Худі" alt="Худі">
                         <h4>Худі "Затишок"</h4>
                         <p class="sizes">Розміри: S, M, L</p>
                         <p class="price">Ціна: 899 грн</p>
