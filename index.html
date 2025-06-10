@@ -26,24 +26,6 @@
             background-color: var(--secondary-color); /* Білий фон для тіла */
         }
 
-        /* Желтые рамки по бокам и фон с треугольниками на ПК */
-        @media (min-width: 769px) { /* Применяем только на ПК (ширина экрана от 769px) */
-            body {
-                border-left: 60px solid var(--accent-color); /* Шире рамка в 3 раза */
-                border-right: 60px solid var(--accent-color); /* Шире рамка в 3 раза */
-                box-sizing: border-box; /* Учитываем рамку в общей ширине элемента */
-                /* Тень на переходе от контента к рамке */
-            }
-
-            /* Для того, чтобы белый контент сайта перекрывал фон с треугольниками, но рамки оставались */
-            .container {
-                background-color: var(--secondary-color); /* Белый фон контейнера перекрывает фон body */
-                position: relative; /* Важно для z-index, чтобы контейнер был выше фона body */
-                z-index: 1; /* Убеждаемся, что контейнер находится над фоном body */
-            }
-        }
-
-
         .container {
             width: 90%;
             max-width: 960px; /* Сайт тоньше */
