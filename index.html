@@ -7,523 +7,528 @@
     <style>
         /* Базові стилі */
         :root {
-            --primary-color: #000;       /* Чорний для основного фону/тексту */
-            --secondary-color: #fff;     /* Білий для секцій, що виділяються */
-            --accent-color: #fede00;     /* Золотисто-жовтий як акцент */
-            --text-color: #333;          /* Темно-сірий для основного тексту */
-            --light-text-color: #ffffff;    /* Білий для тексту на темному фоні */
-            --dark-text-color: #000;     /* Чорний для тексту на світлому фоні */
-            --border-color: #eee;        /* Світлий для рамок */
+            --primary-color: #000; /* Чорний для основного фону/тексту */
+            --secondary-color: #fff; /* Білий для секцій, що виділяються */
+            --accent-color: #fede00; /* Золотисто-жовтий як акцент */
+            --text-color: #333; /* Темно-сірий для основного тексту */
+            --light-text-color: #ffffff; /* Білий для тексту на темному фоні */
+            --dark-text-color: #000; /* Чорний для тексту на світлому фоні */
+            --border-color: #eee; /* Світлий для рамок */
         }
 
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            line-height: 1.6;
-            color: var(--text-color);
+            font-family: Arial, sans-serif; /* cite: 256 */
+            margin: 0; /* cite: 256 */
+            line-height: 1.6; /* cite: 256 */
+            color: var(--text-color); /* cite: 256 */
             background-color: var(--secondary-color); /* Білий фон для тіла */
+            /* --- Додані стилі для фонового узора --- */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,90 Q5,90 5,85 L5,15 Q5,10 10,10 L90,10 Q95,10 95,15 L95,85 Q95,90 90,90 Z' fill='rgba(200, 200, 200, 0.05)' stroke='none'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px; /* Размер одного "блока" узора. Регулируйте, чтобы изменить плотность. */
+            /* --- Конец добавленных стилей --- */
         }
 
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
+            width: 90%; /* cite: 257 */
+            max-width: 1200px; /* cite: 257 */
+            margin: 0 auto; /* cite: 257 */
+            padding: 20px 0; /* cite: 257 */
         }
 
         /* Хедер */
         header {
-            background: var(--primary-color); /* Чорний хедер */
-            color: var(--light-text-color);
-            padding: 8px 0; /* Менше відступу */
-            border-bottom: 1px solid var(--accent-color); /* Жовта лінія під хедером */
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background: var(--primary-color); /* cite: 258 */
+            color: var(--light-text-color); /* cite: 258 */
+            padding: 8px 0; /* cite: 259 */
+            border-bottom: 1px solid var(--accent-color); /* cite: 260 */
+            position: sticky; /* cite: 261 */
+            top: 0; /* cite: 261 */
+            z-index: 1000; /* cite: 261 */
         }
 
         header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; /* cite: 262 */
+            justify-content: space-between; /* cite: 262 */
+            align-items: center; /* cite: 262 */
         }
 
         .logo {
-            margin: 0;
-            font-size: 1.6em; /* Менший розмір логотипу */
-            color: var(--accent-color); /* Жовтий логотип */
+            margin: 0; /* cite: 263 */
+            font-size: 1.6em; /* cite: 263 */
+            color: var(--accent-color); /* cite: 264 */
         }
 
         .desktop-menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
+            list-style: none; /* cite: 265 */
+            padding: 0; /* cite: 265 */
+            margin: 0; /* cite: 265 */
+            display: flex; /* cite: 265 */
         }
 
         .desktop-menu ul li {
-            margin-left: 15px; /* Менші відступи між пунктами */
+            margin-left: 15px; /* cite: 266 */
         }
 
         .desktop-menu ul li a {
-            color: var(--light-text-color);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95em; /* Менший розмір шрифту меню */
-            transition: color 0.3s ease;
+            color: var(--light-text-color); /* cite: 267 */
+            text-decoration: none; /* cite: 267 */
+            font-weight: bold; /* cite: 267 */
+            font-size: 0.95em; /* cite: 267 */
+            transition: color 0.3s ease; /* cite: 268 */
         }
 
         .desktop-menu ul li a:hover {
-            color: var(--accent-color); /* Жовтий при наведенні */
+            color: var(--accent-color); /* cite: 269 */
         }
 
         .mobile-menu-icon {
-            display: none; /* Приховуємо на великих екранах */
-            font-size: 1.8em; /* Менший розмір бургер-іконки */
-            color: var(--accent-color); /* Жовта бургер-іконка */
-            cursor: pointer;
+            display: none; /* cite: 270 */
+            font-size: 1.8em; /* cite: 271 */
+            color: var(--accent-color); /* cite: 272 */
+            cursor: pointer; /* cite: 273 */
         }
 
         /* Мобільне випадаюче меню */
         .mobile-dropdown-menu {
-            display: none;
-            background: var(--primary-color); /* Чорне мобільне меню */
-            position: absolute;
-            width: 100%;
-            z-index: 999;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            display: none; /* cite: 274 */
+            background: var(--primary-color); /* cite: 274 */
+            position: absolute; /* cite: 275 */
+            width: 100%; /* cite: 275 */
+            z-index: 999; /* cite: 275 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* cite: 275 */
         }
 
         .mobile-dropdown-menu.active {
-            display: block;
+            display: block; /* cite: 276 */
         }
 
         .mobile-dropdown-menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+            list-style: none; /* cite: 277 */
+            padding: 0; /* cite: 277 */
+            margin: 0; /* cite: 277 */
         }
 
         .mobile-dropdown-menu ul li {
-            padding: 8px 20px; /* Менші відступи */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 20px; /* cite: 278 */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* cite: 279 */
         }
 
         .mobile-dropdown-menu ul li:last-child {
-            border-bottom: none;
+            border-bottom: none; /* cite: 280 */
         }
 
         .mobile-dropdown-menu ul li a {
-            color: var(--light-text-color);
-            text-decoration: none;
-            display: block;
-            font-size: 0.95em;
+            color: var(--light-text-color); /* cite: 281 */
+            text-decoration: none; /* cite: 281 */
+            display: block; /* cite: 281 */
+            font-size: 0.95em; /* cite: 281 */
         }
 
         .mobile-dropdown-menu ul li a:hover {
-            color: var(--accent-color);
+            color: var(--accent-color); /* cite: 282 */
         }
 
         /* Секція "Тема" (Hero) */
         .hero {
-            background: var(--accent-color); /* Жовтий фон для Hero секції */
-            text-align: center;
-            padding: 60px 0;
-            border-bottom: 1px solid var(--primary-color);
-            color: var(--dark-text-color); /* Чорний текст на жовтому фоні */
+            background: var(--accent-color); /* cite: 283 */
+            text-align: center; /* cite: 284 */
+            padding: 60px 0; /* cite: 284 */
+            border-bottom: 1px solid var(--primary-color); /* cite: 284 */
+            color: var(--dark-text-color); /* cite: 284 */
         }
 
         .hero h2 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: var(--dark-text-color);
+            font-size: 2.5em; /* cite: 285 */
+            margin-bottom: 10px; /* cite: 285 */
+            color: var(--dark-text-color); /* cite: 285 */
         }
 
         .hero p {
-            font-size: 1.2em;
-            max-width: 700px;
-            margin: 0 auto;
+            font-size: 1.2em; /* cite: 286 */
+            max-width: 700px; /* cite: 286 */
+            margin: 0 auto; /* cite: 286 */
         }
 
         /* Секція товарів */
         .products {
-            padding: 40px 0;
-            text-align: center;
+            padding: 40px 0; /* cite: 287 */
+            text-align: center; /* cite: 287 */
             background-color: var(--secondary-color); /* Білий фон для товарів */
         }
 
         .products h3 {
-            font-size: 2em;
-            margin-bottom: 30px;
-            color: var(--primary-color);
+            font-size: 2em; /* cite: 288 */
+            margin-bottom: 30px; /* cite: 288 */
+            color: var(--primary-color); /* cite: 288 */
         }
 
         .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            justify-content: center;
+            display: grid; /* cite: 289 */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* cite: 289 */
+            gap: 30px; /* cite: 289 */
+            justify-content: center; /* cite: 289 */
         }
 
         .product-item {
-            background: #fff; /* Білий фон картки товару */
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            background: #fff; /* cite: 290 */
+            border: 1px solid var(--border-color); /* cite: 291 */
+            border-radius: 8px; /* cite: 291 */
+            padding: 20px; /* cite: 291 */
+            text-align: center; /* cite: 291 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* cite: 291 */
+            transition: transform 0.3s ease; /* cite: 292 */
         }
 
         .product-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color); /* Жовта рамка при наведенні */
+            transform: translateY(-5px); /* cite: 293 */
+            border-color: var(--accent-color); /* cite: 293 */
         }
 
         .product-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            max-width: 100%; /* cite: 294 */
+            height: auto; /* cite: 294 */
+            border-radius: 4px; /* cite: 294 */
+            margin-bottom: 15px; /* cite: 294 */
         }
 
         .product-item h4 {
-            font-size: 1.4em;
-            margin-bottom: 10px;
-            color: var(--primary-color); /* Чорний заголовок товару */
+            font-size: 1.4em; /* cite: 295 */
+            margin-bottom: 10px; /* cite: 295 */
+            color: var(--primary-color); /* cite: 295 */
         }
 
         .product-item .sizes-available {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 5px;
+            font-size: 0.9em; /* cite: 296 */
+            color: #666; /* cite: 296 */
+            margin-bottom: 5px; /* cite: 296 */
         }
 
         .product-item .price {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: var(--accent-color); /* Жовта ціна */
-            margin-bottom: 15px;
+            font-size: 1.1em; /* cite: 297 */
+            font-weight: bold; /* cite: 297 */
+            color: var(--accent-color); /* cite: 297 */
+            margin-bottom: 15px; /* cite: 298 */
         }
 
         .product-item button {
-            background: var(--primary-color); /* Чорна кнопка "Додати в кошик" */
-            color: var(--accent-color);       /* Жовтий текст на кнопці */
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background 0.3s ease, color 0.3s ease;
+            background: var(--primary-color); /* cite: 299 */
+            color: var(--accent-color); /* cite: 300 */
+            border: none; /* cite: 301 */
+            padding: 10px 20px; /* cite: 301 */
+            border-radius: 5px; /* cite: 301 */
+            cursor: pointer; /* cite: 301 */
+            font-size: 1em; /* cite: 301 */
+            transition: background 0.3s ease, color 0.3s ease; /* cite: 302 */
         }
 
         .product-item button:hover {
-            background: var(--accent-color); /* Жовта кнопка при наведенні */
-            color: var(--primary-color);     /* Чорний текст при наведенні */
+            background: var(--accent-color); /* cite: 303 */
+            color: var(--primary-color); /* cite: 304 */
         }
 
         /* Контакти та Довідка */
         .contact-section, .help-section {
-            padding: 40px 0;
-            background: var(--primary-color); /* Чорний фон секцій */
-            border-top: 1px solid var(--accent-color);
-            color: var(--light-text-color); /* Білий текст */
+            padding: 40px 0; /* cite: 305 */
+            background: var(--primary-color); /* cite: 305 */
+            border-top: 1px solid var(--accent-color); /* cite: 306 */
+            color: var(--light-text-color); /* cite: 306 */
         }
 
         .contact-section h3, .help-section h3 {
-            text-align: center;
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: var(--accent-color); /* Жовті заголовки */
+            text-align: center; /* cite: 307 */
+            font-size: 2em; /* cite: 307 */
+            margin-bottom: 20px; /* cite: 307 */
+            color: var(--accent-color); /* cite: 307 */
         }
 
         .contact-section p, .help-section p, .help-section ul {
-            text-align: center;
-            margin-bottom: 10px;
+            text-align: center; /* cite: 308 */
+            margin-bottom: 10px; /* cite: 308 */
         }
 
         .contact-section a {
-            color: var(--accent-color);
-            text-decoration: none;
+            color: var(--accent-color); /* cite: 309 */
+            text-decoration: none; /* cite: 309 */
         }
 
         .contact-section a:hover {
-            text-decoration: underline;
+            text-decoration: underline; /* cite: 310 */
         }
 
         .help-section ul {
-            list-style: none;
-            padding: 0;
+            list-style: none; /* cite: 311 */
+            padding: 0; /* cite: 311 */
         }
 
         .help-section ul li {
-            margin-bottom: 5px;
+            margin-bottom: 5px; /* cite: 312 */
         }
 
         /* Футер */
         footer {
-            background: var(--primary-color); /* Чорний футер */
-            color: var(--light-text-color);
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-            border-top: 1px solid var(--accent-color);
+            background: var(--primary-color); /* cite: 313 */
+            color: var(--light-text-color); /* cite: 313 */
+            text-align: center; /* cite: 314 */
+            padding: 20px 0; /* cite: 314 */
+            margin-top: 40px; /* cite: 314 */
+            border-top: 1px solid var(--accent-color); /* cite: 314 */
         }
 
         /* Модальні вікна (Кошик, Пошук) */
         .modal {
-            display: none; /* Приховано за замовчуванням */
-            position: fixed; /* Залишається на місці навіть при прокрутці */
-            z-index: 2000; /* Розташування над усім */
-            left: 0;
-            top: 0;
-            width: 100%; /* Повна ширина */
-            height: 100%; /* Повна висота */
-            overflow: auto; /* Дозволяє прокручувати, якщо контент занадто великий */
-            background-color: rgba(0,0,0,0.6); /* Темний напівпрозорий фон */
-            justify-content: center; /* Центруємо по горизонталі */
-            align-items: center; /* Центруємо по вертикалі */
+            display: none; /* cite: 315 */
+            position: fixed; /* cite: 316 */
+            z-index: 2000; /* cite: 317 */
+            left: 0; /* cite: 318 */
+            top: 0; /* cite: 318 */
+            width: 100%; /* cite: 318 */
+            height: 100%; /* cite: 319 */
+            overflow: auto; /* cite: 320 */
+            background-color: rgba(0,0,0,0.6); /* cite: 321 */
+            justify-content: center; /* cite: 322 */
+            align-items: center; /* cite: 323 */
         }
 
         .modal-content {
-            background-color: #fefefe; /* Білий фон модального вікна */
-            margin: auto;
-            padding: 30px;
-            border: 1px solid var(--accent-color); /* Жовта рамка */
-            width: 80%; /* Можна регулювати ширину */
-            max-width: 600px;
-            border-radius: 8px;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            color: var(--dark-text-color);
+            background-color: #fefefe; /* cite: 324 */
+            margin: auto; /* cite: 325 */
+            padding: 30px; /* cite: 325 */
+            border: 1px solid var(--accent-color); /* cite: 325 */
+            width: 80%; /* cite: 326 */
+            max-width: 600px; /* cite: 326 */
+            border-radius: 8px; /* cite: 327 */
+            position: relative; /* cite: 327 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* cite: 327 */
+            color: var(--dark-text-color); /* cite: 327 */
         }
 
         .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 20px;
+            color: #aaa; /* cite: 328 */
+            float: right; /* cite: 328 */
+            font-size: 28px; /* cite: 328 */
+            font-weight: bold; /* cite: 328 */
+            position: absolute; /* cite: 328 */
+            top: 10px; /* cite: 329 */
+            right: 20px; /* cite: 329 */
         }
 
         .close-button:hover,
         .close-button:focus {
-            color: var(--primary-color);
-            text-decoration: none;
-            cursor: pointer;
+            color: var(--primary-color); /* cite: 330 */
+            text-decoration: none; /* cite: 330 */
+            cursor: pointer; /* cite: 330 */
         }
 
         #cart-items .cart-item {
-            display: flex;
-            flex-wrap: wrap; /* Дозволяє елементам переноситися на новий рядок */
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border-color);
-            margin-bottom: 10px; /* Відступ між елементами кошика */
+            display: flex; /* cite: 331 */
+            flex-wrap: wrap; /* cite: 331 */
+            justify-content: space-between; /* cite: 332 */
+            align-items: center; /* cite: 332 */
+            padding: 10px 0; /* cite: 332 */
+            border-bottom: 1px dashed var(--border-color); /* cite: 332 */
+            margin-bottom: 10px; /* cite: 333 */
         }
 
         #cart-items .cart-item:last-child {
-            border-bottom: none;
+            border-bottom: none; /* cite: 334 */
         }
 
         #cart-items .cart-item .item-details {
-            flex-grow: 1;
-            margin-right: 10px;
-            min-width: 150px; /* Мінімальна ширина для деталей товару */
+            flex-grow: 1; /* cite: 335 */
+            margin-right: 10px; /* cite: 335 */
+            min-width: 150px; /* cite: 335 */
         }
 
         #cart-items .cart-item .item-details span {
-            font-weight: bold;
+            font-weight: bold; /* cite: 336 */
         }
 
         #cart-items .cart-item .size-selection {
-            margin-top: 5px;
-            flex-basis: 100%; /* Займає всю ширину під товаром */
-            display: flex;
-            gap: 5px;
-            justify-content: flex-start; /* Вирівнювання кнопок розмірів */
+            margin-top: 5px; /* cite: 337 */
+            flex-basis: 100%; /* cite: 338 */
+            display: flex; /* cite: 338 */
+            gap: 5px; /* cite: 338 */
+            justify-content: flex-start; /* cite: 338 */
         }
 
         #cart-items .cart-item .size-selection button {
-            background: #f0f0f0;
-            color: #555;
-            border: 1px solid #ddd;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8em;
-            min-width: 30px; /* Фіксована ширина для кнопок розмірів */
-            text-align: center;
-            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            background: #f0f0f0; /* cite: 339 */
+            color: #555; /* cite: 339 */
+            border: 1px solid #ddd; /* cite: 339 */
+            padding: 5px 10px; /* cite: 339 */
+            border-radius: 4px; /* cite: 339 */
+            cursor: pointer; /* cite: 339 */
+            font-size: 0.8em; /* cite: 340 */
+            min-width: 30px; /* cite: 340 */
+            text-align: center; /* cite: 341 */
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease; /* cite: 342 */
         }
 
         #cart-items .cart-item .size-selection button.selected {
-            background: var(--accent-color);
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-            font-weight: bold;
+            background: var(--accent-color); /* cite: 343 */
+            color: var(--primary-color); /* cite: 343 */
+            border-color: var(--primary-color); /* cite: 343 */
+            font-weight: bold; /* cite: 343 */
         }
 
         #cart-items .cart-item .remove-item {
-            background: var(--primary-color); /* Чорна кнопка видалення */
-            color: var(--accent-color);       /* Жовтий текст */
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8em;
-            transition: background 0.3s ease, color 0.3s ease;
-            margin-left: auto; /* Вирівнювання кнопки видалення праворуч */
+            background: var(--primary-color); /* cite: 344 */
+            color: var(--accent-color); /* cite: 345 */
+            border: none; /* cite: 345 */
+            padding: 5px 10px; /* cite: 346 */
+            border-radius: 4px; /* cite: 346 */
+            cursor: pointer; /* cite: 346 */
+            font-size: 0.8em; /* cite: 346 */
+            transition: background 0.3s ease, color 0.3s ease; /* cite: 346 */
+            margin-left: auto; /* cite: 347 */
         }
 
         #cart-items .cart-item .remove-item:hover {
-            background: var(--accent-color);
-            color: var(--primary-color);
+            background: var(--accent-color); /* cite: 348 */
+            color: var(--primary-color); /* cite: 348 */
         }
 
         .cart-total {
-            text-align: right;
-            margin-top: 20px;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: var(--primary-color); /* Чорний текст */
+            text-align: right; /* cite: 349 */
+            margin-top: 20px; /* cite: 349 */
+            font-size: 1.2em; /* cite: 349 */
+            font-weight: bold; /* cite: 349 */
+            color: var(--primary-color); /* cite: 349 */
         }
 
         #checkout-form {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            margin-top: 20px; /* cite: 350 */
+            display: flex; /* cite: 350 */
+            flex-direction: column; /* cite: 350 */
+            gap: 10px; /* cite: 350 */
         }
 
         #checkout-form label {
-            font-weight: bold;
-            margin-top: 10px;
+            font-weight: bold; /* cite: 351 */
+            margin-top: 10px; /* cite: 351 */
         }
 
         #checkout-form input[type="text"],
         #checkout-form input[type="tel"],
         #checkout-form input[type="number"],
         #checkout-form select {
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            font-size: 1em;
-            background-color: var(--secondary-color); /* Білий фон для полів */
-            color: var(--dark-text-color);
-            width: calc(100% - 22px); /* Забезпечуємо повну ширину з урахуванням padding і border */
+            padding: 10px; /* cite: 352 */
+            border: 1px solid var(--border-color); /* cite: 352 */
+            border-radius: 5px; /* cite: 352 */
+            font-size: 1em; /* cite: 352 */
+            background-color: var(--secondary-color); /* cite: 353 */
+            color: var(--dark-text-color); /* cite: 354 */
+            width: calc(100% - 22px); /* cite: 354 */
         }
 
         #checkout-form .payment-options {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin-top: 10px;
+            display: flex; /* cite: 355 */
+            flex-direction: column; /* cite: 355 */
+            gap: 5px; /* cite: 355 */
+            margin-top: 10px; /* cite: 355 */
         }
 
         #checkout-form .payment-options div {
-            display: flex;
-            align-items: center;
+            display: flex; /* cite: 356 */
+            align-items: center; /* cite: 356 */
         }
 
         #checkout-form .payment-options input[type="radio"] {
-            margin-right: 10px;
+            margin-right: 10px; /* cite: 357 */
         }
 
         #checkout-form button[type="submit"] {
-            background: var(--primary-color); /* Чорна кнопка "Оформити замовлення" */
-            color: var(--accent-color);       /* Жовтий текст */
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background 0.3s ease, color 0.3s ease;
-            width: 100%;
+            background: var(--primary-color); /* cite: 358 */
+            color: var(--accent-color); /* cite: 359 */
+            border: none; /* cite: 359 */
+            padding: 12px 20px; /* cite: 360 */
+            border-radius: 5px; /* cite: 360 */
+            cursor: pointer; /* cite: 360 */
+            font-size: 1.1em; /* cite: 360 */
+            transition: background 0.3s ease, color 0.3s ease; /* cite: 360 */
+            width: 100%; /* cite: 361 */
         }
 
         #checkout-form button[type="submit"]:hover {
-            background: var(--accent-color); /* Жовта кнопка при наведенні */
-            color: var(--primary-color);     /* Чорний текст */
+            background: var(--accent-color); /* cite: 362 */
+            color: var(--primary-color); /* cite: 363 */
         }
 
         #search-input {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            font-size: 1em;
-            background-color: var(--secondary-color); /* Білий фон для поля пошуку */
-            color: var(--dark-text-color);
+            width: calc(100% - 20px); /* cite: 364 */
+            padding: 10px; /* cite: 364 */
+            margin-bottom: 20px; /* cite: 364 */
+            border: 1px solid var(--border-color); /* cite: 364 */
+            border-radius: 5px; /* cite: 364 */
+            font-size: 1em; /* cite: 364 */
+            background-color: var(--secondary-color); /* cite: 365 */
+            color: var(--dark-text-color); /* cite: 366 */
         }
 
         #search-results {
-            margin-top: 15px;
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid var(--border-color);
-            padding: 10px;
-            border-radius: 5px;
-            background-color: var(--secondary-color);
+            margin-top: 15px; /* cite: 367 */
+            max-height: 300px; /* cite: 367 */
+            overflow-y: auto; /* cite: 367 */
+            border: 1px solid var(--border-color); /* cite: 367 */
+            padding: 10px; /* cite: 367 */
+            border-radius: 5px; /* cite: 367 */
+            background-color: var(--secondary-color); /* cite: 368 */
         }
 
         #search-results .search-result-item {
-            padding: 8px 0;
-            border-bottom: 1px dashed #eee;
+            padding: 8px 0; /* cite: 369 */
+            border-bottom: 1px dashed #eee; /* cite: 369 */
         }
 
         #search-results .search-result-item:last-child {
-            border-bottom: none;
+            border-bottom: none; /* cite: 370 */
         }
 
         #search-results .search-result-item a {
-            color: var(--primary-color); /* Чорний текст результату пошуку */
-            text-decoration: none;
-            font-weight: bold;
+            color: var(--primary-color); /* cite: 371 */
+            text-decoration: none; /* cite: 372 */
+            font-weight: bold; /* cite: 372 */
         }
 
         #search-results .search-result-item a:hover {
-            color: var(--accent-color); /* Жовтий при наведенні */
+            color: var(--accent-color); /* cite: 373 */
         }
 
         /* Адаптивність для мобільних пристроїв */
         @media (max-width: 768px) {
             .desktop-menu {
-                display: none;
+                display: none; /* cite: 374 */
             }
 
             .mobile-menu-icon {
-                display: block;
+                display: block; /* cite: 375 */
             }
 
             .hero {
-                padding: 40px 0;
+                padding: 40px 0; /* cite: 376 */
             }
 
             .hero h2 {
-                font-size: 2em;
+                font-size: 2em; /* cite: 377 */
             }
 
             .hero p {
-                font-size: 1em;
+                font-size: 1em; /* cite: 378 */
             }
 
             .product-grid {
-                grid-template-columns: 1fr; /* Один стовпець на мобільних */
+                grid-template-columns: 1fr; /* cite: 379 */
             }
 
             .product-item {
-                margin: 0 auto; /* Центруємо елементи */
-                max-width: 320px; /* Обмежте ширину елемента для кращого вигляду */
+                margin: 0 auto; /* cite: 380 */
+                max-width: 320px; /* cite: 381 */
             }
 
             .modal-content {
-                width: 95%; /* Більша ширина модального вікна на мобільних */
-                padding: 20px;
+                width: 95%; /* cite: 382 */
+                padding: 20px; /* cite: 383 */
             }
 
             #checkout-form input[type="text"],
@@ -531,7 +536,7 @@
             #checkout-form input[type="number"],
             #checkout-form select,
             #checkout-form button[type="submit"] {
-                width: 100%; /* Повна ширина на мобільних */
+                width: 100%; /* cite: 384 */
             }
         }
     </style>
@@ -542,12 +547,7 @@
             <h1 class="logo">Moora</h1>
             <nav class="desktop-menu">
                 <ul>
-                    <li><a href="#products">Товари</a></li>
-                    <li><a href="#contact">Контакти</a></li>
-                    <li><a href="#help">Довідка</a></li>
-                    <li><a href="#" id="cart-button">Кошик (<span id="cart-count">0</span>)</a></li>
-                    <li><a href="#" id="search-button">Пошук</a></li>
-                </ul>
+                    <li><a href="#products">Товари</a></li> <li><a href="#contact">Контакти</a></li> <li><a href="#help">Довідка</a></li> <li><a href="#" id="cart-button">Кошик (<span id="cart-count">0</span>)</a></li> <li><a href="#" id="search-button">Пошук</a></li> </ul>
             </nav>
             <div class="mobile-menu-icon">
                 &#9776; </div>
@@ -564,88 +564,47 @@
     </div>
 
     <main>
-        <section class="hero">
-            <div class="container">
+        <section class="hero"> <div class="container">
                 <h2>Moora: Стиль, що говорить за вас</h2>
                 <p>Відкрийте для себе нашу колекцію футболок, оверсайз футболок та худі.</p>
             </div>
         </section>
 
         <section id="products" class="products">
-            <div class="container">
-                <h3>Наші товари</h3>
+            <div class="container"> <h3>Наші товари</h3>
                 <div class="product-grid">
                     <div class="product-item" id="product-1">
-                        <img src="img/Oversize.jpg" alt="Футболка Moora 'Міський Стиль'">
-                        <h4>Футболка "Воля"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL</p>
-                        <p class="price">Ціна: 499 грн</p>
-                        <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499" data-available-sizes="S,M,L,XL">Додати в кошик</button>
-                    </div>
+                        <img src="img/Oversize.jpg" alt="Футболка Moora 'Міський Стиль'"> <h4>Футболка "Воля"</h4> <p class="sizes-available">Розміри: S, M, L, XL</p> <p class="price">Ціна: 499 грн</p> <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499" data-available-sizes="S,M,L,XL">Додати в кошик</button> </div>
                     <div class="product-item" id="product-2">
                         <img src="img/tshirt.jpg" alt="Оверсайз футболка Moora 'Комфорт'">
-                        <h4>Оверсайз футболка "Комфорт"</h4>
-                        <p class="sizes-available">Розміри: M, L, XL, XXL</p>
-                        <p class="price">Ціна: 649 грн</p>
-                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-3">
-                        <img src="img/Hudi.jpg" alt="Худі Moora 'Затишок'">
-                        <h4>Худі "Пиздуйте"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL</p>
-                        <p class="price">Ціна: 899 грн</p>
-                        <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-4">
-                        <img src="img/Hudi.jpg" alt="Худі Moora 'Затишок'">
-                        <h4>Худі "Пиздуйте"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL</p>
-                        <p class="price">Ціна: 899 грн</p>
-                        <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-5">
-                        <img src="img/tshirt.jpg" alt="Оверсайз футболка Moora 'Комфорт'">
-                        <h4>Оверсайз футболка "Комфорт"</h4>
-                        <p class="sizes-available">Розміри: M, L, XL, XXL</p>
-                        <p class="price">Ціна: 649 грн</p>
-                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-6">
-                        <img src="img/tshirt.jpg" alt="Оверсайз футболка Moora 'Комфорт'">
-                        <h4>Оверсайз футболка "Комфорт"</h4>
-                        <p class="sizes-available">Розміри: M, L, XL, XXL</p>
-                        <p class="price">Ціна: 649 грн</p>
-                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
-                    </div>
-                    </div>
+                        <h4>Оверсайз футболка "Комфорт"</h4> <p class="sizes-available">Розміри: M, L, XL, XXL</p> <p class="price">Ціна: 649 грн</p> <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button> </div>
+                    <div class="product-item" id="product-3"> <img src="img/Hudi.jpg" alt="Худі Moora 'Затишок'"> <h4>Худі "Пиздуйте"</h4> <p class="sizes-available">Розміри: S, M, L, XL</p> <p class="price">Ціна: 899 грн</p> <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button> </div>
+                    <div class="product-item" id="product-4"> <img src="img/Hudi.jpg" alt="Худі Moora 'Затишок'"> <h4>Худі "Пиздуйте"</h4> <p class="sizes-available">Розміри: S, M, L, XL</p> <p class="price">Ціна: 899 грн</p> <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button> </div>
+                    <div class="product-item" id="product-5"> <img src="img/tshirt.jpg" alt="Оверсайз футболка Moora 'Комфорт'"> <h4>Оверсайз футболка "Комфорт"</h4> <p class="sizes-available">Розміри: M, L, XL, XXL</p> <p class="price">Ціна: 649 грн</p> <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button> </div>
+                    <div class="product-item" id="product-6"> <img src="img/tshirt.jpg" alt="Оверсайз футболка Moora 'Комфорт'"> <h4>Оверсайз футболка "Комфорт"</h4> <p class="sizes-available">Розміри: M, L, XL, XXL</p> <p class="price">Ціна: 649 грн</p> <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button> </div>
+                </div>
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
-            <div class="container">
+        <section id="contact" class="contact-section"> <div class="container">
                 <h3>Контакти</h3>
                 <p>Напишіть нам: <a href="mailto:info@moora.com">HuiZnaPridumaem@gmail.com</a></p>
                 <p>Тел: +380 68 806 91 15</p>
-                </div>
+            </div>
         </section>
 
-        <section id="help" class="help-section">
-            <div class="container">
+        <section id="help" class="help-section"> <div class="container">
                 <h3>Довідка</h3>
                 <p>Тут ви знайдете відповіді на поширені запитання.</p>
                 <ul>
-                    <li>Як зробити замовлення?</li>
-                    <li>Умови доставки</li>
-                    <li>Повернення та обмін</li>
-                </ul>
+                    <li>Як зробити замовлення?</li> <li>Умови доставки</li> <li>Повернення та обмін</li> </ul>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Moora. Всі права захищені.</p>
-        </div>
+            <p>&copy; 2025 Moora. Всі права захищені.</p> </div>
     </footer>
 
     <div id="cart-modal" class="modal">
@@ -653,8 +612,7 @@
             <span class="close-button">&times;</span>
             <h2>Ваш кошик</h2>
             <div id="cart-items">
-                <p>Кошик порожній.</p>
-            </div>
+                <p>Кошик порожній.</p> </div>
             <div class="cart-total">
                 <p>Всього: <span id="cart-total-price">0</span> грн</p>
             </div>
@@ -662,57 +620,23 @@
                 <label for="customer-name">Ім'я:</label>
                 <input type="text" id="customer-name" placeholder="Ваше ім'я" required>
 
-                <label for="customer-phone">Номер телефону:</label>
-                <input type="tel" id="customer-phone" placeholder="Номер телефону" required>
+                <label for="customer-phone">Номер телефону:</label> <input type="tel" id="customer-phone" placeholder="Номер телефону" required>
 
                 <label for="nova-poshta-city">Місто (Нова Пошта):</label>
                 <input type="text" id="nova-poshta-city" list="cities" placeholder="Наприклад, Київ" required>
                 <datalist id="cities">
-                    <option value="Київ">
-                    <option value="Харків">
-                    <option value="Одеса">
-                    <option value="Дніпро">
-                    <option value="Львів">
-                    <option value="Запоріжжя">
-                    <option value="Кривий Ріг">
-                    <option value="Миколаїв">
-                    <option value="Маріуполь">
-                    <option value="Вінниця">
-                    <option value="Херсон">
-                    <option value="Полтава">
-                    <option value="Чернігів">
-                    <option value="Черкаси">
-                    <option value="Житомир">
-                    <option value="Суми">
-                    <option value="Хмельницький">
-                    <option value="Чернівці">
-                    <option value="Рівне">
-                    <option value="Івано-Франківськ">
-                    <option value="Тернопіль">
-                    <option value="Луцьк">
-                    <option value="Ужгород">
-                    <option value="Біла Церква">
-                    <option value="Кременчук">
-                    <option value="Мелітополь">
-                    <option value="Бердянськ">
-                    <option value="Нікополь">
-                    <option value="Слов'янськ">
-                    <option value="Умань">
-                </datalist>
+                    <option value="Київ"> <option value="Харків"> <option value="Одеса"> <option value="Дніпро"> <option value="Львів"> <option value="Запоріжжя"> <option value="Кривий Ріг"> <option value="Миколаїв"> <option value="Маріуполь"> <option value="Вінниця"> <option value="Херсон"> <option value="Полтава"> <option value="Чернігів"> <option value="Черкаси"> <option value="Житомир"> <option value="Суми"> <option value="Хмельницький"> <option value="Чернівці"> <option value="Рівне"> <option value="Івано-Франківськ"> <option value="Тернопіль"> <option value="Луцьк"> <option value="Ужгород"> <option value="Біла Церква"> <option value="Кременчук"> <option value="Мелітополь"> <option value="Бердянськ"> <option value="Нікополь"> <option value="Слов'янськ"> <option value="Умань"> </datalist>
 
                 <label for="nova-poshta-branch">Номер відділення Нової Пошти:</label>
                 <input type="number" id="nova-poshta-branch" placeholder="Наприклад, 1, 25" min="1" required>
 
-                <label>Спосіб оплати:</label>
-                <div class="payment-options">
+                <label>Спосіб оплати:</label> <div class="payment-options">
                     <div>
                         <input type="radio" id="payment-cash" name="payment-method" value="Оплата при отриманні" required>
-                        <label for="payment-cash">Оплата при отриманні (на пошті)</label>
-                    </div>
+                        <label for="payment-cash">Оплата при отриманні (на пошті)</label> </div>
                     <div>
                         <input type="radio" id="payment-card" name="payment-method" value="Оплата карткою (Visa/Mastercard)" required>
-                        <label for="payment-card">Оплата карткою (Visa/Mastercard)</label>
-                    </div>
+                        <label for="payment-card">Оплата карткою (Visa/Mastercard)</label> </div>
                 </div>
 
                 <button type="submit">Оформити замовлення</button>
@@ -722,50 +646,49 @@
 
     <div id="search-modal" class="modal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Пошук по сайту</h2>
+            <span class="close-button">&times;</span> <h2>Пошук по сайту</h2>
             <input type="text" id="search-input" placeholder="Введіть запит...">
             <div id="search-results">
-                </div>
+            </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Елементи DOM
-            const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
-            const mobileDropdownMenu = document.querySelector('.mobile-dropdown-menu');
-            const cartButton = document.getElementById('cart-button');
-            const cartButtonMobile = document.getElementById('cart-button-mobile');
-            const cartModal = document.getElementById('cart-modal');
-            const closeButtons = document.querySelectorAll('.close-button'); // Для всіх модалок
-            const addToCartButtons = document.querySelectorAll('.add-to-cart');
-            const cartItemsContainer = document.getElementById('cart-items');
-            const cartCountSpans = document.querySelectorAll('#cart-count, #cart-count-mobile');
-            const cartTotalPriceSpan = document.getElementById('cart-total-price');
-            const checkoutForm = document.getElementById('checkout-form');
-            const searchButton = document.getElementById('search-button');
-            const searchButtonMobile = document.getElementById('search-button-mobile');
-            const searchModal = document.getElementById('search-modal');
-            const searchInput = document.getElementById('search-input');
-            const searchResultsContainer = document.getElementById('search-results');
-
-            let cart = []; // Масив для зберігання товарів у кошику
+            const mobileMenuIcon = document.querySelector('.mobile-menu-icon'); /* cite: 418 */
+            const mobileDropdownMenu = document.querySelector('.mobile-dropdown-menu'); /* cite: 419 */
+            const cartButton = document.getElementById('cart-button'); /* cite: 419 */
+            const cartButtonMobile = document.getElementById('cart-button-mobile'); /* cite: 419 */
+            const cartModal = document.getElementById('cart-modal'); /* cite: 419 */
+            const closeButtons = document.querySelectorAll('.close-button'); /* cite: 420 */
+            // Для всіх модалок
+            const addToCartButtons = document.querySelectorAll('.add-to-cart'); /* cite: 421 */
+            const cartItemsContainer = document.getElementById('cart-items'); /* cite: 421 */
+            const cartCountSpans = document.querySelectorAll('#cart-count, #cart-count-mobile'); /* cite: 421 */
+            const cartTotalPriceSpan = document.getElementById('cart-total-price'); /* cite: 421 */
+            const checkoutForm = document.getElementById('checkout-form'); /* cite: 422 */
+            const searchButton = document.getElementById('search-button'); /* cite: 422 */
+            const searchButtonMobile = document.getElementById('search-button-mobile'); /* cite: 422 */
+            const searchModal = document.getElementById('search-modal'); /* cite: 422 */
+            const searchInput = document.getElementById('search-input'); /* cite: 422 */
+            const searchResultsContainer = document.getElementById('search-results'); /* cite: 423 */
+            let cart = []; // Масив для зберігання товарів у кошику /* cite: 423 */
 
             // Функція для оновлення лічильника кошика
             function updateCartCount() {
-                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-                cartCountSpans.forEach(span => span.textContent = totalItems);
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0); /* cite: 424 */
+                cartCountSpans.forEach(span => span.textContent = totalItems); /* cite: 424 */
             }
 
             // Функція для відображення товарів у кошику
             function renderCart() {
-                cartItemsContainer.innerHTML = ''; // Очищаємо перед рендерингом
-                let totalPrice = 0;
-
+                cartItemsContainer.innerHTML = ''; /* cite: 425 */
+                // Очищаємо перед рендерингом
+                let totalPrice = 0; /* cite: 426 */
                 if (cart.length === 0) {
-                    cartItemsContainer.innerHTML = '<p>Кошик порожній.</p>';
-                    cartTotalPriceSpan.textContent = '0';
+                    cartItemsContainer.innerHTML = '<p>Кошик порожній.</p>'; /* cite: 427 */
+                    cartTotalPriceSpan.textContent = '0'; /* cite: 427 */
                     return;
                 }
 
@@ -773,7 +696,8 @@
                     const itemElement = document.createElement('div');
                     itemElement.classList.add('cart-item');
 
-                    const availableSizes = item.availableSizes.split(',');
+                    const availableSizes = item.availableSizes.split(','); /* cite: 428 */
+            
                     let sizeButtonsHtml = '';
                     availableSizes.forEach(size => {
                         const isSelected = item.selectedSize === size.trim() ? 'selected' : '';
@@ -783,272 +707,260 @@
                     itemElement.innerHTML = `
                         <div class="item-details">
                             <span>${item.name}</span> x ${item.quantity} - ${item.price * item.quantity} грн
-                            <div class="size-selection" data-item-id="${item.id}">
-                                ${sizeButtonsHtml}
+                            <div class="size-selection" data-item-id="${item.id}"> ${sizeButtonsHtml}
                             </div>
                         </div>
                         <button class="remove-item" data-product-id="${item.id}">Видалити</button>
-                    `;
-                    cartItemsContainer.appendChild(itemElement);
-                    totalPrice += item.price * item.quantity;
+                    `; /* cite: 431 */
+                    cartItemsContainer.appendChild(itemElement); /* cite: 432 */
+                    totalPrice += item.price * item.quantity; /* cite: 432 */
                 });
 
-                cartTotalPriceSpan.textContent = totalPrice;
-
+                cartTotalPriceSpan.textContent = totalPrice; /* cite: 433 */
                 // Додаємо обробники для кнопок розмірів після їх рендерингу
                 document.querySelectorAll('.size-button').forEach(button => {
                     button.addEventListener('click', (e) => {
-                        const productId = e.target.dataset.productId;
-                        const selectedSize = e.target.dataset.size;
+                        const productId = e.target.dataset.productId; /* cite: 434 */
+                        const selectedSize = e.target.dataset.size; /* cite: 434 */
                         
                         // Знімаємо виділення з інших кнопок того ж товару
-                        const parentSizeSelection = e.target.closest('.size-selection');
+                        const parentSizeSelection = e.target.closest('.size-selection'); /* cite: 435 */
                         parentSizeSelection.querySelectorAll('.size-button').forEach(btn => {
-                            btn.classList.remove('selected');
+                            btn.classList.remove('selected'); /* cite: 435 */
                         });
 
                         // Виділяємо обрану кнопку
-                        e.target.classList.add('selected');
+                        e.target.classList.add('selected'); /* cite: 436 */
 
                         // Оновлюємо кошик
-                        const cartItem = cart.find(item => item.id === productId);
+                        const cartItem = cart.find(item => item.id === productId); /* cite: 436 */
                         if (cartItem) {
-                            cartItem.selectedSize = selectedSize;
+                            cartItem.selectedSize = selectedSize; /* cite: 437 */
                         }
-                    });
+                    }); /* cite: 439 */
                 });
             }
 
             // Додавання товару в кошик
             addToCartButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
-                    const productId = e.target.dataset.productId;
-                    const productName = e.target.dataset.productName;
-                    const productPrice = parseFloat(e.target.dataset.productPrice);
-                    const availableSizes = e.target.dataset.availableSizes; // Отримуємо доступні розміри
+                    const productId = e.target.dataset.productId; /* cite: 440 */
+                    const productName = e.target.dataset.productName; /* cite: 440 */
+                    const productPrice = parseFloat(e.target.dataset.productPrice); /* cite: 440 */
+                    const availableSizes = e.target.dataset.availableSizes; // Отримуємо доступні розміри /* cite: 440 */
 
-                    const existingItem = cart.find(item => item.id === productId);
+                    const existingItem = cart.find(item => item.id === productId); /* cite: 440 */
 
                     if (existingItem) {
-                        existingItem.quantity++;
+                        existingItem.quantity++; /* cite: 441 */
                     } else {
                         cart.push({
-                            id: productId,
-                            name: productName,
-                            price: productPrice,
-                            quantity: 1,
-                            availableSizes: availableSizes,
-                            selectedSize: '' // Початково розмір не обраний
+                            id: productId, /* cite: 442 */
+                            name: productName, /* cite: 442 */
+                            price: productPrice, /* cite: 442 */
+                            quantity: 1, /* cite: 442 */
+                            availableSizes: availableSizes, /* cite: 443 */
+                            selectedSize: '' // Початково розмір не обраний /* cite: 443 */
                         });
                     }
-                    updateCartCount();
-                    renderCart();
+                    updateCartCount(); /* cite: 444 */
+                    renderCart(); /* cite: 445 */
                 });
             });
 
             // Видалення товару з кошика
             cartItemsContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('remove-item')) {
-                    const productIdToRemove = e.target.dataset.productId;
-                    cart = cart.filter(item => item.id !== productIdToRemove);
-                    updateCartCount();
-                    renderCart();
+                    const productIdToRemove = e.target.dataset.productId; /* cite: 446 */
+                    cart = cart.filter(item => item.id !== productIdToRemove); /* cite: 446 */
+                    updateCartCount(); /* cite: 446 */
+                    renderCart(); /* cite: 446 */
                 }
             });
-
             // Відкриття/закриття мобільного меню
             mobileMenuIcon.addEventListener('click', () => {
-                mobileDropdownMenu.classList.toggle('active');
+                mobileDropdownMenu.classList.toggle('active'); /* cite: 447 */
             });
-
             // Відкриття модального вікна кошика
             cartButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                cartModal.style.display = 'flex';
-                renderCart(); // Завжди рендеримо кошик при відкритті
+                e.preventDefault(); /* cite: 448 */
+                cartModal.style.display = 'flex'; /* cite: 448 */
+                renderCart(); // Завжди рендеримо кошик при відкритті /* cite: 448 */
             });
-
             cartButtonMobile.addEventListener('click', (e) => {
-                e.preventDefault();
-                cartModal.style.display = 'flex';
-                mobileDropdownMenu.classList.remove('active'); // Закриваємо мобільне меню
-                renderCart();
+                e.preventDefault(); /* cite: 449 */
+                cartModal.style.display = 'flex'; /* cite: 449 */
+                mobileDropdownMenu.classList.remove('active'); // Закриваємо мобільне меню /* cite: 449 */
+                renderCart(); /* cite: 449 */
             });
-
             // Відкриття модального вікна пошуку
             searchButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                searchModal.style.display = 'flex';
-                searchInput.focus(); // Фокус на поле вводу
+                e.preventDefault(); /* cite: 450 */
+                searchModal.style.display = 'flex'; /* cite: 450 */
+                searchInput.focus(); // Фокус на поле вводу /* cite: 450 */
             });
-
             searchButtonMobile.addEventListener('click', (e) => {
-                e.preventDefault();
-                searchModal.style.display = 'flex';
-                mobileDropdownMenu.classList.remove('active'); // Закриваємо мобільне меню
-                searchInput.focus();
+                e.preventDefault(); /* cite: 451 */
+                searchModal.style.display = 'flex'; /* cite: 451 */
+                mobileDropdownMenu.classList.remove('active'); // Закриваємо мобільне меню /* cite: 451 */
+                searchInput.focus(); /* cite: 451 */
             });
-
             // Закриття модальних вікон
             closeButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    cartModal.style.display = 'none';
-                    searchModal.style.display = 'none';
+                    cartModal.style.display = 'none'; /* cite: 452 */
+                    searchModal.style.display = 'none'; /* cite: 452 */
                 });
             });
 
             // Закриття модальних вікон при кліку поза їх вмістом
             window.addEventListener('click', (e) => {
                 if (e.target == cartModal) {
-                    cartModal.style.display = 'none';
+                    cartModal.style.display = 'none'; /* cite: 453 */
                 }
                 if (e.target == searchModal) {
-                    searchModal.style.display = 'none';
+                    searchModal.style.display = 'none'; /* cite: 454 */
                 }
             });
-
             // Обробка форми замовлення (відправка в Telegram бота)
             checkoutForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
+                e.preventDefault(); /* cite: 455 */
 
-                const customerName = document.getElementById('customer-name').value;
-                const customerPhone = document.getElementById('customer-phone').value;
-                const novaPoshtaCity = document.getElementById('nova-poshta-city').value;
-                const novaPoshtaBranch = document.getElementById('nova-poshta-branch').value;
-                const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
+                const customerName = document.getElementById('customer-name').value; /* cite: 455 */
+                const customerPhone = document.getElementById('customer-phone').value; /* cite: 456 */
+                const novaPoshtaCity = document.getElementById('nova-poshta-city').value; /* cite: 456 */
+                const novaPoshtaBranch = document.getElementById('nova-poshta-branch').value; /* cite: 456 */
+                const paymentMethod = document.querySelector('input[name="payment-method"]:checked'); /* cite: 456 */
 
                 if (cart.length === 0) {
-                    alert('Ваш кошик порожній. Будь ласка, додайте товари.');
+                    alert('Ваш кошик порожній. Будь ласка, додайте товари.'); /* cite: 457 */
                     return;
                 }
 
                 // Перевірка, чи всі товари мають обраний розмір
-                const allSizesSelected = cart.every(item => item.selectedSize && item.selectedSize !== '');
+                const allSizesSelected = cart.every(item => item.selectedSize && item.selectedSize !== ''); /* cite: 458 */
                 if (!allSizesSelected) {
-                    alert('Будь ласка, оберіть розмір для кожного товару в кошику.');
-                    return;
+                    alert('Будь ласка, оберіть розмір для кожного товару в кошику.'); /* cite: 458 */
+                    return; /* cite: 459 */
                 }
 
                 if (!paymentMethod) {
-                    alert('Будь ласка, оберіть спосіб оплати.');
-                    return;
+                    alert('Будь ласка, оберіть спосіб оплати.'); /* cite: 460 */
+                    return; /* cite: 460 */
                 }
 
                 // Формуємо повідомлення для Telegram бота
-                let message = `*НОВЕ ЗАМОВЛЕННЯ (Moora)*\n\n`;
-                message += `*Контактні дані:*\n`;
-                message += `Ім'я: ${customerName}\n`;
-                message += `Номер телефону: ${customerPhone}\n\n`;
-                message += `*Доставка:*\n`;
-                message += `Нова Пошта: ${novaPoshtaCity}, відділення №${novaPoshtaBranch}\n\n`;
-                message += `*Спосіб оплати:*\n${paymentMethod.value}\n\n`;
-                message += `*Товари:*\n`;
+                let message = `*НОВЕ ЗАМОВЛЕННЯ (Moora)*\n\n`; /* cite: 461 */
+                message += `*Контактні дані:*\n`; /* cite: 461 */
+                message += `Ім'я: ${customerName}\n`; /* cite: 461 */
+                message += `Номер телефону: ${customerPhone}\n\n`; /* cite: 461 */
+                message += `*Доставка:*\n`; /* cite: 462 */
+                message += `Нова Пошта: ${novaPoshtaCity}, відділення №${novaPoshtaBranch}\n\n`; /* cite: 462 */
+                message += `*Спосіб оплати:*\n${paymentMethod.value}\n\n`; /* cite: 462 */
+                message += `*Товари:*\n`; /* cite: 463 */
                 cart.forEach(item => {
-                    message += `- ${item.name} (x${item.quantity}) - ${item.price * item.quantity} грн`;
-                    message += ` (Розмір: ${item.selectedSize || 'не обрано'})\n`; // Додаємо розмір
+                    message += `- ${item.name} (x${item.quantity}) - ${item.price * item.quantity} грн`; /* cite: 463 */
+                    message += ` (Розмір: ${item.selectedSize || 'не обрано'})\n`; // Додаємо розмір /* cite: 463 */
                 });
-                message += `\n*Всього до сплати: ${cartTotalPriceSpan.textContent} грн*`;
+                message += `\n*Всього до сплати: ${cartTotalPriceSpan.textContent} грн*`; /* cite: 464 */
 
                 // Вам потрібно замінити 'YOUR_BOT_TOKEN' та 'YOUR_CHAT_ID' на ваші реальні дані.
                 // Будьте обережні: токен бота буде видно у вихідному коді сторінки.
                 // Для більшої безпеки краще використовувати бекенд-сервер.
-                const botToken = 'YOUR_BOT_TOKEN'; // Змініть це на ваш токен бота
-                const chatId = 'YOUR_CHAT_ID';     // Змініть це на ваш ID чату або групи
-                const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
+                const botToken = 'YOUR_BOT_TOKEN'; // Змініть це на ваш токен бота /* cite: 466 */
+                const chatId = 'YOUR_CHAT_ID'; // Змініть це на ваш ID чату або групи /* cite: 467 */
+                const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`; /* cite: 468 */
                 try {
                     const response = await fetch(telegramApiUrl, {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json' /* cite: 469 */
                         },
                         body: JSON.stringify({
-                            chat_id: chatId,
-                            text: message,
-                            parse_mode: 'Markdown' // Використовуємо Markdown для жирного тексту
+                            chat_id: chatId, /* cite: 470 */
+                            text: message, /* cite: 470 */
+                            parse_mode: 'Markdown' // Використовуємо Markdown для жирного тексту /* cite: 470 */
                         })
                     });
-
-                    const data = await response.json();
+                    const data = await response.json(); /* cite: 471 */
 
                     if (data.ok) {
-                        alert('Замовлення успішно оформлено! Ми зв\'яжемося з вами найближчим часом.');
-                        cart = []; // Очищаємо кошик після успішного замовлення
-                        updateCartCount();
-                        renderCart();
-                        cartModal.style.display = 'none'; // Закриваємо кошик
-                        document.getElementById('customer-name').value = ''; // Очищаємо поля форми
-                        document.getElementById('customer-phone').value = '';
-                        document.getElementById('nova-poshta-city').value = '';
-                        document.getElementById('nova-poshta-branch').value = '';
+                        alert('Замовлення успішно оформлено! Ми зв\'яжемося з вами найближчим часом.'); /* cite: 472 */
+                        cart = []; // Очищаємо кошик після успішного замовлення /* cite: 472 */
+                        updateCartCount(); /* cite: 473 */
+                        renderCart(); /* cite: 473 */
+                        cartModal.style.display = 'none'; // Закриваємо кошик /* cite: 473 */
+                        document.getElementById('customer-name').value = ''; /* cite: 474 */
+                        // Очищаємо поля форми
+                        document.getElementById('customer-phone').value = ''; /* cite: 475 */
+                        document.getElementById('nova-poshta-city').value = ''; /* cite: 475 */
+                        document.getElementById('nova-poshta-branch').value = ''; /* cite: 475 */
                         // Знімаємо вибір з радіо-кнопок
-                        document.getElementById('payment-cash').checked = false;
-                        document.getElementById('payment-card').checked = false;
+                        document.getElementById('payment-cash').checked = false; /* cite: 476 */
+                        document.getElementById('payment-card').checked = false; /* cite: 476 */
 
                     } else {
-                        alert('Сталася помилка при оформленні замовлення. Будь ласка, спробуйте ще раз.');
-                        console.error('Telegram API error:', data);
+                        alert('Сталася помилка при оформленні замовлення. Будь ласка, спробуйте ще раз.'); /* cite: 477 */
+                        console.error('Telegram API error:', data); /* cite: 477 */
                     }
                 } catch (error) {
-                    console.error('Error sending message to Telegram:', error);
-                    alert('Сталася помилка мережі. Будь ласка, перевірте з\'єднання та спробуйте ще раз.');
+                    console.error('Error sending message to Telegram:', error); /* cite: 478 */
+                    alert('Сталася помилка мережі. Будь ласка, перевірте з\'єднання та спробуйте ще раз.'); /* cite: 479 */
                 }
             });
-
             // Функціонал пошуку
             const allProducts = [
-                { id: '1', name: 'Футболка "Міський Стиль"', description: 'Класична футболка для повсякденного носіння.' },
-                { id: '2', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна футболка для максимального комфорту.' },
-                { id: '3', name: 'Худі "Затишок"', description: 'Тепле худі для прохолодних вечорів.' },
+                { id: '1', name: 'Футболка "Міський Стиль"', description: 'Класична футболка для повсякденного носіння.' }, /* cite: 480 */
+                { id: '2', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна футболка для максимального комфорту.' }, /* cite: 481 */
+                { id: '3', name: 'Худі "Затишок"', description: 'Тепле худі для прохолодних вечорів.' }, /* cite: 482 */
                 // ***ДОДАЙТЕ ТУТ УСІ ВАШІ ТОВАРИ ДЛЯ ПОШУКУ***
                 // id має відповідати id HTML-елемента товару
-                // Наприклад: { id: '4', name: 'Футболка "Літо"', description: 'Легка футболка для спекотної погоди.' },
-                //          { id: '5', name: 'Худі "Спорт"', description: 'Спортивне худі для активного відпочинку.' },
+                // Наприклад: { id: '4', name: 'Футболка "Літо"', description: 'Легка футболка для спекотної погоди.' }, /* cite: 484 */
+                //          { id: '5', name: 'Худі "Спорт"', description: 'Спортивне худі для активного відпочинку.' }, /* cite: 485 */
             ];
-
             searchInput.addEventListener('input', () => {
-                const searchTerm = searchInput.value.toLowerCase();
-                searchResultsContainer.innerHTML = '';
+                const searchTerm = searchInput.value.toLowerCase(); /* cite: 486 */
+                searchResultsContainer.innerHTML = ''; /* cite: 486 */
 
                 if (searchTerm.length < 2) { // Починаємо пошук з 2 символів
-                    searchResultsContainer.innerHTML = '<p>Введіть щонайменше 2 символи для пошуку.</p>';
+                    searchResultsContainer.innerHTML = '<p>Введіть щонайменше 2 символи для пошуку.</p>'; /* cite: 487 */
                     return;
                 }
 
                 const filteredProducts = allProducts.filter(product =>
                     product.name.toLowerCase().includes(searchTerm) ||
                     product.description.toLowerCase().includes(searchTerm)
-                );
+                ); /* cite: 488 */
 
                 if (filteredProducts.length === 0) {
-                    searchResultsContainer.innerHTML = '<p>Нічого не знайдено.</p>';
+                    searchResultsContainer.innerHTML = '<p>Нічого не знайдено.</p>'; /* cite: 488 */
                     return;
                 }
 
-                filteredProducts.forEach(product => {
-                    const resultItem = document.createElement('div');
-                    resultItem.classList.add('search-result-item');
+                filteredProducts.forEach(product => { /* cite: 489 */
+                    const resultItem = document.createElement('div'); /* cite: 489 */
+                    resultItem.classList.add('search-result-item'); /* cite: 490 */
                     // Додаємо обробник кліку для переходу
-                    resultItem.innerHTML = `<a href="#product-${product.id}">${product.name}</a>`;
-                    searchResultsContainer.appendChild(resultItem);
+                    resultItem.innerHTML = `<a href="#product-${product.id}">${product.name}</a>`; /* cite: 490 */
+                    searchResultsContainer.appendChild(resultItem); /* cite: 491 */
                 });
 
                 // Додаємо обробники кліків для результатів пошуку
                 searchResultsContainer.querySelectorAll('.search-result-item a').forEach(link => {
                     link.addEventListener('click', (e) => {
-                        e.preventDefault(); // Запобігаємо стандартній дії посилання
-                        const targetId = e.target.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
+                        e.preventDefault(); // Запобігаємо стандартній дії посилання /* cite: 492 */
+                        const targetId = e.target.getAttribute('href'); /* cite: 492 */
+                        const targetElement = document.querySelector(targetId); /* cite: 492 */
                         if (targetElement) {
-                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            searchModal.style.display = 'none'; // Закриваємо модалку пошуку
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' }); /* cite: 493 */
+                            searchModal.style.display = 'none'; // Закриваємо модалку пошуку /* cite: 493 */
                         }
                     });
-                });
+                }); /* cite: 494 */
             });
 
             // Ініціалізація
-            updateCartCount();
+            updateCartCount(); /* cite: 494 */
         });
     </script>
 </body>
