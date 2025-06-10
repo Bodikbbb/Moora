@@ -584,18 +584,23 @@
                 box-shadow: none;
                 background-image: none; /* Убираем фон с треугольниками */
             }
-            /* .container-wrapper удален */
+            .container-wrapper { /* Убираем обертку на мобильных */
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                background-color: transparent;
+            }
             .desktop-menu {
                 display: none;
             }
-        
+
             .header-icons {
                 display: flex;
             }
             .mobile-cart-icon {
                 display: block;
             }
-        
+
             .mobile-menu-icon {
                 display: block;
             }
@@ -604,36 +609,34 @@
             .mobile-dropdown-menu ul li a[id^="cart-button-mobile"] {
                 display: none; /* Убираем дублирующую кнопку корзины из мобильного меню */
             }
-        
+
             .hero {
-                padding: 60px 0; /* Уменьшаем padding на мобильных */
-                background-size: cover; /* На мобильных 'cover' обычно лучше */
-                min-height: 300px; /* Уменьшаем мин. высоту на мобильных */
+                padding: 40px 0;
+                background-size: cover;
             }
-        
+
             .hero h2 {
-                font-size: 2.2em; /* ВОТ ЭТО ИЗМЕНЕНИЕ: уменьшаем размер шрифта на мобильных */
-                letter-spacing: 1px;
+                font-size: 2em;
             }
-        
+
             .hero p {
-                font-size: 1.1em; /* ВОТ ЭТО ИЗМЕНЕНИЕ: уменьшаем размер шрифта на мобильных */
+                font-size: 1em;
             }
-        
+
             .product-grid {
                 grid-template-columns: 1fr;
             }
-        
+
             .product-item {
                 margin: 0 auto;
                 max-width: 320px;
             }
-        
+
             .modal-content {
                 width: 95%;
                 padding: 20px;
             }
-        
+
             #checkout-form input[type="text"],
             #checkout-form input[type="tel"],
             #checkout-form input[type="number"],
