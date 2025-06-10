@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Castelia - Бренд Одягу</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <style>
         /* Базові стилі */
         :root {
@@ -36,7 +38,7 @@
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 960px; /* Сделал сайт тоньше (было 1200px) */
             margin: 0 auto;
             padding: 20px 0;
         }
@@ -64,6 +66,10 @@
             color: var(--accent-color);
         }
 
+        .desktop-menu {
+            margin-left: auto; /* Перемещает меню вправо, отталкивая от лого */
+        }
+
         .desktop-menu ul {
             list-style: none;
             padding: 0;
@@ -81,17 +87,14 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 0.95em;
-            transition: color 0.3s ease, background-color 0.3s ease; /* Добавляем плавный переход */
-            padding: 5px 10px; /* Чтобы цвет фона был виден */
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px 10px;
             border-radius: 4px;
         }
 
         .desktop-menu ul li a:hover {
             color: var(--accent-color);
         }
-
-        /* Стилі для анимации кнопки корзины в меню */
-        /* #cart-button не нужно переопределять, оно уже имеет transition */
 
         /* --- НОВАЯ КОРЗИНА В ХЕДЕРЕ ДЛЯ МОБИЛЬНЫХ --- */
         .header-icons {
@@ -130,7 +133,7 @@
         /* Мобільне випадаюче меню */
         .mobile-dropdown-menu {
             display: none; /* Приховано за замовчуванням */
-            background: var(--primary-color); /* Чорне мобільне меню */
+            background: var(--primary-color);
             position: absolute;
             width: 100%;
             z-index: 999;
@@ -169,26 +172,25 @@
 
         /* Секція "Тема" (Hero) */
         .hero {
-            /* background: var(--accent-color); /* Старый желтый фон */
-            background-image: url('hero_background.jpg'); /* Ваше изображение */
-            background-size: cover; /* Растянуть изображение на всю площадь */
-            background-position: center; /* Центрировать изображение */
-            background-repeat: no-repeat; /* Не повторять изображение */
+            background-image: url('img/hero_background.jpg'); /* Или просто 'hero_background.jpg' если в корне */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             text-align: center;
-            padding: 100px 0; /* Увеличиваем отступы, чтобы блок стал больше */
+            padding: 100px 0;
             border-bottom: 1px solid var(--primary-color);
-            color: var(--light-text-color); /* Белый текст, если фон будет темный */
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Тень для читаемости текста на фото */
+            color: var(--light-text-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
         }
 
         .hero h2 {
-            font-size: 2.8em; /* Немного больше шрифт */
+            font-size: 2.8em;
             margin-bottom: 15px;
             color: var(--light-text-color);
         }
 
         .hero p {
-            font-size: 1.3em; /* Немного больше шрифт */
+            font-size: 1.3em;
             max-width: 700px;
             margin: 0 auto;
             color: var(--light-text-color);
@@ -198,7 +200,7 @@
         .products {
             padding: 40px 0;
             text-align: center;
-            background-color: var(--secondary-color); /* Білий фон для товарів */
+            background-color: var(--secondary-color);
             background-image: url('triangle_pattern.svg');
             background-repeat: repeat;
             background-size: 60px 60px;
@@ -573,6 +575,10 @@
 
         /* Адаптивність для мобільних пристроїв */
         @media (max-width: 768px) {
+            body { /* Убираем рамки на мобильных */
+                border-left: none;
+                border-right: none;
+            }
             .desktop-menu {
                 display: none;
             }
@@ -593,7 +599,7 @@
 
             .hero {
                 padding: 40px 0;
-                background-size: cover; /* Убедимся, что изображение Hero хорошо смотрится и на мобильных */
+                background-size: cover;
             }
 
             .hero h2 {
@@ -1149,7 +1155,6 @@
                 { id: '4', name: 'Футболка "Пиздуйте"', description: 'Класична футболка Castelia з принтом.' },
                 { id: '5', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Castelia для максимального комфорту.' },
                 { id: '6', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Castelia для максимального комфорту.' },
-                // ДОБАВЬТЕ ТУТ ВСЕ ВАШИ ТОВАРЫ ДЛЯ ПОИСКА
             ];
             searchInput.addEventListener('input', () => {
                 const searchTerm = searchInput.value.toLowerCase();
