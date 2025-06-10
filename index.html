@@ -25,37 +25,7 @@
             color: var(--text-color);
             background-color: var(--secondary-color); /* Білий фон для тіла */
         }
-
-        /* Желтые рамки по бокам и фон с треугольниками на ПК */
-        @media (min-width: 769px) { /* Применяем только на ПК (ширина экрана от 769px) */
-            body {
-                border-left: 60px solid var(--accent-color); /* Шире рамка в 3 раза */
-                border-right: 60px solid var(--accent-color); /* Шире рамка в 3 раза */
-                box-sizing: border-box; /* Учитываем рамку в общей ширине элемента */
-                /* Тень на переходе от контента к рамке */
-                box-shadow:
-                    1px 0 5px rgba(0, 0, 0, 0.1), /* Левая внутренняя тень: сдвиг вправо, размытие, цвет с прозрачностью */
-                    -1px 0 5px rgba(0, 0, 0, 0.1); /* Правая внутренняя тень: сдвиг влево, размытие, цвет с прозрачностью */
-                /* Фон с желтыми закругленными треугольниками */
-                /* Base64 SVG для треугольников: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><rect fill="%23fede00" x="0" y="0" width="60" height="60" rx="10" ry="10" transform="rotate(45 30 30)"/></svg>
-                   (Исправлен SVG для закругленных квадратов, повернутых на 45 градусов для вида треугольников)
-                */
-                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><rect fill="%23fede00" x="0" y="0" width="60" height="60" rx="10" ry="10" transform="rotate(45 30 30)"/></svg>');
-                background-repeat: repeat; /* Повторяем паттерн */
-                background-size: 80px 80px; /* Размер паттерна: чтобы треугольники были побольше */
-                background-position: center center; /* Центрируем фон */
-                background-attachment: fixed; /* Фон не прокручивается вместе с контентом */
-            }
-
-            /* Для того, чтобы белый контент сайта перекрывал фон с треугольниками, но рамки оставались */
-            .container {
-                background-color: var(--secondary-color); /* Белый фон контейнера перекрывает фон body */
-                position: relative; /* Важно для z-index, чтобы контейнер был выше фона body */
-                z-index: 1; /* Убеждаемся, что контейнер находится над фоном body */
-            }
-        }
-
-
+       
         .container {
             width: 90%;
             max-width: 960px; /* Сайт тоньше */
