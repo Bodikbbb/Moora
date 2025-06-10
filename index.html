@@ -7,13 +7,13 @@
     <style>
         /* Базові стилі */
         :root {
-            --primary-color: #000; /* Чорний для основного фону/тексту */
-            --secondary-color: #fff; /* Білий для секцій, що виділяються */
-            --accent-color: #fede00; /* Золотисто-жовтий як акцент */
-            --text-color: #333; /* Темно-сірий для основного тексту */
-            --light-text-color: #ffffff; /* Білий для тексту на темному фоні */
-            --dark-text-color: #000; /* Чорний для тексту на світлому фоні */
-            --border-color: #eee; /* Світлий для рамок */
+            --primary-color: #000;       /* Чорний для основного фону/тексту */
+            --secondary-color: #fff;     /* Білий для секцій, що виділяються */
+            --accent-color: #fede00;     /* Золотисто-жовтий як акцент */
+            --text-color: #333;          /* Темно-сірий для основного тексту */
+            --light-text-color: #ffffff;    /* Білий для тексту на темному фоні */
+            --dark-text-color: #000;     /* Чорний для тексту на світлому фоні */
+            --border-color: #eee;        /* Світлий для рамок */
         }
 
         body {
@@ -21,7 +21,7 @@
             margin: 0;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--secondary-color); /* Білий фон для тіла (без узора) */
+            background-color: var(--secondary-color); /* Білий фон для тіла */
         }
 
         .container {
@@ -75,6 +75,45 @@
 
         .desktop-menu ul li a:hover {
             color: var(--accent-color); /* Жовтий при наведенні */
+        }
+
+        /* Стилі для анимации кнопки корзины в меню */
+        #cart-button {
+            transition: background-color 0.3s ease, color 0.3s ease; /* Добавляем плавный переход */
+            padding: 5px 10px; /* Чтобы цвет фона был виден */
+            border-radius: 4px;
+        }
+        /* Убедитесь, что для ссылки нет background-color по умолчанию, кроме hover */
+        .desktop-menu ul li a {
+            background-color: transparent;
+        }
+
+
+        /* --- НОВАЯ КОРЗИНА В ХЕДЕРЕ ДЛЯ МОБИЛЬНЫХ --- */
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Отступ между иконками */
+        }
+
+        .mobile-cart-icon {
+            display: none; /* Скрыто по умолчанию на десктопе */
+            font-size: 1.6em; /* Размер иконки */
+            color: var(--accent-color); /* Желтый цвет */
+            cursor: pointer;
+            position: relative;
+        }
+
+        .mobile-cart-icon .cart-count-badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background-color: red; /* Красный кружок */
+            color: white;
+            font-size: 0.6em;
+            padding: 2px 5px;
+            border-radius: 50%;
+            line-height: 1;
         }
 
         .mobile-menu-icon {
@@ -150,11 +189,9 @@
             padding: 40px 0;
             text-align: center;
             background-color: var(--secondary-color); /* Білий фон для товарів */
-            /* --- ДОДАНІ СТИЛІ ДЛЯ ФОНОВОГО УЗОРУ (теперь тут) --- */
             background-image: url('triangle_pattern.svg'); /* Указываем путь к файлу SVG */
             background-repeat: repeat;
             background-size: 60px 60px; /* Должен соответствовать размерам SVG-файла */
-            /* --- КІНЕЦЬ ДОДАНИХ СТИЛІВ --- */
         }
 
         .products h3 {
@@ -226,6 +263,35 @@
             background: var(--accent-color); /* Жовта кнопка при наведенні */
             color: var(--primary-color); /* Чорний текст при наведенні */
         }
+
+        /* --- АНИМАЦИЯ "УЛЕТАНИЯ" ТОВАРА В КОРЗИНУ --- */
+        @keyframes flyToCart {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translate(50px, -50px) scale(0.5); /* Произвольная точка на пути */
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--targetX), var(--targetY)) scale(0);
+            }
+        }
+
+        .flying-item {
+            position: fixed;
+            z-index: 9999; /* Поверх всего */
+            width: 50px; /* Размер иконки, которая улетает */
+            height: 50px;
+            background-color: var(--accent-color); /* Цвет "улетающего" элемента */
+            border-radius: 50%; /* Круглая форма */
+            pointer-events: none; /* Не мешает кликам */
+            animation: flyToCart 1s ease-out forwards; /* Продолжительность и функция анимации */
+        }
+        /* --- КОНЕЦ АНИМАЦИИ --- */
+
 
         /* Контакти та Довідка */
         .contact-section, .help-section {
@@ -501,9 +567,21 @@
                 display: none;
             }
 
+            .header-icons {
+                display: flex; /* Показываем контейнер иконок */
+            }
+            .mobile-cart-icon {
+                display: block; /* Показываем иконку корзины на мобильных */
+            }
+
             .mobile-menu-icon {
                 display: block;
             }
+            /* Скрываем ссылку на корзину из мобильного выпадающего меню */
+            .mobile-dropdown-menu ul li a[id^="cart-button-mobile"] {
+                display: none;
+            }
+
 
             .hero {
                 padding: 40px 0;
@@ -554,8 +632,13 @@
                     <li><a href="#" id="search-button">Пошук</a></li>
                 </ul>
             </nav>
-            <div class="mobile-menu-icon">
-                &#9776;
+            <div class="header-icons">
+                <div class="mobile-cart-icon" id="mobile-cart-icon">
+                    🛒 <span class="cart-count-badge" id="mobile-cart-count-badge">0</span>
+                </div>
+                <div class="mobile-menu-icon">
+                    &#9776;
+                </div>
             </div>
         </div>
     </header>
@@ -564,9 +647,8 @@
         <ul>
             <li><a href="#contact">Контакти</a></li>
             <li><a href="#help">Довідка</a></li>
-            <li><a href="#" id="cart-button-mobile">Кошик (<span id="cart-count-mobile">0</span>)</a></li>
             <li><a href="#" id="search-button-mobile">Пошук</a></li>
-        </ul>
+            </ul>
     </div>
 
     <main>
@@ -741,14 +823,14 @@
             // Елементи DOM
             const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
             const mobileDropdownMenu = document.querySelector('.mobile-dropdown-menu');
-            const cartButton = document.getElementById('cart-button');
-            const cartButtonMobile = document.getElementById('cart-button-mobile');
+            const cartButton = document.getElementById('cart-button'); // Десктопная кнопка корзины в меню
+            const mobileCartIcon = document.getElementById('mobile-cart-icon'); // Мобильная иконка корзины
             const cartModal = document.getElementById('cart-modal');
             const closeButtons = document.querySelectorAll('.close-button');
-            // Для всіх модалок
             const addToCartButtons = document.querySelectorAll('.add-to-cart');
             const cartItemsContainer = document.getElementById('cart-items');
-            const cartCountSpans = document.querySelectorAll('#cart-count, #cart-count-mobile');
+            const cartCountSpans = document.querySelectorAll('#cart-count'); // Только для десктопной кнопки
+            const mobileCartCountBadge = document.getElementById('mobile-cart-count-badge'); // Для мобильной иконки
             const cartTotalPriceSpan = document.getElementById('cart-total-price');
             const checkoutForm = document.getElementById('checkout-form');
             const searchButton = document.getElementById('search-button');
@@ -761,12 +843,13 @@
             // Функція для оновлення лічильника кошика
             function updateCartCount() {
                 const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-                cartCountSpans.forEach(span => span.textContent = totalItems);
+                cartCountSpans.forEach(span => span.textContent = totalItems); // Обновляем десктопную
+                mobileCartCountBadge.textContent = totalItems; // Обновляем мобильную
             }
 
-            // Функція для відображення товарів у кошику
+            // Функция для рендера товаров в корзине
             function renderCart() {
-                cartItemsContainer.innerHTML = ''; // Очищаємо перед рендерингом
+                cartItemsContainer.innerHTML = '';
                 let totalPrice = 0;
                 if (cart.length === 0) {
                     cartItemsContainer.innerHTML = '<p>Кошик порожній.</p>';
@@ -800,22 +883,19 @@
                 });
 
                 cartTotalPriceSpan.textContent = totalPrice;
-                // Додаємо обробники для кнопок розмірів після їх рендерингу
+
                 document.querySelectorAll('.size-button').forEach(button => {
                     button.addEventListener('click', (e) => {
                         const productId = e.target.dataset.productId;
                         const selectedSize = e.target.dataset.size;
                         
-                        // Знімаємо виділення з інших кнопок того ж товару
                         const parentSizeSelection = e.target.closest('.size-selection');
                         parentSizeSelection.querySelectorAll('.size-button').forEach(btn => {
                             btn.classList.remove('selected');
                         });
 
-                        // Виділяємо обрану кнопку
                         e.target.classList.add('selected');
 
-                        // Оновлюємо кошик
                         const cartItem = cart.find(item => item.id === productId);
                         if (cartItem) {
                             cartItem.selectedSize = selectedSize;
@@ -824,13 +904,69 @@
                 });
             }
 
-            // Додавання товару в кошик
+            // Функция для анимации "улетания" товара в корзину
+            function animateFlyToCart(event) {
+                const button = event.target;
+                const productItem = button.closest('.product-item');
+                if (!productItem) return;
+
+                const productImg = productItem.querySelector('img');
+                if (!productImg) return;
+
+                const flyingItem = document.createElement('div');
+                flyingItem.classList.add('flying-item');
+                document.body.appendChild(flyingItem);
+
+                // Начальная позиция - центр изображения товара
+                const imgRect = productImg.getBoundingClientRect();
+                flyingItem.style.left = `${imgRect.left + imgRect.width / 2 - 25}px`; // 25 = flying-item width/2
+                flyingItem.style.top = `${imgRect.top + imgRect.height / 2 - 25}px`; // 25 = flying-item height/2
+
+                // Целевая позиция - центр иконки корзины
+                let targetCartIcon = null;
+                if (window.innerWidth <= 768) { // Мобильная версия
+                    targetCartIcon = mobileCartIcon;
+                } else { // Десктопная версия
+                    targetCartIcon = cartButton;
+                }
+
+                if (!targetCartIcon) {
+                    flyingItem.remove();
+                    return;
+                }
+
+                const targetRect = targetCartIcon.getBoundingClientRect();
+                const targetX = targetRect.left + targetRect.width / 2 - (imgRect.left + imgRect.width / 2);
+                const targetY = targetRect.top + targetRect.height / 2 - (imgRect.top + imgRect.height / 2);
+
+                flyingItem.style.setProperty('--targetX', `${targetX}px`);
+                flyingItem.style.setProperty('--targetY', `${targetY}px`);
+
+                flyingItem.addEventListener('animationend', () => {
+                    flyingItem.remove();
+                });
+            }
+
+            // Функция для анимации кнопки корзины на десктопе
+            function animateCartButton() {
+                if (window.innerWidth > 768) { // Только для десктопа
+                    cartButton.style.backgroundColor = 'var(--accent-color)'; // Загорается желтым
+                    cartButton.style.color = 'var(--primary-color)'; // Текст становится черным
+                    setTimeout(() => {
+                        cartButton.style.backgroundColor = 'transparent'; // Возвращается к прозрачному
+                        cartButton.style.color = 'var(--light-text-color)'; // Текст возвращается к белому
+                    }, 500); // Через 0.5 секунды
+                }
+            }
+
+
+            // Добавление товара в кошик
             addToCartButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
                     const productId = e.target.dataset.productId;
                     const productName = e.target.dataset.productName;
                     const productPrice = parseFloat(e.target.dataset.productPrice);
-                    const availableSizes = e.target.dataset.availableSizes; // Отримуємо доступні розміри
+                    const availableSizes = e.target.dataset.availableSizes;
 
                     const existingItem = cart.find(item => item.id === productId);
 
@@ -843,11 +979,13 @@
                             price: productPrice,
                             quantity: 1,
                             availableSizes: availableSizes,
-                            selectedSize: '' // Початково розмір не обраний
+                            selectedSize: ''
                         });
                     }
                     updateCartCount();
                     renderCart();
+                    animateFlyToCart(e); // Запуск анимации
+                    animateCartButton(); // Анимация кнопки корзины в хедере
                 });
             });
 
@@ -860,34 +998,42 @@
                     renderCart();
                 }
             });
+
             // Открытие/закрытие мобильного меню
             mobileMenuIcon.addEventListener('click', () => {
                 mobileDropdownMenu.classList.toggle('active');
             });
-            // Открытие модального окна корзины
+
+            // Открытие модального окна корзины (десктопная кнопка)
             cartButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 cartModal.style.display = 'flex';
-                renderCart(); // Завжди рендеримо кошик при відкритті
-            });
-            cartButtonMobile.addEventListener('click', (e) => {
-                e.preventDefault();
-                cartModal.style.display = 'flex';
-                mobileDropdownMenu.classList.remove('active'); // Закриваємо мобільне меню
                 renderCart();
             });
-            // Открытие модального окна поиска
+
+            // Открытие модального окна корзины (мобильная иконка)
+            mobileCartIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                cartModal.style.display = 'flex';
+                mobileDropdownMenu.classList.remove('active'); // Закрываем моб. меню, если открыто
+                renderCart();
+            });
+
+            // Открытие модального окна поиска (десктоп)
             searchButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 searchModal.style.display = 'flex';
-                searchInput.focus(); // Фокус на поле вводу
+                searchInput.focus();
             });
+
+            // Открытие модального окна поиска (мобильное меню)
             searchButtonMobile.addEventListener('click', (e) => {
                 e.preventDefault();
                 searchModal.style.display = 'flex';
-                mobileDropdownMenu.classList.remove('active'); // Закриваємо мобільне меню
+                mobileDropdownMenu.classList.remove('active');
                 searchInput.focus();
             });
+
             // Закрытие модальных окон
             closeButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -905,7 +1051,8 @@
                     searchModal.style.display = 'none';
                 }
             });
-            // Обработка формы заказа (отправка в Telegram бота)
+
+            // Обработка формы заказа (отправка в Telegram бота) - БЕЗ ИЗМЕНЕНИЙ
             checkoutForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
@@ -920,7 +1067,6 @@
                     return;
                 }
 
-                // Проверка, все ли товары имеют выбранный размер
                 const allSizesSelected = cart.every(item => item.selectedSize && item.selectedSize !== '');
                 if (!allSizesSelected) {
                     alert('Будь ласка, оберіть розмір для кожного товару в кошику.');
@@ -932,7 +1078,6 @@
                     return;
                 }
 
-                // Формируем сообщение для Telegram бота
                 let message = `*НОВЕ ЗАМОВЛЕННЯ (Moora)*\n\n`;
                 message += `*Контактні дані:*\n`;
                 message += `Ім'я: ${customerName}\n`;
@@ -943,13 +1088,10 @@
                 message += `*Товари:*\n`;
                 cart.forEach(item => {
                     message += `- ${item.name} (x${item.quantity}) - ${item.price * item.quantity} грн`;
-                    message += ` (Розмір: ${item.selectedSize || 'не обрано'})\n`; // Добавляем размер
+                    message += ` (Розмір: ${item.selectedSize || 'не обрано'})\n`;
                 });
                 message += `\n*Всього до сплати: ${cartTotalPriceSpan.textContent} грн*`;
 
-                // Вам нужно заменить 'YOUR_BOT_TOKEN' и 'YOUR_CHAT_ID' на ваши реальные данные.
-                // Будьте осторожны: токен бота будет виден в исходном коде страницы.
-                // Для большей безопасности лучше использовать бэкенд-сервер.
                 const botToken = 'YOUR_BOT_TOKEN'; // Измените это на ваш токен бота
                 const chatId = 'YOUR_CHAT_ID'; // Измените это на ваш ID чата или группы
                 const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
@@ -962,23 +1104,21 @@
                         body: JSON.stringify({
                             chat_id: chatId,
                             text: message,
-                            parse_mode: 'Markdown' // Используем Markdown для жирного текста
+                            parse_mode: 'Markdown'
                         })
                     });
                     const data = await response.json();
 
                     if (data.ok) {
                         alert('Замовлення успішно оформлено! Ми зв\'яжемося з вами найближчим часом.');
-                        cart = []; // Очищаем корзину после успешного заказа
+                        cart = [];
                         updateCartCount();
                         renderCart();
-                        cartModal.style.display = 'none'; // Закрываем корзину
+                        cartModal.style.display = 'none';
                         document.getElementById('customer-name').value = '';
-                        // Очищаем поля формы
                         document.getElementById('customer-phone').value = '';
                         document.getElementById('nova-poshta-city').value = '';
                         document.getElementById('nova-poshta-branch').value = '';
-                        // Снимаем выбор с радио-кнопок
                         document.getElementById('payment-cash').checked = false;
                         document.getElementById('payment-card').checked = false;
 
@@ -991,21 +1131,19 @@
                     alert('Сталася помилка мережі. Будь ласка, перевірте з\'єднання та спробуйте ще раз.');
                 }
             });
-            // Функционал поиска
+
+            // Функционал поиска - БЕЗ ИЗМЕНЕНИЙ
             const allProducts = [
                 { id: '1', name: 'Футболка "Воля"', description: 'Класична футболка для повсякденного носіння.' },
                 { id: '2', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна футболка для максимального комфорту.' },
                 { id: '3', name: 'Худі "Пиздуйте"', description: 'Тепле худі для прохолодних вечорів.' },
-                // ***ДОДАЙТЕ ТУТ УСІ ВАШІ ТОВАРИ ДЛЯ ПОШУКУ***
-                // id має відповідати id HTML-елемента товару
-                // Наприклад: { id: '4', name: 'Футболка "Літо"', description: 'Легка футболка для спекотної погоди.' },
-                //          { id: '5', name: 'Худі "Спорт"', description: 'Спортивне худі для активного відпочинку.' },
+                // ДОБАВЬТЕ ТУТ ВСЕ ВАШИ ТОВАРЫ ДЛЯ ПОИСКА, ЕСЛИ ИХ БОЛЬШЕ
             ];
             searchInput.addEventListener('input', () => {
                 const searchTerm = searchInput.value.toLowerCase();
                 searchResultsContainer.innerHTML = '';
 
-                if (searchTerm.length < 2) { // Начинаем поиск с 2 символов
+                if (searchTerm.length < 2) {
                     searchResultsContainer.innerHTML = '<p>Введіть щонайменше 2 символи для пошуку.</p>';
                     return;
                 }
@@ -1023,20 +1161,18 @@
                 filteredProducts.forEach(product => {
                     const resultItem = document.createElement('div');
                     resultItem.classList.add('search-result-item');
-                    // Добавляем обработчик клика для перехода
                     resultItem.innerHTML = `<a href="#product-${product.id}">${product.name}</a>`;
                     searchResultsContainer.appendChild(resultItem);
                 });
 
-                // Добавляем обработчики кликов для результатов поиска
                 searchResultsContainer.querySelectorAll('.search-result-item a').forEach(link => {
                     link.addEventListener('click', (e) => {
-                        e.preventDefault(); // Предотвращаем стандартное действие ссылки
+                        e.preventDefault();
                         const targetId = e.target.getAttribute('href');
                         const targetElement = document.querySelector(targetId);
                         if (targetElement) {
                             targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            searchModal.style.display = 'none'; // Закрываем модалку поиска
+                            searchModal.style.display = 'none';
                         }
                     });
                 });
