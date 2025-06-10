@@ -23,7 +23,7 @@
             margin: 0;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--secondary-color); /* Білий фон для тіла */
+            background-color: var(--secondary-color); /* Білий фон для тіла (fallback) */
         }
 
         /* Желтые рамки по бокам и фон с треугольниками на ПК */
@@ -37,9 +37,6 @@
                     1px 0 5px rgba(0, 0, 0, 0.1), /* Левая внутренняя тень: сдвиг вправо, размытие, цвет с прозрачностью */
                     -1px 0 5px rgba(0, 0, 0, 0.1); /* Правая внутренняя тень: сдвиг влево, размытие, цвет с прозрачностью */
                 /* Фон с желтыми закругленными треугольниками */
-                /* Base64 SVG для треугольников: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><rect fill="%23fede00" x="0" y="0" width="60" height="60" rx="10" ry="10" transform="rotate(45 30 30)"/></svg>
-                   (Исправлен SVG для закругленных квадратов, повернутых на 45 градусов для вида треугольников)
-                */
                 background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><rect fill="%23fede00" x="0" y="0" width="60" height="60" rx="10" ry="10" transform="rotate(45 30 30)"/></svg>');
                 background-repeat: repeat; /* Повторяем паттерн */
                 background-size: 80px 80px; /* Размер паттерна: чтобы треугольники были побольше */
@@ -48,20 +45,24 @@
             }
 
             /* Для того, чтобы белый контент сайта перекрывал фон с треугольниками, но рамки оставались */
-            .container {
-                background-color: var(--secondary-color); /* Белый фон контейнера перекрывает фон body */
+            /* Убедимся, что фон контейнера перекрывает только центральную часть, а не весь body */
+            .container-wrapper { /* Добавим обертку для контента */
+                background-color: var(--secondary-color); /* Белый фон обертки перекрывает фон body */
                 position: relative; /* Важно для z-index, чтобы контейнер был выше фона body */
                 z-index: 1; /* Убеждаемся, что контейнер находится над фоном body */
+                /* Max-width и margin auto переместим сюда, чтобы рамки оставались видимыми */
+                width: 90%;
+                max-width: 960px; /* Сайт тоньше */
+                margin: 0 auto;
+                box-sizing: border-box;
+                padding: 0; /* Уберем padding на этом уровне, чтобы он был внутри .container */
             }
         }
 
 
         .container {
-            width: 90%;
-            max-width: 960px; /* Сайт тоньше */
-            margin: 0 auto;
-            padding: 20px 0;
-            /* background-color: var(--secondary-color); - перемещено в @media для ПК, чтобы не перекрывать фон на мобильных */
+            width: 100%; /* Занимает всю ширину .container-wrapper */
+            padding: 20px 0; /* Padding внутри контейнера */
             box-sizing: border-box; /* Учитываем padding в общей ширине */
         }
 
@@ -601,6 +602,12 @@
                 box-shadow: none;
                 background-image: none; /* Убираем фон с треугольниками */
             }
+            .container-wrapper { /* Убираем обертку на мобильных */
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                background-color: transparent;
+            }
             .desktop-menu {
                 display: none;
             }
@@ -690,92 +697,92 @@
         </ul>
     </div>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h2>Calestia: Стиль, що говорить за вас</h2>
-                <p>Відкрийте для себе нашу колекцію футболок, оверсайз футболок та худі.</p>
-            </div>
-        </section>
+    <div class="container-wrapper">
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <h2>Calestia: Стиль, що говорить за вас</h2>
+                    <p>Відкрийте для себе нашу колекцію футболок, оверсайз футболок та худі.</p>
+                </div>
+            </section>
 
-        <section id="products" class="products">
-            <div class="container">
-                <h3>Наші товари</h3>
-                <div class="product-grid">
-                    <div class="product-item" id="product-1">
-                        <img src="img/image_ab0cbd.jpg" alt="Футболка Calestia 'Міський Стиль'">
-                        <h4>Футболка "Воля"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL</p>
-                        <p class="price">Ціна: 499 грн</p>
-                        <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499" data-available-sizes="S,M,L,XL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-2">
-                        <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
-                        <h4>Оверсайз футболка "Комфорт"</h4>
-                        <p class="sizes-available">Розміри: M, L, XL, XXL</p>
-                        <p class="price">Ціна: 649 грн</p>
-                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-3">
-                        <img src="img/image_ab0cbd.jpg" alt="Худі Calestia 'Затишок'">
-                        <h4>Худі "Пиздуйте"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL</p>
-                        <p class="price">Ціна: 899 грн</p>
-                        <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-4">
-                        <img src="img/image_ab0cbd.jpg" alt="Худі Calestia 'Затишок'">
-                        <h4>Худі "Пиздуйте"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL</p>
-                        <p class="price">Ціна: 899 грн</p>
-                        <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-5">
-                        <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
-                        <h4>Оверсайз футболка "Комфорт"</h4>
-                        <p class="sizes-available">Розміри: M, L, XL, XXL</p>
-                        <p class="price">Ціна: 649 грн</p>
-                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-6">
-                        <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
-                        <h4>Оверсайз футболка "Комфорт"</h4>
-                        <p class="sizes-available">Розміри: M, L, XL, XXL</p>
-                        <p class="price">Ціна: 649 грн</p>
-                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
+            <section id="products" class="products">
+                <div class="container">
+                    <h3>Наші товари</h3>
+                    <div class="product-grid">
+                        <div class="product-item" id="product-1">
+                            <img src="img/image_ab0cbd.jpg" alt="Футболка Calestia 'Міський Стиль'">
+                            <h4>Футболка "Воля"</h4>
+                            <p class="sizes-available">Розміри: S, M, L, XL</p>
+                            <p class="price">Ціна: 499 грн</p>
+                            <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499" data-available-sizes="S,M,L,XL">Додати в кошик</button>
+                        </div>
+                        <div class="product-item" id="product-2">
+                            <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
+                            <h4>Оверсайз футболка "Комфорт"</h4>
+                            <p class="sizes-available">Розміри: M, L, XL, XXL</p>
+                            <p class="price">Ціна: 649 грн</p>
+                            <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
+                        </div>
+                        <div class="product-item" id="product-3">
+                            <img src="img/image_ab0cbd.jpg" alt="Худі Calestia 'Затишок'">
+                            <h4>Худі "Пиздуйте"</h4>
+                            <p class="sizes-available">Розміри: S, M, L, XL</p>
+                            <p class="price">Ціна: 899 грн</p>
+                            <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
+                        </div>
+                        <div class="product-item" id="product-4">
+                            <img src="img/image_ab0cbd.jpg" alt="Худі Calestia 'Затишок'">
+                            <h4>Худі "Пиздуйте"</h4>
+                            <p class="sizes-available">Розміри: S, M, L, XL</p>
+                            <p class="price">Ціна: 899 грн</p>
+                            <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
+                        </div>
+                        <div class="product-item" id="product-5">
+                            <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
+                            <h4>Оверсайз футболка "Комфорт"</h4>
+                            <p class="sizes-available">Розміри: M, L, XL, XXL</p>
+                            <p class="price">Ціна: 649 грн</p>
+                            <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
+                        </div>
+                        <div class="product-item" id="product-6">
+                            <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
+                            <h4>Оверсайз футболка "Комфорт"</h4>
+                            <p class="sizes-available">Розміри: M, L, XL, XXL</p>
+                            <p class="price">Ціна: 649 грн</p>
+                            <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="contact" class="contact-section">
+            <section id="contact" class="contact-section">
+                <div class="container">
+                    <h3>Контакти</h3>
+                    <p>Напишіть нам: <a href="mailto:info@calestia.com">HuiZnaPridumaem@gmail.com</a></p>
+                    <p>Тел: +380 68 806 91 15</p>
+                </div>
+            </section>
+
+            <section id="help" class="help-section">
+                <div class="container">
+                    <h3>Довідка</h3>
+                    <p>Тут ви знайдете відповіді на поширені запитання.</p>
+                    <ul>
+                        <li>Як зробити замовлення?</li>
+                        <li>Умови доставки</li>
+                        <li>Повернення та обмін</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
             <div class="container">
-                <h3>Контакти</h3>
-                <p>Напишіть нам: <a href="mailto:info@calestia.com">HuiZnaPridumaem@gmail.com</a></p>
-                <p>Тел: +380 68 806 91 15</p>
+                <p>&copy; 2025 Calestia. Всі права захищені.</p>
             </div>
-        </section>
-
-        <section id="help" class="help-section">
-            <div class="container">
-                <h3>Довідка</h3>
-                <p>Тут ви знайдете відповіді на поширені запитання.</p>
-                <ul>
-                    <li>Як зробити замовлення?</li>
-                    <li>Умови доставки</li>
-                    <li>Повернення та обмін</li>
-                </ul>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Calestia. Всі права захищені.</p>
-        </div>
-    </footer>
-
-    <div id="cart-modal" class="modal">
+        </footer>
+    </div> <div id="cart-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h2>Ваш кошик</h2>
