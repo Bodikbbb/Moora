@@ -23,17 +23,18 @@
             margin: 0;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--secondary-color); /* Білий фон для тіла */
+            background-color: var(--secondary-color); /* Білий фон для тіла (fallback) */
         }
-       
+
+        /* Изменения для .container: теперь он сам регулирует ширину контента */
         .container {
-            width: 90%;
-            max-width: 960px; /* Сайт тоньше */
-            margin: 0 auto;
-            padding: 20px 0;
-            /* background-color: var(--secondary-color); - перемещено в @media для ПК, чтобы не перекрывать фон на мобильных */
+            width: 90%; /* Занимает 90% ширины экрана */
+            max-width: 1200px; /* Максимальная ширина, чтобы контент не был слишком широким */
+            margin: 0 auto; /* Центрирует контейнер */
+            padding: 20px 0; /* Padding внутри контейнера */
             box-sizing: border-box; /* Учитываем padding в общей ширине */
         }
+
 
         /* Хедер */
         header {
@@ -162,31 +163,39 @@
             color: var(--accent-color);
         }
 
-        /* Секція "Тема" (Hero) */
+        /* Секція "Тема" (Hero) - Изменения здесь */
         .hero {
-            /* Здесь вы можете вставить большое фоновое фото. */
             background-image: url('img/fonova.jpg'); /* Использование вашего изображения fonova.jpg */
-            background-size: cover; /* Фото полностью закрывает секцию */
-            background-position: center; /* Центрируем фото */
+            background-size: 100% 120%; /* Растягиваем изображение: 100% ширины, 120% высоты. Можно попробовать 'cover' если хотите избежать деформации, но тогда часть изображения может обрезаться. */
+            background-position: center center; /* Центрируем фото */
             background-repeat: no-repeat;
             text-align: center;
-            padding: 100px 0;
+            padding: 150px 0; /* Увеличиваем padding для большей высоты секции */
+            min-height: 500px; /* Минимальная высота секции для лучшего отображения фото */
             border-bottom: 1px solid var(--primary-color);
             color: var(--light-text-color);
             text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            display: flex; /* Используем flexbox для центрирования контента */
+            align-items: center; /* Выравниваем по вертикали */
+            justify-content: center; /* Выравниваем по горизонтали */
+            flex-direction: column; /* Элементы внутри будут располагаться вертикально */
         }
 
         .hero h2 {
-            font-size: 2.8em;
-            margin-bottom: 15px;
+            font-family: 'Georgia', serif; /* Более "дорогой" шрифт */
+            font-size: 3.2em; /* Увеличенный размер шрифта */
+            margin-bottom: 20px;
             color: var(--light-text-color);
+            letter-spacing: 2px; /* Увеличиваем межбуквенный интервал */
+            text-transform: uppercase; /* Все заглавные буквы */
         }
 
         .hero p {
-            font-size: 1.3em;
-            max-width: 700px;
+            font-size: 1.4em; /* Чуть больший размер шрифта */
+            max-width: 800px; /* Немного шире для текста */
             margin: 0 auto;
             color: var(--light-text-color);
+            font-weight: 500; /* Немного более жирный шрифт */
         }
 
         /* Секція товарів */
@@ -571,6 +580,7 @@
                 box-shadow: none;
                 background-image: none; /* Убираем фон с треугольниками */
             }
+            /* .container-wrapper удален */
             .desktop-menu {
                 display: none;
             }
@@ -592,16 +602,18 @@
             }
 
             .hero {
-                padding: 40px 0;
-                background-size: cover;
+                padding: 60px 0; /* Уменьшаем padding на мобильных */
+                background-size: cover; /* На мобильных 'cover' обычно лучше */
+                min-height: 300px; /* Уменьшаем мин. высоту на мобильных */
             }
 
             .hero h2 {
-                font-size: 2em;
+                font-size: 2.2em; /* Уменьшаем размер шрифта на мобильных */
+                letter-spacing: 1px;
             }
 
             .hero p {
-                font-size: 1em;
+                font-size: 1.1em; /* Уменьшаем размер шрифта на мобильных */
             }
 
             .product-grid {
@@ -643,7 +655,7 @@
             </nav>
             <div class="header-icons">
                 <div class="mobile-cart-icon" id="mobile-cart-icon">
-                    🛒 <span class="cart-count-badge" id="mobile-cart-count-badge">0</span>
+                    🛒 <span class="cart-count-badge" id="mobile-cart-badge">0</span>
                 </div>
                 <div class="mobile-menu-icon">
                     &#9776;
@@ -673,42 +685,42 @@
                 <h3>Наші товари</h3>
                 <div class="product-grid">
                     <div class="product-item" id="product-1">
-                        <img src="img/tshirt.jpg" alt="Футболка Calestia 'Міський Стиль'">
+                        <img src="img/image_ab0cbd.jpg" alt="Футболка Calestia 'Міський Стиль'">
                         <h4>Футболка "Воля"</h4>
                         <p class="sizes-available">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 499 грн</p>
                         <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-2">
-                        <img src="img/Oversize.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
+                        <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
                         <h4>Оверсайз футболка "Комфорт"</h4>
                         <p class="sizes-available">Розміри: M, L, XL, XXL</p>
                         <p class="price">Ціна: 649 грн</p>
                         <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-3">
-                        <img src="img/tshirt.jpg" alt="Худі Calestia 'Затишок'">
+                        <img src="img/image_ab0cbd.jpg" alt="Худі Calestia 'Затишок'">
                         <h4>Худі "Пиздуйте"</h4>
                         <p class="sizes-available">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 899 грн</p>
                         <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-4">
-                        <img src="img/Hudi.jpg" alt="Худі Calestia 'Затишок'">
+                        <img src="img/image_ab0cbd.jpg" alt="Худі Calestia 'Затишок'">
                         <h4>Худі "Пиздуйте"</h4>
                         <p class="sizes-available">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 899 грн</p>
                         <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-5">
-                        <img src="img/Hudi.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
+                        <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
                         <h4>Оверсайз футболка "Комфорт"</h4>
                         <p class="sizes-available">Розміри: M, L, XL, XXL</p>
                         <p class="price">Ціна: 649 грн</p>
                         <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-6">
-                        <img src="img/tshirt.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
+                        <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
                         <h4>Оверсайз футболка "Комфорт"</h4>
                         <p class="sizes-available">Розміри: M, L, XL, XXL</p>
                         <p class="price">Ціна: 649 грн</p>
@@ -839,7 +851,7 @@
             const addToCartButtons = document.querySelectorAll('.add-to-cart');
             const cartItemsContainer = document.getElementById('cart-items');
             const cartCountSpans = document.querySelectorAll('#cart-count'); // Только для десктопной кнопки
-            const mobileCartCountBadge = document.getElementById('mobile-cart-count-badge'); // Для мобильной иконки
+            const mobileCartBadge = document.getElementById('mobile-cart-badge'); // Для мобильной иконки
             const cartTotalPriceSpan = document.getElementById('cart-total-price');
             const checkoutForm = document.getElementById('checkout-form');
             const searchButton = document.getElementById('search-button');
@@ -853,7 +865,9 @@
             function updateCartCount() {
                 const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
                 cartCountSpans.forEach(span => span.textContent = totalItems); // Обновляем десктопную
-                mobileCartCountBadge.textContent = totalItems; // Обновляем мобильную
+                if (mobileCartBadge) { // Проверяем, существует ли элемент, прежде чем обновлять
+                    mobileCartBadge.textContent = totalItems; // Обновляем мобильную
+                }
             }
 
             // Функция для рендера товаров в корзине
