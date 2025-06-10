@@ -29,16 +29,20 @@
         /* Желтые рамки по бокам на ПК */
         @media (min-width: 769px) { /* Применяем только на ПК */
             body {
-                border-left: 10px solid var(--accent-color); /* Ширина рамки */
-                border-right: 10px solid var(--accent-color); /* Ширина рамки */
+                border-left: 20px solid var(--accent-color); /* Шире рамка */
+                border-right: 20px solid var(--accent-color); /* Шире рамка */
                 box-sizing: border-box; /* Учитываем рамку в общей ширине */
+                /* Тень на переходе от контента к рамке */
+                box-shadow: 
+                    1px 0 5px rgba(0, 0, 0, 0.1), /* Левая внутренняя тень */
+                    -1px 0 5px rgba(0, 0, 0, 0.1); /* Правая внутренняя тень */
             }
         }
 
 
         .container {
             width: 90%;
-            max-width: 960px; /* Сделал сайт тоньше (было 1200px) */
+            max-width: 960px; /* Сайт тоньше */
             margin: 0 auto;
             padding: 20px 0;
         }
@@ -578,6 +582,7 @@
             body { /* Убираем рамки на мобильных */
                 border-left: none;
                 border-right: none;
+                box-shadow: none; /* Убираем тень на мобильных */
             }
             .desktop-menu {
                 display: none;
