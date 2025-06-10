@@ -169,12 +169,12 @@
         /* Секція "Тема" (Hero) - Изменения здесь */
         .hero {
             background-image: url('img/fonova.jpg');
-            background-size: cover; /* ИЗМЕНЕНО: теперь изображение будет покрывать блок, сохраняя пропорции */
+            background-size: cover; /* Оставляем cover, так как оно хорошо заполняет блок */
             background-position: center center;
             background-repeat: no-repeat;
             text-align: center;
-            padding: 150px 0;
-            min-height: 500px;
+            padding: 80px 0; /* УМЕНЬШЕНО для ПК */
+            min-height: 350px; /* УМЕНЬШЕНО для ПК */
             border-bottom: 1px solid var(--primary-color);
             color: var(--light-text-color);
             text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
@@ -611,8 +611,9 @@
             }
 
             .hero {
-                padding: 40px 0;
-                background-size: cover;
+                padding: 40px 0; /* УМЕНЬШЕНО для мобильных */
+                background-size: cover; /* Оставляем cover */
+                min-height: 200px; /* УМЕНЬШЕНО для мобильных */
             }
 
             .hero h2 {
