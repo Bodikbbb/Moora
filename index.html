@@ -168,20 +168,20 @@
 
         /* Секція "Тема" (Hero) - Изменения здесь */
         .hero {
-            background-image: url('img/fonova.jpg'); /* Использование вашего изображения fonova.jpg */
-            background-size: 100% 120%; /* Растягиваем изображение: 100% ширины, 120% высоты. Можно попробовать 'cover' если хотите избежать деформации, но тогда часть изображения может обрезаться. */
-            background-position: center center; /* Центрируем фото */
+            background-image: url('img/fonova.jpg');
+            background-size: cover; /* ИЗМЕНЕНО: теперь изображение будет покрывать блок, сохраняя пропорции */
+            background-position: center center;
             background-repeat: no-repeat;
             text-align: center;
-            padding: 150px 0; /* Увеличиваем padding для большей высоты секции */
-            min-height: 500px; /* Минимальная высота секции для лучшего отображения фото */
+            padding: 150px 0;
+            min-height: 500px;
             border-bottom: 1px solid var(--primary-color);
             color: var(--light-text-color);
             text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-            display: flex; /* Используем flexbox для центрирования контента */
-            align-items: center; /* Выравниваем по вертикали */
-            justify-content: center; /* Выравниваем по горизонтали */
-            flex-direction: column; /* Элементы внутри будут располагаться вертикально */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
 
         .hero h2 {
