@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Castelia - Бренд Одягу</title>
+    <title>Calestia - Бренд Одягу</title>
     <link rel="icon" href="img/favicon.png" type="image/png">
     <link rel="shortcut icon" href="img/favicon.png" type="image/png">
     <style>
@@ -26,16 +26,32 @@
             background-color: var(--secondary-color); /* Білий фон для тіла */
         }
 
-        /* Желтые рамки по бокам на ПК */
-        @media (min-width: 769px) { /* Применяем только на ПК */
+        /* Желтые рамки по бокам и фон с треугольниками на ПК */
+        @media (min-width: 769px) { /* Применяем только на ПК (ширина экрана от 769px) */
             body {
-                border-left: 20px solid var(--accent-color); /* Шире рамка */
-                border-right: 20px solid var(--accent-color); /* Шире рамка */
-                box-sizing: border-box; /* Учитываем рамку в общей ширине */
+                border-left: 60px solid var(--accent-color); /* Шире рамка в 3 раза */
+                border-right: 60px solid var(--accent-color); /* Шире рамка в 3 раза */
+                box-sizing: border-box; /* Учитываем рамку в общей ширине элемента */
                 /* Тень на переходе от контента к рамке */
-                box-shadow: 
-                    1px 0 5px rgba(0, 0, 0, 0.1), /* Левая внутренняя тень */
-                    -1px 0 5px rgba(0, 0, 0, 0.1); /* Правая внутренняя тень */
+                box-shadow:
+                    1px 0 5px rgba(0, 0, 0, 0.1), /* Левая внутренняя тень: сдвиг вправо, размытие, цвет с прозрачностью */
+                    -1px 0 5px rgba(0, 0, 0, 0.1); /* Правая внутренняя тень: сдвиг влево, размытие, цвет с прозрачностью */
+                /* Фон с желтыми закругленными треугольниками */
+                /* Base64 SVG для треугольников: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><rect fill="%23fede00" x="0" y="0" width="60" height="60" rx="10" ry="10" transform="rotate(45 30 30)"/></svg>
+                   (Исправлен SVG для закругленных квадратов, повернутых на 45 градусов для вида треугольников)
+                */
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><rect fill="%23fede00" x="0" y="0" width="60" height="60" rx="10" ry="10" transform="rotate(45 30 30)"/></svg>');
+                background-repeat: repeat; /* Повторяем паттерн */
+                background-size: 80px 80px; /* Размер паттерна: чтобы треугольники были побольше */
+                background-position: center center; /* Центрируем фон */
+                background-attachment: fixed; /* Фон не прокручивается вместе с контентом */
+            }
+
+            /* Для того, чтобы белый контент сайта перекрывал фон с треугольниками, но рамки оставались */
+            .container {
+                background-color: var(--secondary-color); /* Белый фон контейнера перекрывает фон body */
+                position: relative; /* Важно для z-index, чтобы контейнер был выше фона body */
+                z-index: 1; /* Убеждаемся, что контейнер находится над фоном body */
             }
         }
 
@@ -45,6 +61,8 @@
             max-width: 960px; /* Сайт тоньше */
             margin: 0 auto;
             padding: 20px 0;
+            /* background-color: var(--secondary-color); - перемещено в @media для ПК, чтобы не перекрывать фон на мобильных */
+            box-sizing: border-box; /* Учитываем padding в общей ширине */
         }
 
         /* Хедер */
@@ -67,7 +85,7 @@
         .logo {
             margin: 0;
             font-size: 1.6em;
-            color: var(--accent-color);
+            color: var(--accent-color); /* Логотип "Calestia" - желтый */
         }
 
         .desktop-menu {
@@ -97,7 +115,7 @@
         }
 
         .desktop-menu ul li a:hover {
-            color: var(--accent-color);
+            color: var(--accent-color); /* Пункты меню при наведении - желтые */
         }
 
         /* --- НОВАЯ КОРЗИНА В ХЕДЕРЕ ДЛЯ МОБИЛЬНЫХ --- */
@@ -110,7 +128,7 @@
         .mobile-cart-icon {
             display: none; /* Скрыто по умолчанию на десктопе */
             font-size: 1.6em;
-            color: var(--accent-color);
+            color: var(--accent-color); /* Мобильная иконка корзины - желтая */
             cursor: pointer;
             position: relative;
         }
@@ -130,7 +148,7 @@
         .mobile-menu-icon {
             display: none; /* Приховуємо на великих екранах */
             font-size: 1.8em;
-            color: var(--accent-color);
+            color: var(--accent-color); /* Иконка мобильного меню - желтая */
             cursor: pointer;
         }
 
@@ -176,9 +194,10 @@
 
         /* Секція "Тема" (Hero) */
         .hero {
-            background-image: url('img/hero_background.jpg'); /* Или просто 'hero_background.jpg' если в корне */
-            background-size: cover;
-            background-position: center;
+            /* Здесь вы можете вставить большое фоновое фото. */
+            background-image: url('img/fonova.jpg'); /* Использование вашего изображения fonova.jpg */
+            background-size: cover; /* Фото полностью закрывает секцию */
+            background-position: center; /* Центрируем фото */
             background-repeat: no-repeat;
             text-align: center;
             padding: 100px 0;
@@ -204,10 +223,7 @@
         .products {
             padding: 40px 0;
             text-align: center;
-            background-color: var(--secondary-color);
-            background-image: url('triangle_pattern.svg');
-            background-repeat: repeat;
-            background-size: 60px 60px;
+            background-color: var(--secondary-color); /* Белый фон */
         }
 
         .products h3 {
@@ -235,7 +251,7 @@
 
         .product-item:hover {
             transform: translateY(-5px);
-            border-color: var(--accent-color);
+            border-color: var(--accent-color); /* Рамка товара при наведении - желтая */
         }
 
         .product-item img {
@@ -260,13 +276,13 @@
         .product-item .price {
             font-size: 1.1em;
             font-weight: bold;
-            color: var(--accent-color);
+            color: var(--accent-color); /* Цена товара - желтая */
             margin-bottom: 15px;
         }
 
         .product-item button {
-            background: var(--primary-color);
-            color: var(--accent-color);
+            background: var(--primary-color); /* Кнопка "Додати в кошик" - черный фон */
+            color: var(--accent-color); /* Цвет текста на кнопке - желтый */
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
@@ -276,8 +292,8 @@
         }
 
         .product-item button:hover {
-            background: var(--accent-color);
-            color: var(--primary-color);
+            background: var(--accent-color); /* Кнопка "Додати в кошик" при наведении - желтый фон */
+            color: var(--primary-color); /* Цвет текста на кнопке при наведении - черный */
         }
 
         /* --- АНИМАЦИЯ "УЛЕТАНИЯ" ТОВАРА В КОРЗИНУ --- */
@@ -301,7 +317,7 @@
             z-index: 9999;
             width: 50px;
             height: 50px;
-            background-color: var(--accent-color);
+            background-color: var(--accent-color); /* Анимированный элемент - желтый */
             border-radius: 50%;
             pointer-events: none;
             animation: flyToCart 1s ease-out forwards;
@@ -312,8 +328,8 @@
         /* Контакти та Довідка */
         .contact-section, .help-section {
             padding: 40px 0;
-            background: var(--primary-color);
-            border-top: 1px solid var(--accent-color);
+            background: var(--primary-color); /* Черный фон для этих секций */
+            border-top: 1px solid var(--accent-color); /* Желтая верхняя граница */
             color: var(--light-text-color);
         }
 
@@ -321,7 +337,7 @@
             text-align: center;
             font-size: 2em;
             margin-bottom: 20px;
-            color: var(--accent-color);
+            color: var(--accent-color); /* Заголовки - желтые */
         }
 
         .contact-section p, .help-section p, .help-section ul {
@@ -330,7 +346,7 @@
         }
 
         .contact-section a {
-            color: var(--accent-color);
+            color: var(--accent-color); /* Ссылки - желтые */
             text-decoration: none;
         }
 
@@ -349,12 +365,12 @@
 
         /* Футер */
         footer {
-            background: var(--primary-color);
+            background: var(--primary-color); /* Черный фон футера */
             color: var(--light-text-color);
             text-align: center;
             padding: 20px 0;
             margin-top: 40px;
-            border-top: 1px solid var(--accent-color);
+            border-top: 1px solid var(--accent-color); /* Желтая верхняя граница */
         }
 
         /* Модальні вікна (Кошик, Пошук) */
@@ -376,7 +392,7 @@
             background-color: #fefefe;
             margin: auto;
             padding: 30px;
-            border: 1px solid var(--accent-color);
+            border: 1px solid var(--accent-color); /* Желтая рамка модального окна */
             width: 80%;
             max-width: 600px;
             border-radius: 8px;
@@ -448,15 +464,15 @@
         }
 
         #cart-items .cart-item .size-selection button.selected {
-            background: var(--accent-color);
-            color: var(--primary-color);
+            background: var(--accent-color); /* Выбранный размер - желтый фон */
+            color: var(--primary-color); /* Текст выбранного размера - черный */
             border-color: var(--primary-color);
             font-weight: bold;
         }
 
         #cart-items .cart-item .remove-item {
-            background: var(--primary-color);
-            color: var(--accent-color);
+            background: var(--primary-color); /* Кнопка "Удалить" - черный фон */
+            color: var(--accent-color); /* Текст "Удалить" - желтый */
             border: none;
             padding: 5px 10px;
             border-radius: 4px;
@@ -467,8 +483,8 @@
         }
 
         #cart-items .cart-item .remove-item:hover {
-            background: var(--accent-color);
-            color: var(--primary-color);
+            background: var(--accent-color); /* Кнопка "Удалить" при наведении - желтый фон */
+            color: var(--primary-color); /* Текст "Удалить" при наведении - черный */
         }
 
         .cart-total {
@@ -521,8 +537,8 @@
         }
 
         #checkout-form button[type="submit"] {
-            background: var(--primary-color);
-            color: var(--accent-color);
+            background: var(--primary-color); /* Кнопка "Оформити замовлення" - черный фон */
+            color: var(--accent-color); /* Текст кнопки - желтый */
             border: none;
             padding: 12px 20px;
             border-radius: 5px;
@@ -533,8 +549,8 @@
         }
 
         #checkout-form button[type="submit"]:hover {
-            background: var(--accent-color);
-            color: var(--primary-color);
+            background: var(--accent-color); /* Кнопка "Оформити замовлення" при наведении - желтый фон */
+            color: var(--primary-color); /* Текст кнопки при наведении - черный */
         }
 
         #search-input {
@@ -574,15 +590,16 @@
         }
 
         #search-results .search-result-item a:hover {
-            color: var(--accent-color);
+            color: var(--accent-color); /* Результаты поиска при наведении - желтые */
         }
 
         /* Адаптивність для мобільних пристроїв */
         @media (max-width: 768px) {
-            body { /* Убираем рамки на мобильных */
+            body { /* Убираем рамки, тень и фоновый паттерн на мобильных */
                 border-left: none;
                 border-right: none;
-                box-shadow: none; /* Убираем тень на мобильных */
+                box-shadow: none;
+                background-image: none; /* Убираем фон с треугольниками */
             }
             .desktop-menu {
                 display: none;
@@ -598,8 +615,10 @@
             .mobile-menu-icon {
                 display: block;
             }
+            /* Если нужно, чтобы мобильная корзина была в выпадающем меню, закомментируйте эту строку */
+            /* Если она остается как отдельная иконка в хедере, оставьте как есть */
             .mobile-dropdown-menu ul li a[id^="cart-button-mobile"] {
-                display: none;
+                display: none; /* Убираем дублирующую кнопку корзины из мобильного меню */
             }
 
             .hero {
@@ -642,7 +661,7 @@
 <body>
     <header>
         <div class="container">
-            <h1 class="logo">Castelia</h1>
+            <h1 class="logo">Calestia</h1>
             <nav class="desktop-menu">
                 <ul>
                     <li><a href="#products">Товари</a></li>
@@ -674,7 +693,7 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h2>Castelia: Стиль, що говорить за вас</h2>
+                <h2>Calestia: Стиль, що говорить за вас</h2>
                 <p>Відкрийте для себе нашу колекцію футболок, оверсайз футболок та худі.</p>
             </div>
         </section>
@@ -684,42 +703,42 @@
                 <h3>Наші товари</h3>
                 <div class="product-grid">
                     <div class="product-item" id="product-1">
-                        <img src="img/Oversize.jpg" alt="Футболка Castelia 'Міський Стиль'">
+                        <img src="img/image_ab0cbd.jpg" alt="Футболка Calestia 'Міський Стиль'">
                         <h4>Футболка "Воля"</h4>
                         <p class="sizes-available">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 499 грн</p>
                         <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-2">
-                        <img src="img/tshirt.jpg" alt="Оверсайз футболка Castelia 'Комфорт'">
+                        <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
                         <h4>Оверсайз футболка "Комфорт"</h4>
                         <p class="sizes-available">Розміри: M, L, XL, XXL</p>
                         <p class="price">Ціна: 649 грн</p>
                         <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-3">
-                        <img src="img/Hudi.jpg" alt="Худі Castelia 'Затишок'">
+                        <img src="img/image_ab0cbd.jpg" alt="Худі Calestia 'Затишок'">
                         <h4>Худі "Пиздуйте"</h4>
                         <p class="sizes-available">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 899 грн</p>
                         <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-4">
-                        <img src="img/Hudi.jpg" alt="Худі Castelia 'Затишок'">
+                        <img src="img/image_ab0cbd.jpg" alt="Худі Calestia 'Затишок'">
                         <h4>Худі "Пиздуйте"</h4>
                         <p class="sizes-available">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 899 грн</p>
                         <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-5">
-                        <img src="img/tshirt.jpg" alt="Оверсайз футболка Castelia 'Комфорт'">
+                        <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
                         <h4>Оверсайз футболка "Комфорт"</h4>
                         <p class="sizes-available">Розміри: M, L, XL, XXL</p>
                         <p class="price">Ціна: 649 грн</p>
                         <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-6">
-                        <img src="img/tshirt.jpg" alt="Оверсайз футболка Castelia 'Комфорт'">
+                        <img src="img/image_ab0cbd.jpg" alt="Оверсайз футболка Calestia 'Комфорт'">
                         <h4>Оверсайз футболка "Комфорт"</h4>
                         <p class="sizes-available">Розміри: M, L, XL, XXL</p>
                         <p class="price">Ціна: 649 грн</p>
@@ -732,7 +751,7 @@
         <section id="contact" class="contact-section">
             <div class="container">
                 <h3>Контакти</h3>
-                <p>Напишіть нам: <a href="mailto:info@castelia.com">HuiZnaPridumaem@gmail.com</a></p>
+                <p>Напишіть нам: <a href="mailto:info@calestia.com">HuiZnaPridumaem@gmail.com</a></p>
                 <p>Тел: +380 68 806 91 15</p>
             </div>
         </section>
@@ -752,7 +771,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Castelia. Всі права захищені.</p>
+            <p>&copy; 2025 Calestia. Всі права захищені.</p>
         </div>
     </footer>
 
@@ -882,7 +901,7 @@
                     itemElement.classList.add('cart-item');
 
                     const availableSizes = item.availableSizes.split(',');
-            
+
                     let sizeButtonsHtml = '';
                     availableSizes.forEach(size => {
                         const isSelected = item.selectedSize === size.trim() ? 'selected' : '';
@@ -908,7 +927,7 @@
                     button.addEventListener('click', (e) => {
                         const productId = e.target.dataset.productId;
                         const selectedSize = e.target.dataset.size;
-                        
+
                         const parentSizeSelection = e.target.closest('.size-selection');
                         parentSizeSelection.querySelectorAll('.size-button').forEach(btn => {
                             btn.classList.remove('selected');
@@ -1098,7 +1117,7 @@
                     return;
                 }
 
-                let message = `*НОВЕ ЗАМОВЛЕННЯ (Castelia)*\n\n`;
+                let message = `*НОВЕ ЗАМОВЛЕННЯ (Calestia)*\n\n`;
                 message += `*Контактні дані:*\n`;
                 message += `Ім'я: ${customerName}\n`;
                 message += `Номер телефону: ${customerPhone}\n\n`;
@@ -1152,14 +1171,14 @@
                 }
             });
 
-            // Функционал поиска - ОБНОВЛЕН ДЛЯ Castelia
+            // Функционал поиска - ОБНОВЛЕН ДЛЯ Calestia
             const allProducts = [
-                { id: '1', name: 'Футболка "Воля"', description: 'Класична футболка Castelia для повсякденного носіння.' },
-                { id: '2', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Castelia для максимального комфорту.' },
-                { id: '3', name: 'Худі "Пиздуйте"', description: 'Тепле худі Castelia для прохолодних вечорів.' },
-                { id: '4', name: 'Футболка "Пиздуйте"', description: 'Класична футболка Castelia з принтом.' },
-                { id: '5', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Castelia для максимального комфорту.' },
-                { id: '6', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Castelia для максимального комфорту.' },
+                { id: '1', name: 'Футболка "Воля"', description: 'Класична футболка Calestia для повсякденного носіння.' },
+                { id: '2', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
+                { id: '3', name: 'Худі "Пиздуйте"', description: 'Тепле худі Calestia для прохолодних вечорів.' },
+                { id: '4', name: 'Футболка "Пиздуйте"', description: 'Класична футболка Calestia з принтом.' },
+                { id: '5', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
+                { id: '6', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
             ];
             searchInput.addEventListener('input', () => {
                 const searchTerm = searchInput.value.toLowerCase();
