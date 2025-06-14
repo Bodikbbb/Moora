@@ -232,16 +232,41 @@
             transition: transform 0.3s ease;
         }
 
+        /* Стили для внутреннего слайдера изображений в каждой карточке товара */
+        .product-item .product-images-slider {
+            width: 100%; /* Занимает всю доступную ширину карточки товара */
+            height: 300px; /* Фиксированная высота области изображений. МОЖЕТЕ НАСТРОИТЬ */
+            overflow-x: scroll; /* Включаем горизонтальный скролл */
+            scroll-snap-type: x mandatory; /* Привязка скролла к элементам */
+            display: flex; /* Делаем его Flex-контейнером */
+            flex-wrap: nowrap; /* Изображения остаются на одной линии */
+            -webkit-overflow-scrolling: touch; /* Для более плавного скролла на iOS */
+            border-radius: 8px; /* Закругляем углы, как у карточки товара */
+            margin-bottom: 15px; /* Отступ между слайдером и информацией о товаре */
+            position: relative; /* Для позиционирования, если захотите добавить навигацию */
+        
+            /* Скрываем скроллбар (опционально, но часто используется для каруселей) */
+            scrollbar-width: none; /* Для Firefox */
+            -ms-overflow-style: none; /* Для IE/Edge */
+        }
+        
+        /* Скрываем скроллбар для Webkit браузеров (Chrome, Safari) */
+        .product-item .product-images-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .product-item .product-slide {
+            flex: 0 0 100%; /* Каждое изображение занимает 100% ширины видимой части слайдера */
+            width: 100%; /* Убеждаемся, что изображение заполняет свой флекс-элемент */
+            height: 100%; /* Убеждаемся, что изображение заполняет свой флекс-элемент */
+            object-fit: cover; /* Изображение будет покрывать всю область, обрезая лишнее, если нужно */
+            scroll-snap-align: start; /* Привязка скролла к началу каждого изображения */
+            border-radius: 8px; /* Чтобы углы изображений были закруглены */
+        }
+
         .product-item:hover {
             transform: translateY(-5px);
             border-color: var(--accent-color); /* Рамка товара при наведении - желтая */
-        }
-
-        .product-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            margin-bottom: 15px;
         }
 
         .product-item h4 {
@@ -693,8 +718,12 @@
                 <h3>Наші товари</h3>
                 <div class="product-grid">
                     <div class="product-item" id="product-1">
-                        <img src="img/Oversize.jpg" alt="Футболка Calestia 'Міський Стиль'">
-                        <h4>Футболка "Воля"</h4>
+                        <div class="product-images-slider">
+                            <img class="product-slide" src="img/Tsir1.jpg" alt="Худі 1 - Вид 1">
+                            <img class="product-slide" src="img/Tsir2.jpg" alt="Худі 1 - Вид 2">
+                            <img class="product-slide" src="img/Tsir3.jpg" alt="Худі 1 - Вид 3">
+                        </div>
+                        <h4>Футболка "Classic"</h4>
                         <p class="sizes-available">Розміри: S, M, L, XL</p>
                         <p class="price">Ціна: 499 грн</p>
                         <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499" data-available-sizes="S,M,L,XL">Додати в кошик</button>
