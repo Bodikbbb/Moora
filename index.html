@@ -72,10 +72,10 @@
 
         .desktop-menu ul {
             list-style: none;
-            padding: 0;
             margin: 0;
-            display: flex;
-            align-items: center; /* Центрируем элементы меню по вертикали */
+            padding: 0;
+            display: flex; /* Чтобы иконки были в ряд */
+            gap: 20px; /* Расстояние между иконками */
         }
 
         .desktop-menu ul li {
@@ -83,17 +83,49 @@
         }
 
         .desktop-menu ul li a {
-            color: var(--light-text-color);
+            padding: 10px; /* Отступы вокруг иконки для кликабельной области */
             text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95em;
-            transition: color 0.3s ease, background-color 0.3s ease;
-            padding: 5px 10px;
-            border-radius: 4px;
+            color: var(--light-text-color);
+            transition: color 0.3s ease;
+            display: flex; /* Для центрирования иконки */
+            align-items: center;
+            justify-content: center; /* Центрируем иконку внутри элемента */
         }
-
         .desktop-menu ul li a:hover {
             color: var(--accent-color); /* Пункты меню при наведении - желтые */
+        }
+
+        /* Стили для всех иконок внутри десктопного меню */
+        .desktop-menu ul li a .fas {
+            font-size: 1.8em; /* Увеличенный размер для иконок меню */
+            margin-right: 0; /* Убираем отступ, так как нет текста */
+            color: inherit; /* Иконка наследует цвет от родительского <a> */
+        }
+        
+        /* Стили для счетчика корзины (чтобы выглядел как часть иконки) */
+        #cart-count-desktop {
+            font-size: 0.5em; /* Очень маленький размер для счетчика */
+            vertical-align: super; /* Поднять счетчик чуть выше */
+            margin-left: 2px;
+            position: absolute; /* Позиционируем относительно иконки */
+            top: 5px; /* Настройте позицию */
+            right: 5px; /* Настройте позицию */
+            background-color: var(--accent-color); /* Фон счетчика */
+            color: var(--dark-text-color); /* Цвет текста счетчика */
+            border-radius: 50%;
+            padding: 2px 5px;
+            line-height: 1;
+        }
+        #cart-button-desktop {
+            position: relative; /* Чтобы #cart-count-desktop позиционировался относительно него */
+        }
+        
+        /* Гамбургер меню (оставляем как есть, оно уже отдельный элемент) */
+        .hamburger-menu {
+            display: none; /* По умолчанию скрыто на десктопе */
+            font-size: 1.8em;
+            color: var(--light-text-color);
+            cursor: pointer;
         }
 
         /* --- НОВАЯ КОРЗИНА В ХЕДЕРЕ ДЛЯ МОБИЛЬНЫХ --- */
