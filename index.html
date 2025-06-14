@@ -42,26 +42,21 @@
 
 
         /* Хедер */
-        .header {
-            background-color: var(--primary-color);
+        header {
+            background: var(--primary-color); /* Чорний хедер */
             color: var(--light-text-color);
-            padding: 15px 0;
+            padding: 8px 0;
             border-bottom: 1px solid var(--accent-color);
-            display: flex; /* Снова делаем flex, чтобы содержимое header было в ряд */
-            justify-content: space-between; /* Распределяем пространство */
-            align-items: center; /* Выравниваем по центру */
+            display: flex;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .header .container {
+        header .container {
             display: flex;
-            justify-content: space-between; /* Растягивает лого, меню и гамбургер */
-            align-items: center;
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center; /* Центрируем по вертикали */
         }
 
         .logo {
@@ -78,10 +73,10 @@
 
         .desktop-menu ul {
             list-style: none;
-            margin: 0;
             padding: 0;
-            display: flex; /* Чтобы иконки были в ряд */
-            gap: 20px; /* Расстояние между иконками */
+            margin: 0;
+            display: flex;
+            align-items: center; /* Центрируем элементы меню по вертикали */
         }
 
         .desktop-menu ul li {
@@ -89,25 +84,43 @@
         }
 
         .desktop-menu ul li a {
-            padding: 10px; /* Отступы вокруг иконки для кликабельной области */
-            text-decoration: none;
             color: var(--light-text-color);
-            transition: color 0.3s ease;
-            display: flex; /* Для центрирования иконки */
-            align-items: center;
-            justify-content: center; /* Центрируем иконку внутри элемента */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95em;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
+
         .desktop-menu ul li a:hover {
             color: var(--accent-color); /* Пункты меню при наведении - желтые */
         }
 
-        /* Стили для всех иконок внутри десктопного меню */
-        .desktop-menu ul li a .fas {
-            font-size: 1.8em; /* Увеличенный размер для иконок меню */
-            margin-right: 0; /* Убираем отступ, так как нет текста */
-            color: inherit; /* Иконка наследует цвет от родительского <a> */
+        #cart-count-desktop {
+            font-size: 0.5em; /* Очень маленький размер для счетчика */
+            vertical-align: super; /* Поднять счетчик чуть выше */
+            margin-left: 2px;
+            position: absolute; /* Позиционируем относительно иконки */
+            top: 5px; /* Настройте позицию */
+            right: 5px; /* Настройте позицию */
+            background-color: var(--accent-color); /* Фон счетчика */
+            color: var(--dark-text-color); /* Цвет текста счетчика */
+            border-radius: 50%;
+            padding: 2px 5px;
+            line-height: 1;
+        }
+        #cart-button-desktop {
+            position: relative; /* Чтобы #cart-count-desktop позиционировался относительно него */
         }
         
+        /* Гамбургер меню (оставляем как есть, оно уже отдельный элемент) */
+        .hamburger-menu {
+            display: none; /* По умолчанию скрыто на десктопе */
+            font-size: 1.8em;
+            color: var(--light-text-color);
+            cursor: pointer;
+        }
 
         /* --- НОВАЯ КОРЗИНА В ХЕДЕРЕ ДЛЯ МОБИЛЬНЫХ --- */
         .header-icons {
@@ -695,14 +708,16 @@
         <div class="container">
             <h1 class="logo">Calestia</h1>
             <nav class="desktop-menu">
-                <ul>
-                    <li><a href="#products"><i class="fas fa-tshirt"></a></li>
-                    <li><a href="#contact"><i class="fas fa-envelope"></i></a></li>
-                    <li><a href="#help"><i class="fas fa-question-circle"></i></a></li>
-                    <li><a href="#" id="cart-button"><i class="fas fa-shopping-cart"></i> (<span class="cart-count-badge" id="mobile-cart-badge">0</span>)</a></li>
-                    <li><a href="#" id="search-button"><i class="fas fa-search"></a></li>
-                </ul>
-            </nav>
+            <ul>
+                <li><a href="#products"><i class="fas fa-tshirt"></i></a></li> 
+                <li><a href="#contact"><i class="fas fa-envelope"></i></a></li> 
+                <li><a href="#about"><i class="fas fa-question-circle"></i></a></li> 
+                <li><a href="#" id="cart-button-desktop"><i class="fas fa-shopping-cart"></i> (<span id="cart-count-desktop">0</span>)</a></li> 
+                <li><a href="#" id="search-button"><i class="fas fa-search"></i></a></li> </ul>
+        </nav>
+        <div class="hamburger-menu">
+            <i class="fas fa-bars"></i>
+        </div>
             <div class="header-icons">
                 <div class="mobile-cart-icon" id="mobile-cart-icon">
                     🛒 <span class="cart-count-badge" id="mobile-cart-badge">0</span>
