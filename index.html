@@ -108,31 +108,6 @@
             color: inherit; /* Иконка наследует цвет от родительского <a> */
         }
         
-        /* Стили для счетчика корзины (чтобы выглядел как часть иконки) */
-        #cart-count-desktop {
-            font-size: 0.5em; /* Очень маленький размер для счетчика */
-            vertical-align: super; /* Поднять счетчик чуть выше */
-            margin-left: 2px;
-            position: absolute; /* Позиционируем относительно иконки */
-            top: 5px; /* Настройте позицию */
-            right: 5px; /* Настройте позицию */
-            background-color: var(--accent-color); /* Фон счетчика */
-            color: var(--dark-text-color); /* Цвет текста счетчика */
-            border-radius: 50%;
-            padding: 2px 5px;
-            line-height: 1;
-        }
-        #cart-button-desktop {
-            position: relative; /* Чтобы #cart-count-desktop позиционировался относительно него */
-        }
-        
-        /* Гамбургер меню (оставляем как есть, оно уже отдельный элемент) */
-        .hamburger-menu {
-            display: none; /* По умолчанию скрыто на десктопе */
-            font-size: 1.8em;
-            color: var(--light-text-color);
-            cursor: pointer;
-        }
 
         /* --- НОВАЯ КОРЗИНА В ХЕДЕРЕ ДЛЯ МОБИЛЬНЫХ --- */
         .header-icons {
