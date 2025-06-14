@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5 inter2025-06-10T21:03:57.653Z3Q+nucf9aB/baxv+wuZc6g/zfcLVeYhA3s8c2G5c/B3V3R02w==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         /* Базові стилі */
         :root {
@@ -93,6 +96,36 @@
 
         .desktop-menu ul li a:hover {
             color: var(--accent-color); /* Пункты меню при наведении - желтые */
+        }
+
+                /* Стили для иконок в меню */
+        .desktop-menu ul li a .fas,
+        .mobile-dropdown-menu ul li a .fas {
+            font-size: 1.4em; /* Размер иконки, настройте по вкусу */
+            color: var(--light-text-color); /* Цвет иконки (как у текста меню) */
+            margin-right: 5px; /* Отступ справа, если есть текст рядом */
+            /* Для desktop-menu, если только иконки, margin-right может быть 0 */
+        }
+        
+        /* Если в desktop-menu только иконки, можно убрать margin-right */
+        .desktop-menu ul li a {
+            display: flex; /* Делаем flex, чтобы иконка и текст были по центру */
+            align-items: center; /* Выравнивание по центру */
+            justify-content: center; /* Центрирование, если только иконка */
+            padding: 10px 15px; /* Увеличиваем кликабельную область и отступы */
+            text-decoration: none;
+            color: var(--light-text-color);
+            transition: color 0.3s ease;
+        }
+        
+        /* Убираем margin-right, если у вас в десктоп-меню только иконки */
+        .desktop-menu ul li a .fas {
+            margin-right: 0;
+        }
+        
+        /* На мобильных, если текст остается, оставляем небольшой отступ */
+        .mobile-dropdown-menu ul li a .fas {
+            margin-right: 10px;
         }
 
         /* --- НОВАЯ КОРЗИНА В ХЕДЕРЕ ДЛЯ МОБИЛЬНЫХ --- */
@@ -682,11 +715,10 @@
             <h1 class="logo">Calestia</h1>
             <nav class="desktop-menu">
                 <ul>
-                    <li><a href="#products">Товари</a></li>
-                    <li><a href="#contact">Контакти</a></li>
-                    <li><a href="#help">Довідка</a></li>
-                    <li><a href="#" id="cart-button">Кошик (<span id="cart-count">0</span>)</a></li>
-                    <li><a href="#" id="search-button">Пошук</a></li>
+                    <li><a href="#hero"><i class="fas fa-home"></i></a></li>
+                    <li><a href="#products"><i class="fas fa-tshirt"></i></a></li>
+                    <li><a href="#about"><i class="fas fa-info-circle"></i></a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i></a></li>
                 </ul>
             </nav>
             <div class="header-icons">
@@ -701,11 +733,14 @@
     </header>
 
     <div class="mobile-dropdown-menu">
-        <ul>
-            <li><a href="#contact">Контакти</a></li>
-            <li><a href="#help">Довідка</a></li>
-            <li><a href="#" id="search-button-mobile">Пошук</a></li>
-        </ul>
+        <nav>
+            <ul>
+                <li><a href="#hero"><i class="fas fa-home"></i> Головна</a></li> <li><a href="#products"><i class="fas fa-tshirt"></i> Товари</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> Про нас</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Контакти</a></li>
+                <li><a href="#" id="cart-button-mobile"><i class="fas fa-shopping-cart"></i> Кошик (<span id="cart-count-mobile">0</span>)</a></li>
+            </ul>
+        </nav>
     </div>
 
     <main>
