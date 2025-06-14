@@ -42,11 +42,14 @@
 
 
         /* Хедер */
-        header {
-            background: var(--primary-color); /* Чорний хедер */
+        .header {
+            background-color: var(--primary-color);
             color: var(--light-text-color);
-            padding: 8px 0;
+            padding: 15px 0;
             border-bottom: 1px solid var(--accent-color);
+            display: flex; /* Снова делаем flex, чтобы содержимое header было в ряд */
+            justify-content: space-between; /* Распределяем пространство */
+            align-items: center; /* Выравниваем по центру */
             position: sticky;
             top: 0;
             z-index: 1000;
