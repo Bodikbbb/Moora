@@ -1228,10 +1228,7 @@
                     message += ` (Розмір: ${item.selectedSize || 'не обрано'})\n`;
                 });
                 message += `\n*Всього до сплати: ${cartTotalPriceSpan.textContent} грн*`;
-
-                const botToken = 'BOT'; // Измените это на ваш токен бота
-                const chatIds = 'ddd';// Измените это на ваш ID чата или группы
-                const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+                
                 try {
                     const response = await fetch('/.netlify/functions/send-telegram-message', {
                         method: 'POST',
@@ -1239,9 +1236,15 @@
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            chat_id: chatId,
-                            text: message,
-                            parse_mode: 'Markdown'
+                            // Отправляем все необходимые данные формы
+                            customerName: customerName,
+                            customerPhone: customerPhone,
+                            novaPoshtaCity: novaPoshtaCity,
+                            novaPoshtaBranch: novaPoshtaBranch,
+                            paymentMethod: paymentMethod,
+                            orderSummary: orderSummaryMessage, // Передаем сформированное сообщение о заказе
+                            // Если вы хотите отправить массив `cart` напрямую, убедитесь, что он доступен здесь:
+                            // cartItems: cart // Пример: если 'cart' - это массив объектов товаров
                         })
                     });
                     const data = await response.json();
