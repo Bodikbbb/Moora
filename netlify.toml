@@ -1,0 +1,16 @@
+# netlify.toml
+[build]
+  # Папка, где находится ваш HTML, CSS, JS и картинки
+  # Если ваш pisun.txt прямо в корне репозитория, то оставляем "."
+  publish = "."
+  # Команда для сборки вашего проекта (если она есть, например, "npm run build")
+  # Если у вас просто HTML/CSS/JS, то команда сборки не нужна
+  command = "" # Оставьте пустым, если нет команды сборки
+
+[functions]
+  # Папка, где находятся ваши функции (мы создали `netlify/functions`)
+  directory = "netlify/functions"
+  # Этот путь будет для доступа к функции (например, .netlify/functions/send-telegram-message)
+  # Отсюда функция будет доступна по URL /api/send-telegram-message
+  # (если вы хотите поменять этот путь, то укажите другое значение)
+  function = "send-telegram-message"
