@@ -314,7 +314,7 @@
         .product-item .price {
             font-size: 1.1em;
             font-weight: bold;
-            color: var(--accent-color); /* Цена товара - желтая */
+            color: #959595; /* Цена товара - желтая */
             margin-bottom: 15px;
         }
 
@@ -847,7 +847,7 @@
         <section id="contact" class="contact-section">
             <div class="container">
                 <h3>Контакти</h3>
-                <p>Напишіть нам: <a href="mailto:info@calestia.com">@gmail.com</a></p>
+                <p>Напишіть нам: <a href="calestia644@gmail.com">calestia644@gmail.com</a></p>
                 <p>Тел: +380 97 963 6202</p>
             </div>
         </section>
@@ -1230,7 +1230,7 @@
                 message += `\n*Всього до сплати: ${cartTotalPriceSpan.textContent} грн*`;
 
                 const botToken = '7622464545:AAGDZUJVWtyRenp9DC5avjLJjiBr5Mx7Teg'; // Измените это на ваш токен бота
-                const chatIds = ['1092057931', '1787740147'];// Измените это на ваш ID чата или группы
+                const chatIds = 'ddd';// Измените это на ваш ID чата или группы
                 const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
                 try {
                     const response = await fetch(telegramApiUrl, {
