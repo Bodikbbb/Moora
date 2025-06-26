@@ -1247,6 +1247,7 @@
                             // cartItems: cart // Пример: если 'cart' - это массив объектов товаров
                         })
                     });
+                    return await response.json();
                     const data = await response.json();
 
                     if (data.ok) {
