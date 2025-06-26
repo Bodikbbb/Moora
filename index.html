@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Базові стилі */
         :root {
@@ -47,7 +46,6 @@
             color: var(--light-text-color);
             padding: 8px 0;
             border-bottom: 1px solid var(--accent-color);
-            display: flex;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -87,7 +85,7 @@
             color: var(--light-text-color);
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.6em;
+            font-size: 0.95em;
             transition: color 0.3s ease, background-color 0.3s ease;
             padding: 5px 10px;
             border-radius: 4px;
@@ -95,31 +93,6 @@
 
         .desktop-menu ul li a:hover {
             color: var(--accent-color); /* Пункты меню при наведении - желтые */
-        }
-
-        #cart-count-desktop {
-            font-size: 0.5em; /* Очень маленький размер для счетчика */
-            vertical-align: super; /* Поднять счетчик чуть выше */
-            margin-left: 2px;
-            position: absolute; /* Позиционируем относительно иконки */
-            top: 5px; /* Настройте позицию */
-            right: 5px; /* Настройте позицию */
-            background-color: var(--accent-color); /* Фон счетчика */
-            color: var(--dark-text-color); /* Цвет текста счетчика */
-            border-radius: 50%;
-            padding: 2px 5px;
-            line-height: 1;
-        }
-        #cart-button-desktop {
-            position: relative; /* Чтобы #cart-count-desktop позиционировался относительно него */
-        }
-        
-        /* Гамбургер меню (оставляем как есть, оно уже отдельный элемент) */
-        .hamburger-menu {
-            display: none; /* По умолчанию скрыто на десктопе */
-            font-size: 1.8em;
-            color: var(--light-text-color);
-            cursor: pointer;
         }
 
         /* --- НОВАЯ КОРЗИНА В ХЕДЕРЕ ДЛЯ МОБИЛЬНЫХ --- */
@@ -314,7 +287,7 @@
         .product-item .price {
             font-size: 1.1em;
             font-weight: bold;
-            color: #959595; /* Цена товара - желтая */
+            color: var(--accent-color); /* Цена товара - желтая */
             margin-bottom: 15px;
         }
 
@@ -708,17 +681,14 @@
         <div class="container">
             <h1 class="logo">Calestia</h1>
             <nav class="desktop-menu">
-            <ul>
-                <li><a href="#products"><i class="fas fa-tshirt"></i></a></li> 
-                <li><a href="#contact"><i class="fas fa-envelope"></i></a></li> 
-                <li><a href="#about"><i class="fas fa-question-circle"></i></a></li> 
-                <li><a href="#" id="cart-button"><i class="fas fa-shopping-cart"></i> <span class="cart-count-badge" id="mobile-cart-badge">0</span></a></li> 
-                <li><a href="#" id="search-button"><i class="fas fa-search"></i></a></li>
-            </ul>
-        </nav>
-        <div class="hamburger-menu">
-            <i class="fas fa-bars"></i>
-        </div>
+                <ul>
+                    <li><a href="#products">Товари</a></li>
+                    <li><a href="#contact">Контакти</a></li>
+                    <li><a href="#help">Довідка</a></li>
+                    <li><a href="#" id="cart-button">Кошик (<span id="cart-count">0</span>)</a></li>
+                    <li><a href="#" id="search-button">Пошук</a></li>
+                </ul>
+            </nav>
             <div class="header-icons">
                 <div class="mobile-cart-icon" id="mobile-cart-icon">
                     🛒 <span class="cart-count-badge" id="mobile-cart-badge">0</span>
@@ -756,89 +726,59 @@
                             <img class="product-slide" src="img/Tsir2.jpg" alt="Худі 1 - Вид 2">
                         </div>
                         <h4>Футболка "Classic"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL, XXL</p>
-                        <p class="price">Ціна: 599 грн</p>
-                        <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Classic'" data-product-price="599" data-available-sizes="S,M,L,XL,XXL">Додати в кошик</button>
+                        <p class="sizes-available">Розміри: S, M, L, XL</p>
+                        <p class="price">Ціна: 499 грн</p>
+                        <button class="add-to-cart" data-product-id="1" data-product-name="Футболка 'Міський Стиль'" data-product-price="499" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-2">
                        <div class="product-images-slider">
                             <img class="product-slide" src="img/Tshir1.jpg" alt="Худі 1 - Вид 1">
                             <img class="product-slide" src="img/Tshir2.jpg" alt="Худі 1 - Вид 2">
                         </div>
-                        <h4>Оверсайз футболка "Pink Pant"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL, XXL</p>
-                        <p class="price">Ціна: 620 грн</p>
-                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Pink Pant'" data-product-price="620" data-available-sizes="S,M,L,XL,XXL">Додати в кошик</button>
+                        <h4>Оверсайз футболка "Комфорт"</h4>
+                        <p class="sizes-available">Розміри: M, L, XL, XXL</p>
+                        <p class="price">Ціна: 649 грн</p>
+                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-3">
                         <div class="product-images-slider">
-                            <img class="product-slide" src="img/gung.png" alt="Худі 1 - Вид 1">
-                            <img class="product-slide" src="img/gung1.jpg" alt="Худі 1 - Вид 2">
+                            <img class="product-slide" src="img/Tsirt1.jpg" alt="Худі 1 - Вид 1">
+                            <img class="product-slide" src="img/Tsirt2.jpg" alt="Худі 1 - Вид 2">
                         </div>
-                        <h4>Худі "Gung"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL, XXL</p>
-                        <p class="price">Ціна: 1100 грн</p>
-                        <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Gung'" data-product-price="1100" data-available-sizes="S,M,L,XL,XXL">Додати в кошик</button>
+                        <h4>Худі "Пиздуйте"</h4>
+                        <p class="sizes-available">Розміри: S, M, L, XL</p>
+                        <p class="price">Ціна: 899 грн</p>
+                        <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-4">
                        <div class="product-images-slider">
-                            <img class="product-slide" src="img/Hoodie1.jpg" alt="Худі 1 - Вид 1">
-                            <img class="product-slide" src="img/Hoodie2.png" alt="Худі 1 - Вид 2">
+                            <img class="product-slide" src="img/Tsir1.jpg" alt="Худі 1 - Вид 1">
+                            <img class="product-slide" src="img/Tsir2.jpg" alt="Худі 1 - Вид 2">
                         </div>
-                        <h4>Худі "Classic"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL, XXL</p>
-                        <p class="price">Ціна: 1020 грн</p>
-                        <button class="add-to-cart" data-product-id="4" data-product-name="Худі 'Classic'" data-product-price="1100" data-available-sizes="S,M,L,XL,XXL">Додати в кошик</button>
+                        <h4>Худі "Пиздуйте"</h4>
+                        <p class="sizes-available">Розміри: S, M, L, XL</p>
+                        <p class="price">Ціна: 899 грн</p>
+                        <button class="add-to-cart" data-product-id="3" data-product-name="Худі 'Затишок'" data-product-price="899" data-available-sizes="S,M,L,XL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-5">
                        <div class="product-images-slider">
-                            <img class="product-slide" src="img/Hoodie1-1.jpg" alt="Худі 1 - Вид 1">
-                            <img class="product-slide" src="img/Hoodie2-1.jpg" alt="Худі 1 - Вид 2">
+                            <img class="product-slide" src="img/Tsir1.jpg" alt="Худі 1 - Вид 1">
+                            <img class="product-slide" src="img/Tsir2.jpg" alt="Худі 1 - Вид 2">
                         </div>
-                        <h4>Худі "Абстракт"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL, XXL</p>
-                        <p class="price">Ціна: 1100 грн</p>
-                        <button class="add-to-cart" data-product-id="5" data-product-name="Худі 'Абстракт'" data-product-price="1100" data-available-sizes="S,M,L,XL,XXL">Додати в кошик</button>
+                        <h4>Оверсайз футболка "Комфорт"</h4>
+                        <p class="sizes-available">Розміри: M, L, XL, XXL</p>
+                        <p class="price">Ціна: 649 грн</p>
+                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
                     </div>
                     <div class="product-item" id="product-6">
                        <div class="product-images-slider">
-                            <img class="product-slide" src="img/Hoodie1-2.jpg" alt="Худі 1 - Вид 1">
-                            <img class="product-slide" src="img/Hoodie2-2.jpg" alt="Худі 1 - Вид 2">
+                            <img class="product-slide" src="img/Tsir1.jpg" alt="Худі 1 - Вид 1">
+                            <img class="product-slide" src="img/Tsir2.jpg" alt="Худі 1 - Вид 2">
                         </div>
-                        <h4>Худі "Waves"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL, XXL</p>
-                        <p class="price">Ціна: 1150 грн</p>
-                        <button class="add-to-cart" data-product-id="6" data-product-name="Худі 'Waves'" data-product-price="1150" data-available-sizes="S,M,L,XL,XXL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-7">
-                       <div class="product-images-slider">
-                            <img class="product-slide" src="img/Nigshirt.png" alt="Худі 1 - Вид 1">
-                            <img class="product-slide" src="img/Nigshirt1.png" alt="Худі 1 - Вид 2">
-                        </div>
-                        <h4>Футболка "Скандинавія"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL, XXL</p>
+                        <h4>Оверсайз футболка "Комфорт"</h4>
+                        <p class="sizes-available">Розміри: M, L, XL, XXL</p>
                         <p class="price">Ціна: 649 грн</p>
-                        <button class="add-to-cart" data-product-id="7" data-product-name="Футболка 'Скандинавія'" data-product-price="649" data-available-sizes="S,M,L,XL,XXL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-8">
-                       <div class="product-images-slider">
-                            <img class="product-slide" src="img/ART.png" alt="Худі 1 - Вид 1">
-                            <img class="product-slide" src="img/ART1.png" alt="Худі 1 - Вид 2">
-                        </div>
-                        <h4>Футболка "ART"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL, XXL</p>
-                        <p class="price">Ціна: 649 грн</p>
-                        <button class="add-to-cart" data-product-id="8" data-product-name="Футболка 'ART'" data-product-price="649" data-available-sizes="S,M,L,XL,XXL">Додати в кошик</button>
-                    </div>
-                    <div class="product-item" id="product-9">
-                       <div class="product-images-slider">
-                            <img class="product-slide" src="img/japan.jpg" alt="Худі 1 - Вид 1">
-                            <img class="product-slide" src="img/japan1.png" alt="Худі 1 - Вид 2">
-                        </div>
-                        <h4>Худі "Japan"</h4>
-                        <p class="sizes-available">Розміри: S, M, L, XL, XXL</p>
-                        <p class="price">Ціна: 1100 грн</p>
-                        <button class="add-to-cart" data-product-id="9" data-product-name="Худі 'Japan'" data-product-price="1100" data-available-sizes="S,M,L,XL,XXL">Додати в кошик</button>
+                        <button class="add-to-cart" data-product-id="2" data-product-name="Оверсайз футболка 'Комфорт'" data-product-price="649" data-available-sizes="M,L,XL,XXL">Додати в кошик</button>
                     </div>
                 </div>
             </div>
@@ -847,8 +787,8 @@
         <section id="contact" class="contact-section">
             <div class="container">
                 <h3>Контакти</h3>
-                <p>Напишіть нам: <a href="calestia644@gmail.com">calestia644@gmail.com</a></p>
-                <p>Тел: +380 97 963 6202</p>
+                <p>Напишіть нам: <a href="mailto:info@calestia.com">HuiZnaPridumaem@gmail.com</a></p>
+                <p>Тел: +380 68 806 91 15</p>
             </div>
         </section>
 
@@ -1228,9 +1168,9 @@
                     message += ` (Розмір: ${item.selectedSize || 'не обрано'})\n`;
                 });
                 message += `\n*Всього до сплати: ${cartTotalPriceSpan.textContent} грн*`;
-                
-                 const botToken = '7622464545:AAGDZUJVWtyRenp9DC5avjLJjiBr5Mx7Teg'; // Измените это на ваш токен бота
-                const chatId = '1092057931'; // Измените это на ваш ID чата или группы
+
+                const botToken = 'YOUR_BOT_TOKEN'; // Измените это на ваш токен бота
+                const chatId = 'YOUR_CHAT_ID'; // Измените это на ваш ID чата или группы
                 const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
                 try {
                     const response = await fetch(telegramApiUrl, {
@@ -1239,15 +1179,9 @@
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            // Отправляем все необходимые данные формы
-                            customerName: customerName,
-                            customerPhone: customerPhone,
-                            novaPoshtaCity: novaPoshtaCity,
-                            novaPoshtaBranch: novaPoshtaBranch,
-                            paymentMethod: paymentMethod,
-                            orderSummary: orderSummaryMessage, // Передаем сформированное сообщение о заказе
-                            // Если вы хотите отправить массив `cart` напрямую, убедитесь, что он доступен здесь:
-                            // cartItems: cart // Пример: если 'cart' - это массив объектов товаров
+                            chat_id: chatId,
+                            text: message,
+                            parse_mode: 'Markdown'
                         })
                     });
                     const data = await response.json();
@@ -1277,15 +1211,12 @@
 
             // Функционал поиска - ОБНОВЛЕН ДЛЯ Calestia
             const allProducts = [
-                { id: '1', name: 'Футболка "Classic"', description: 'Класична футболка Calestia для повсякденного носіння.' },
-                { id: '2', name: 'Оверсайз футболка "Pink Pant"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
-                { id: '3', name: 'Худі "Gung"', description: 'Тепле худі Calestia для прохолодних вечорів.' },
-                { id: '4', name: 'Худі "Classic"', description: 'Класична футболка Calestia з принтом.' },
-                { id: '5', name: 'Худі "Абстракт"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
-                { id: '6', name: 'Худі "Waves"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
-                { id: '7', name: 'Футболка "Скандинавія"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
-                { id: '8', name: 'Футболка "ART"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
-                { id: '9', name: 'Худі "Japan"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
+                { id: '1', name: 'Футболка "Воля"', description: 'Класична футболка Calestia для повсякденного носіння.' },
+                { id: '2', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
+                { id: '3', name: 'Худі "Пиздуйте"', description: 'Тепле худі Calestia для прохолодних вечорів.' },
+                { id: '4', name: 'Футболка "Пиздуйте"', description: 'Класична футболка Calestia з принтом.' },
+                { id: '5', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
+                { id: '6', name: 'Оверсайз футболка "Комфорт"', description: 'Вільна оверсайз футболка Calestia для максимального комфорту.' },
             ];
             searchInput.addEventListener('input', () => {
                 const searchTerm = searchInput.value.toLowerCase();
