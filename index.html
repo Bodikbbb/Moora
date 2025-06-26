@@ -1230,7 +1230,7 @@
                 message += `\n*Всього до сплати: ${cartTotalPriceSpan.textContent} грн*`;
                 
                 try {
-                    const response = await fetch('https://calestiashop.netlify.app/.netlify/functions/send-telegram-message', {
+                    const response = await fetch('/.netlify/functions/send-telegram-message', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
