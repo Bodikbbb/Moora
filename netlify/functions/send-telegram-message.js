@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
 
     return {
         statusCode: 200,
-        body: 'Hello world'
+        body: JSON.stringify({ success: true, message: 'Hello world.' })
     }
     
     if (event.httpMethod !== 'POST') {
