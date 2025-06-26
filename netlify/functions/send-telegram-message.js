@@ -20,6 +20,8 @@ const RECIPIENT_CHAT_IDS = [
 // Главная функция, которую будет вызывать Netlify Function
 exports.handler = async (event, context) => {
     // 2. Проверяем, что запрос пришел методом POST
+    console.log(`Request body: #{event.body}`);
+    
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405, // Метод не разрешен
