@@ -22,6 +22,11 @@ exports.handler = async (event, context) => {
     // 2. Проверяем, что запрос пришел методом POST
     console.log(process.env.TELEGRAM_BOT_TOKEN, '==============');
     console.log(`Request body: #{event.body}`, "=======================");
+
+    return {
+        statusCode: 200,
+        body: 'Hello world'
+    }
     
     if (event.httpMethod !== 'POST') {
         return {
